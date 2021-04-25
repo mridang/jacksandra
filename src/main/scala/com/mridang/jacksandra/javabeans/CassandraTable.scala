@@ -9,7 +9,7 @@ import com.mridang.jacksandra.CassandraJsonSchemaBase
 
 import scala.collection.JavaConverters.mapAsScalaMapConverter
 
-class MySchema(schema: JsonSchema) {
+class CassandraTable(schema: JsonSchema) {
 
   def getOps: String = {
     val xx = SchemaBuilder

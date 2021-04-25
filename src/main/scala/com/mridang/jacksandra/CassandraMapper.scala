@@ -71,7 +71,7 @@ class CassandraMapper[T]()(implicit classTag: ClassTag[T]) {
       .asInstanceOf[CassandraVisitorContext]
       .udts
       .foreach(f => new CassandraUDTs().of(f._1, f._2))
-    new MySchema(schemaFactoryWrapper.finalSchema()).getOps
+    new CassandraTable(schemaFactoryWrapper.finalSchema()).getOps
   }
 
   def map(obj: T): Map[String, _] = {
