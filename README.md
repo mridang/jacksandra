@@ -1,2 +1,1 @@
-# jacksandra
-An Jackson-based automatic schema-generator for Cassandra
+Nothing to see here. Yet.
