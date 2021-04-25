@@ -47,15 +47,15 @@ public class BeanWithCollections {
     public ImmutableList<String> toImmutableListString;
 
     @Nullable
-    @CqlName("toFrozenListString")
+    @CqlName("toSetListString")
     public FrozenSet<String> toSetListString;
 
     @Nullable
-    @CqlName("toListString")
+    @CqlName("toSetString")
     public Set<String> toSetString;
 
     @Nullable
-    @CqlName("toImmutableListString")
+    @CqlName("toImmutableSetString")
     public ImmutableSet<String> toImmutableSetString;
 
 }
