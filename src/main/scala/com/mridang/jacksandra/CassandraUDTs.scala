@@ -11,7 +11,7 @@ import scala.collection.JavaConverters.mapAsScalaMapConverter
 
 class CassandraUDTs() {
 
-  def of(name: CqlName, schema: ObjectSchema): Unit = {
+  def of(name: CqlName, schema: ObjectSchema): String = {
     val xx: CreateTypeStart = SchemaBuilder
       .createType(name.value())
       .ifNotExists()
@@ -39,6 +39,6 @@ class CassandraUDTs() {
         }
       }
 
-    println(createType.build().getQuery)
+    createType.build().getQuery
   }
 }

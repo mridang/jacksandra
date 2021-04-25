@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/MySchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,10 +230,15 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraArraySchema.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="3" />
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala</url>
+          <line>99</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala</url>
+          <line>10</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

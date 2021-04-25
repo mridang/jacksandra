@@ -26,6 +26,6 @@ class CassandraObjectSchema(
     with CassandraContainerSchema {
 
   override def cassandraType: DataType = {
-    QueryBuilder.udt("moodooor")
+    QueryBuilder.udt(name.value())
   }
 }

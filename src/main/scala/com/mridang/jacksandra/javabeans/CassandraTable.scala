@@ -11,7 +11,7 @@ import scala.collection.JavaConverters.mapAsScalaMapConverter
 
 class CassandraTable(schema: JsonSchema) {
 
-  def getOps: String = {
+  def buildSchema: String = {
     val xx = SchemaBuilder
       .createTable("cunt")
       .ifNotExists()

@@ -8,7 +8,6 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.jsonSchema.factories._
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import com.mridang.jacksandra.javabeans._
 
 import java.lang.reflect.Method
 import java.time.{LocalDate, LocalDateTime}
@@ -65,13 +64,7 @@ class CassandraMapper[T]()(implicit classTag: ClassTag[T]) {
       classTag.runtimeClass,
       schemaFactoryWrapper)
 
-    schemaFactoryWrapper
-      .asInstanceOf[CassandraJavaBeanSchemaFactoryWrapper]
-      .cassandraVisitorContext
-      .asInstanceOf[CassandraVisitorContext]
-      .udts
-      .foreach(f => new CassandraUDTs().of(f._1, f._2))
-    new CassandraTable(schemaFactoryWrapper.finalSchema()).getOps
+    CassandraSchema.from(schemaFactoryWrapper)
   }
 
   def map(obj: T): Map[String, _] = {
