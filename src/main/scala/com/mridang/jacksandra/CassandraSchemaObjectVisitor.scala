@@ -23,10 +23,6 @@ import com.mridang.jacksandra.javabeans.{
   CassandraSchema
 }
 
-/**
-  * @author mridang
-  * @date 24/04/2021
-  */
 class CassandraSchemaObjectVisitor(
     provider: SerializerProvider,
     schema: ObjectSchema,

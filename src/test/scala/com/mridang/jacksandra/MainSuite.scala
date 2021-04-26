@@ -1,13 +1,10 @@
 package com.mridang.jacksandra
 
 import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
-import org.junit.runner.RunWith
-import org.scalatest.FunSuite
-import org.scalatest.Matchers.convertToAnyShouldWrapper
-import org.scalatestplus.junit.JUnitRunner
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
-@RunWith(classOf[JUnitRunner])
-class MainSuite extends FunSuite {
+class MainSuite extends AnyFunSuite {
 
   /**
    * Utility method to compare two queries by replacing all spaces and newlines

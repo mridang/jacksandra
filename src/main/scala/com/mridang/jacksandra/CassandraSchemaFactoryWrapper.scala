@@ -45,8 +45,6 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.listOf`</li>
     *
     * <ul>
-    *
-    * @inheritdoc
     */
   override def expectArrayFormat(
       convertedType: JavaType): JsonArrayFormatVisitor = {
@@ -68,8 +66,6 @@ class CassandraSchemaFactoryWrapper(
     * <ul>
     * <li>`DataTypes.BOOLEAN`</li>
     * <ul>
-    *
-    * @inheritdoc
     */
   override def expectBooleanFormat(
       convertedType: JavaType): JsonBooleanFormatVisitor = {
@@ -95,8 +91,6 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.TINYINT`</li>
     * <li>`DataTypes.VARINT`</li>
     * <ul>
-    *
-    * @inheritdoc
     */
   override def expectIntegerFormat(
       convertedType: JavaType): JsonIntegerFormatVisitor = {
@@ -129,8 +123,6 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.TINYINT`</li>
     * <li>`DataTypes.VARINT`</li>
     * <ul>
-    *
-    * @inheritdoc
     */
   override def expectNumberFormat(
       convertedType: JavaType): JsonNumberFormatVisitor = {
@@ -151,8 +143,6 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.TEXT`</li>
     * <li>`DataTypes.VARCHAR`</li>
     * <ul>
-    *
-    * @inheritdoc
     */
   override def expectStringFormat(
       convertedType: JavaType): JsonStringFormatVisitor = {
