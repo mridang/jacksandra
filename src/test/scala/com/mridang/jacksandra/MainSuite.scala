@@ -27,7 +27,7 @@ class MainSuite extends AnyFunSuite {
     """ CREATE
       |  TABLE
       | IF NOT
-      | EXISTS cunt
+      | EXISTS myjavabeanwithnumbers
       |      ( mypartitionkey           TEXT                 PRIMARY KEY
       |      , toint                    INT
       |      , todouble                 DOUBLE
@@ -51,7 +51,7 @@ class MainSuite extends AnyFunSuite {
     """ CREATE
       |  TABLE
       | IF NOT
-      | EXISTS cunt
+      | EXISTS myjavabeanwithcollections
       |      ( mypartitionkey           TEXT                 PRIMARY KEY
       |      , toliststring             LIST<TEXT>
       |      , tosetstring              SET<TEXT>
@@ -74,7 +74,7 @@ class MainSuite extends AnyFunSuite {
         | CREATE
         |   TYPE
         | IF NOT
-        | EXISTS myudt
+        | EXISTS myjavabeanwithudt
         |      ( somelonglist           FROZEN<LIST<BIGINT>>
         |      , someintegerlist        LIST<INT>
         |      , somestring             TEXT

@@ -22,7 +22,7 @@ import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
  *
  */
 @SuppressWarnings("unused")
-@CqlName("mynumberbean")
+@CqlName("myjavabeanwithnumbers")
 public class JavaBeanWithNumbers {
 
     @PartitionKey

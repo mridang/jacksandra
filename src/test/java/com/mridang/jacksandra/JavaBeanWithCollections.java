@@ -26,7 +26,7 @@ import com.mridang.jacksandra.types.FrozenSet;
  *
  */
 @SuppressWarnings("unused")
-@CqlName("mynumberbean")
+@CqlName("myjavabeanwithcollections")
 public class JavaBeanWithCollections {
 
     @PartitionKey

@@ -13,6 +13,7 @@ import com.mridang.jacksandra.types.FrozenSet;
 
 @SuppressWarnings("unused")
 @Entity(defaultKeyspace = "mykeyspace")
+@CqlName("myjavabeanwithudt")
 public class JavaBeanWithUDT {
 
     @Nullable
