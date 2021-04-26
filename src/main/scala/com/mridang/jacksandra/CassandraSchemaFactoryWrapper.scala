@@ -27,11 +27,11 @@ class CassandraSchemaFactoryWrapper(
     _wrapperFactory: WrapperFactory)
     extends SchemaFactoryWrapper(_provider, _wrapperFactory) {
 
-  override def expectAnyFormat(
-      convertedType: JavaType): JsonAnyFormatVisitor = {
-    val s = new CassandraAnySchema(convertedType, getDT(convertedType))
-    this.schema = s
-    visitorFactory.anyFormatVisitor(s)
+  override def expectAnyFormat(convertedType: JavaType):
+  JsonAnyFormatVisitor = {
+    val anySchema = new CassandraAnySchema(convertedType, getDT(convertedType))
+    this.schema = anySchema
+    visitorFactory.anyFormatVisitor(anySchema)
   }
 
   /**
@@ -46,8 +46,8 @@ class CassandraSchemaFactoryWrapper(
     *
     * <ul>
     */
-  override def expectArrayFormat(
-      convertedType: JavaType): JsonArrayFormatVisitor = {
+  override def expectArrayFormat(convertedType: JavaType):
+  JsonArrayFormatVisitor = {
     val jsonFormatVisitor: JsonArrayFormatVisitor =
       super.expectArrayFormat(convertedType)
     this.schema = new CassandraArraySchema(
@@ -67,11 +67,11 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.BOOLEAN`</li>
     * <ul>
     */
-  override def expectBooleanFormat(
-      convertedType: JavaType): JsonBooleanFormatVisitor = {
-    val s = new CassandraBooleanSchema(convertedType, getDT(convertedType))
-    this.schema = s
-    visitorFactory.booleanFormatVisitor(s)
+  override def expectBooleanFormat(convertedType: JavaType):
+  JsonBooleanFormatVisitor = {
+    val booleanSchema = new CassandraBooleanSchema(convertedType, getDT(convertedType))
+    this.schema = booleanSchema
+    visitorFactory.booleanFormatVisitor(booleanSchema)
   }
 
   /**
@@ -92,18 +92,11 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.VARINT`</li>
     * <ul>
     */
-  override def expectIntegerFormat(
-      convertedType: JavaType): JsonIntegerFormatVisitor = {
-    val s = new CassandraIntegerSchema(convertedType, getDT(convertedType))
-    this.schema = s
-    visitorFactory.integerFormatVisitor(s)
-  }
-
-  override def expectNullFormat(
-      convertedType: JavaType): JsonNullFormatVisitor = {
-    val s = schemaProvider.nullSchema
-    schema = s
-    visitorFactory.nullFormatVisitor(s)
+  override def expectIntegerFormat(convertedType: JavaType):
+  JsonIntegerFormatVisitor = {
+    val integerSchema = new CassandraIntegerSchema(convertedType, getDT(convertedType))
+    this.schema = integerSchema
+    visitorFactory.integerFormatVisitor(integerSchema)
   }
 
   /**
@@ -124,11 +117,11 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.VARINT`</li>
     * <ul>
     */
-  override def expectNumberFormat(
-      convertedType: JavaType): JsonNumberFormatVisitor = {
-    val s = new CassandraNumberSchema(convertedType, getDT(convertedType))
-    schema = s
-    visitorFactory.numberFormatVisitor(s)
+  override def expectNumberFormat(convertedType: JavaType):
+  JsonNumberFormatVisitor = {
+    val numberSchema = new CassandraNumberSchema(convertedType, getDT(convertedType))
+    schema = numberSchema
+    visitorFactory.numberFormatVisitor(numberSchema)
   }
 
   /**
@@ -144,11 +137,11 @@ class CassandraSchemaFactoryWrapper(
     * <li>`DataTypes.VARCHAR`</li>
     * <ul>
     */
-  override def expectStringFormat(
-      convertedType: JavaType): JsonStringFormatVisitor = {
-    val s = new CassandraStringSchema(convertedType, getDT(convertedType))
-    schema = s
-    visitorFactory.stringFormatVisitor(s)
+  override def expectStringFormat(convertedType: JavaType):
+  JsonStringFormatVisitor = {
+    val stringSchema = new CassandraStringSchema(convertedType, getDT(convertedType))
+    schema = stringSchema
+    visitorFactory.stringFormatVisitor(stringSchema)
   }
 
   def getDT(javaType: JavaType): DataType = {
@@ -171,35 +164,35 @@ class CassandraSchemaFactoryWrapper(
     }
   }
 
-  override def expectMapFormat(`type`: JavaType): JsonMapFormatVisitor = {
-    super.expectMapFormat(`type`)
-  }
-
   /**
     * Customised [[ObjectSchema]] visits:
     * - Disable reference schemas as there is no support for such things in Cassandra (so don't call visitorContext.addSeenSchemaUri)
     * - Put [[CassandraJsonSchemaBase]] based objects to schema instead of standard [[JsonSchema]] ones.
     */
-  override def expectObjectFormat(
-      convertedType: JavaType): JsonObjectFormatVisitor = {
+  override def expectObjectFormat(convertedType: JavaType):
+  JsonObjectFormatVisitor = {
     // if we don't already have a recursive visitor context, create one
     if (visitorContext == null) visitorContext = new CassandraVisitorContext
 
-    val s: ObjectSchema = schemaProvider.objectSchema
-    if (CassandraSchemaFactoryWrapper.outerMost) {
-      val name = convertedType.getRawClass.getAnnotation(classOf[CqlName])
-      schema = new CassandraRootSchema(convertedType, s, name)
-      CassandraSchemaFactoryWrapper.outerMost = false
-    } else {
-      val name = convertedType.getRawClass.getAnnotation(classOf[CqlName])
-      val udtSchema = new CassandraUdtSchema(convertedType, s, name)
-      schema = new CassandraItemSchema(udtSchema)
-      visitorContext
-        .asInstanceOf[CassandraVisitorContext]
-        .addSeenUDT(name, udtSchema)
+    val objectSchema: ObjectSchema = schemaProvider.objectSchema
+
+    //noinspection SimplifyBooleanMatch
+    visitorContext.asInstanceOf[CassandraVisitorContext].seenObjects match {
+      case false => {
+        val name = convertedType.getRawClass.getAnnotation(classOf[CqlName])
+        schema = new CassandraRootSchema(convertedType, objectSchema, name)
+        visitorContext.asInstanceOf[CassandraVisitorContext].seenObjects = true
+      }
+      case true => {
+        val name = convertedType.getRawClass.getAnnotation(classOf[CqlName])
+        val udtSchema = new CassandraUdtSchema(convertedType, objectSchema, name)
+        schema = new CassandraItemSchema(udtSchema)
+        visitorContext.asInstanceOf[CassandraVisitorContext].addSeenUDT(name, udtSchema)
+        visitorContext.asInstanceOf[CassandraVisitorContext].seenObjects = true
+      }
     }
 
-    visitor(provider, s, _wrapperFactory, visitorContext)
+    visitor(provider, objectSchema, _wrapperFactory, visitorContext)
   }
 
   def visitor(
@@ -212,10 +205,4 @@ class CassandraSchemaFactoryWrapper(
       schema,
       wrapperFactory,
       visitorContext)
-}
-
-object CassandraSchemaFactoryWrapper {
-
-  var outerMost: Boolean = true
-
 }

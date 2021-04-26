@@ -1,8 +1,7 @@
 package com.mridang.jacksandra
 
-import com.datastax.oss.driver.api.core.`type`.DataType
+import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.mapper.annotations.{CqlName, PartitionKey}
-import com.datastax.oss.driver.api.querybuilder.QueryBuilder
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra.annotations.{OrderedClusteringColumn, StaticColumn}
@@ -26,6 +25,13 @@ class CassandraObjectSchema(
     with CassandraContainerSchema {
 
   override def cassandraType: DataType = {
-    QueryBuilder.udt(name.value())
+    backing match {
+      case cassandraColumn: CassandraItemSchema => {
+        cassandraColumn.getDataType
+      }
+      case _ => {
+        throw new RuntimeException("Unexpected type")
+      }
+    }
   }
 }

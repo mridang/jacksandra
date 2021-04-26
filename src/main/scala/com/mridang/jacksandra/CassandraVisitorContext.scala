@@ -16,9 +16,12 @@ import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
   */
 class CassandraVisitorContext extends VisitorContext {
 
+  var seenObjects: Boolean = false
+
   var udts: Map[CqlName, ObjectSchema] = Map.empty
 
   def addSeenUDT(name: CqlName, schema: ObjectSchema): Unit = {
     udts += (name -> schema)
   }
+
 }

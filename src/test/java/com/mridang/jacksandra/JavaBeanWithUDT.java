@@ -13,7 +13,7 @@ import com.mridang.jacksandra.types.FrozenSet;
 
 @SuppressWarnings("unused")
 @Entity(defaultKeyspace = "mykeyspace")
-public class BeanWithUDT {
+public class JavaBeanWithUDT {
 
     @Nullable
     @PartitionKey

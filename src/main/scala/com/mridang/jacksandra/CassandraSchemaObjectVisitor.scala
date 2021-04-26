@@ -31,8 +31,6 @@ class CassandraSchemaObjectVisitor(
     extends ObjectVisitor(provider, schema, wrapperFactory) {
   setVisitorContext(visitorContext)
 
-  val uds = "cuntfff"
-
   //noinspection RedundantBlock
   override def optionalProperty(prop: BeanProperty): Unit = {
     val ann = prop.getAnnotation(classOf[CqlName])

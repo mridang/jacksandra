@@ -19,8 +19,8 @@ class MainSuite extends AnyFunSuite {
     actualQueryNorm shouldEqual expectedQueryNorm
   }
 
-  ignore("that all numeric types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[BeanWithNumbers]()
+  test("that all numeric types are handled correctly") {
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithNumbers]()
     val ddl: String = mapper.generateMappingProperties
     //noinspection ScalaStyle
     val query =
@@ -43,8 +43,8 @@ class MainSuite extends AnyFunSuite {
     compare(query, ddl)
   }
 
-  ignore("that all collection types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[BeanWithCollections]()
+  test("that all collection types are handled correctly") {
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithCollections]()
     val ddl: String = mapper.generateMappingProperties
     //noinspection ScalaStyle
     val query =
@@ -66,7 +66,7 @@ class MainSuite extends AnyFunSuite {
   }
 
   test("that all custom types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[BeanWithUDT]()
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithUDT]()
     val ddl: String = mapper.generateMappingProperties
     //noinspection ScalaStyle
     val query =
