@@ -57,7 +57,7 @@ class CassandraMapper[T]()(implicit classTag: ClassTag[T]) {
     new CassandraSchemaFactoryWrapperFactory((provider, factory) =>
       new CassandraSchemaFactoryWrapper(provider, factory))
 
-  def generateMappingProperties: String = {
+  def generateMappingProperties: List[String] = {
     val schemaFactoryWrapper: SchemaFactoryWrapper =
       wrapperFactory.getWrapper(schemaMapper.getSerializerProvider)
     schemaMapper.acceptJsonFormatVisitor(

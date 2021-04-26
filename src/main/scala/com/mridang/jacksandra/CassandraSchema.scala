@@ -9,22 +9,20 @@ import scala.compat.Platform
 
 object CassandraSchema {
 
-  def from(schemaFactoryWrapper: SchemaFactoryWrapper): String =  {
-    val types: String = schemaFactoryWrapper
+  def from(schemaFactoryWrapper: SchemaFactoryWrapper): List[String] =  {
+    val types: List[String] = schemaFactoryWrapper
       .asInstanceOf[CassandraJavaBeanSchemaFactoryWrapper]
       .cassandraVisitorContext
       .asInstanceOf[CassandraVisitorContext]
       .udts
       .map { (f: (CqlName, ObjectSchema)) =>
-        new CassandraUDTs().of(f._1, f._2)
+        new CassandraUDTs().of(f._1, f._2) + Platform.EOL
       }
-      .foldLeft(new StringBuilder) {
-        (sb, s) => sb append s append ";" append Platform.EOL
-      }.toString
+      .toList
 
     val table: String = new CassandraTable(schemaFactoryWrapper.finalSchema())
-      .buildSchema
+      .buildSchema + Platform.EOL
 
-    types + table + ";"
+    types ++ List(table)
   }
 }

@@ -29,6 +29,18 @@ public class JavaBeanWithUDT {
     @CqlName("toUdtList")
     public List<SomeUDT> toUdtList;
 
+    @Nullable
+    @CqlName("toFrozenUdtList")
+    public FrozenList<SomeUDT> toFrozenUdtList;
+
+    @Nullable
+    @CqlName("toUdtSet")
+    public Set<SomeUDT> toUdtSet;
+
+    @Nullable
+    @CqlName("toFrozenUdtSet")
+    public FrozenSet<SomeUDT> toFrozenUdtSet;
+
     @CqlName("myudt")
     public static class SomeUDT {
 

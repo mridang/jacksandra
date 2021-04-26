@@ -21,7 +21,7 @@ class MainSuite extends AnyFunSuite {
 
   test("that all numeric types are handled correctly") {
     val mapper = new CassandraJavaBeanMapper[JavaBeanWithNumbers]()
-    val ddl: String = mapper.generateMappingProperties
+    val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
     """ CREATE
@@ -37,7 +37,7 @@ class MainSuite extends AnyFunSuite {
       |      , tobigint                 BIGINT
       |      , tovarint                 VARINT
       |      , tobigdecimal             DECIMAL
-      |      );
+      |      )
       """.stripMargin
 
     compare(query, ddl)
@@ -45,7 +45,7 @@ class MainSuite extends AnyFunSuite {
 
   test("that all collection types are handled correctly") {
     val mapper = new CassandraJavaBeanMapper[JavaBeanWithCollections]()
-    val ddl: String = mapper.generateMappingProperties
+    val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
     """ CREATE
@@ -59,7 +59,7 @@ class MainSuite extends AnyFunSuite {
       |      , tofrozenliststring       FROZEN<LIST<TEXT>>
       |      , tosetliststring          FROZEN<SET<TEXT>>
       |      , toimmutableliststring    LIST<TEXT>
-      |      );
+      |      )
       """.stripMargin
 
     compare(query, ddl)
@@ -67,7 +67,7 @@ class MainSuite extends AnyFunSuite {
 
   test("that all custom types are handled correctly") {
     val mapper = new CassandraJavaBeanMapper[JavaBeanWithUDT]()
-    val ddl: String = mapper.generateMappingProperties
+    val ddl: String = mapper.generateMappingProperties.mkString("\n")
     //noinspection ScalaStyle
     val query =
       """
@@ -81,16 +81,19 @@ class MainSuite extends AnyFunSuite {
         |      , somedoubleset          FROZEN<SET<DOUBLE>>
         |      , somedouble             DOUBLE
         |      , somefloatset           SET<FLOAT>
-        |      );
+        |      )
         |
         | CREATE
         |  TABLE
         | IF NOT
         | EXISTS myjavabeanwithudt
         |      ( mypartitionkey         TEXT                 PRIMARY KEY
+        |      , tofrozenudtlist        FROZEN<LIST<myudt>>
+        |      , toudtset               SET<myudt>
         |      , toudtlist              LIST<myudt>
         |      , toudt                  myudt
-        |      );
+        |      , tofrozenudtset         FROZEN<SET<myudt>>
+        |      )
       """.stripMargin
 
     compare(query, ddl)
