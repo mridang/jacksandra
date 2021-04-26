@@ -60,7 +60,7 @@ public class BrandSimilarities {
 To generate the schema for the bean described above, you would run:
 
 ```scala
-    val mapper = new CassandraJavaBeanMapper[CassandraProductSimilarity]()
+    val mapper = new CassandraJavaBeanMapper[BrandSimilarities]()
     val createSchema: String = mapper.generateMappingProperties
 ```
 
