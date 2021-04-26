@@ -9,8 +9,10 @@ import com.mridang.jacksandra.CassandraJsonSchemaBase
 
 import scala.collection.JavaConverters.mapAsScalaMapConverter
 
+//noinspection DuplicatedCode
 class CassandraTable(schema: JsonSchema) {
 
+  //noinspection ScalaStyle
   def buildSchema: String = {
     val tableName = schema.asInstanceOf[CassandraRootSchema].getTableName
     val tableStart = SchemaBuilder

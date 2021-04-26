@@ -2,18 +2,10 @@ package com.mridang.jacksandra.javabeans
 
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.{
-  BeanProperty,
-  JsonSerializer,
-  SerializerProvider
-}
-import com.fasterxml.jackson.module.jsonSchema.factories.{
-  ObjectVisitor,
-  VisitorContext,
-  WrapperFactory
-}
+import com.fasterxml.jackson.databind.{BeanProperty, JsonSerializer, SerializerProvider}
+import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, VisitorContext, WrapperFactory}
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
-import com.mridang.jacksandra._
+import com.mridang.jacksandra.{CassandraMapper, CassandraMappings, CassandraSchemaFactoryWrapper, CassandraSchemaFactoryWrapperFactory, CassandraSchemaObjectVisitor, CassandraSerializer}
 
 import java.beans.Introspector
 import java.lang.annotation.Annotation
@@ -36,7 +28,7 @@ trait JavaBeanSupport[T] { this: CassandraMapper[T] =>
 trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
 
   private def getAnnotatedMethods(c: Class[_]): Array[(Method, Annotation)] = {
-    val properties = Introspector.getBeanInfo(c);
+    val properties = Introspector.getBeanInfo(c)
 
     val fieldAnnotations =
       properties.getBeanDescriptor.getBeanClass.getDeclaredFields

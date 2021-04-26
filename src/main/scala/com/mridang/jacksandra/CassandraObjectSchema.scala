@@ -1,6 +1,6 @@
 package com.mridang.jacksandra
 
-import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
+import com.datastax.oss.driver.api.core.`type`.DataType
 import com.datastax.oss.driver.api.mapper.annotations.{CqlName, PartitionKey}
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
@@ -26,12 +26,10 @@ class CassandraObjectSchema(
 
   override def cassandraType: DataType = {
     backing match {
-      case cassandraColumn: CassandraItemSchema => {
+      case cassandraColumn: CassandraItemSchema =>
         cassandraColumn.getDataType
-      }
-      case _ => {
+      case _ =>
         throw new RuntimeException("Unexpected type")
-      }
     }
   }
 }

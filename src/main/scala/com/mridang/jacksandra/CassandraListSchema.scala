@@ -9,6 +9,7 @@ import com.mridang.jacksandra.javabeans.CassandraSchema
 
 import scala.annotation.meta.field
 
+//noinspection DuplicatedCode
 class CassandraListSchema(
     @(JsonIgnore @field) override val name: CqlName,
     @(JsonIgnore @field) override val backing: JsonSchema,
@@ -24,16 +25,12 @@ class CassandraListSchema(
 
   override def cassandraType: DataType = {
     backing match {
-      case cassandraColumn: CassandraSchema => {
+      case cassandraColumn: CassandraSchema =>
         DataTypes.listOf(cassandraColumn.getDataType)
-      }
-      case cassandraColumn: CassandraItemSchema => {
+      case cassandraColumn: CassandraItemSchema =>
         DataTypes.listOf(cassandraColumn.getDataType)
-      }
-      case _ => {
-        println("random column encountered" + name.value)
-        DataTypes.listOf(DataTypes.TEXT)
-      }
+      case _ =>
+        throw new RuntimeException("Unsupported type" + backing)
     }
   }
 }

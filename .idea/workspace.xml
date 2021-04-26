@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +117,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="run.code.analysis.last.selected.profile" value="pCI" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
@@ -256,28 +266,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>15</line>
+          <line>17</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>19</line>
+          <line>21</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>126</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>125</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>127</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala</url>

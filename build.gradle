@@ -7,7 +7,6 @@ buildscript {
             google()
             mavenCentral()
             gradlePluginPortal()
-            jcenter()
         }
         dependencies {
             classpath "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
@@ -37,7 +36,6 @@ version '0.0.1'
 repositories {
     google()
     mavenCentral()
-    jcenter()
     maven {
         url 'https://dl.bintray.com/palantir/releases'
     }

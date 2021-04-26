@@ -31,7 +31,7 @@ class CassandraSchemaObjectVisitor(
     extends ObjectVisitor(provider, schema, wrapperFactory) {
   setVisitorContext(visitorContext)
 
-  //noinspection RedundantBlock
+  //noinspection RedundantBlock,ScalaStyle
   override def optionalProperty(prop: BeanProperty): Unit = {
     val ann = prop.getAnnotation(classOf[CqlName])
 
@@ -203,13 +203,17 @@ class CassandraSchemaObjectVisitor(
   override def optionalProperty(
       name: String,
       handler: JsonFormatVisitable,
-      propertyTypeHint: JavaType): Unit = ???
+      propertyTypeHint: JavaType): Unit = {
+    throw new NotImplementedError()
+  }
 
   /**
     * Not implemented as there has not been a use-case.
     * Throws to avoid accidenta use of the default implementation.
     */
-  override def property(prop: BeanProperty): Unit = ???
+  override def property(prop: BeanProperty): Unit = {
+    throw new NotImplementedError()
+  }
 
   /**
     * Not implemented as there has not been a use-case.
@@ -218,5 +222,7 @@ class CassandraSchemaObjectVisitor(
   override def property(
       name: String,
       handler: JsonFormatVisitable,
-      propertyTypeHint: JavaType): Unit = ???
+      propertyTypeHint: JavaType): Unit = {
+    throw new NotImplementedError()
+  }
 }

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
 import java.lang.reflect.Method
 import java.time.{LocalDate, LocalDateTime}
-import java.util.Map
+import java.util
 import scala.reflect.ClassTag
 
 case class MappedMethod(method: Method, elasticsearchMapping: CqlName)
@@ -67,8 +67,8 @@ class CassandraMapper[T]()(implicit classTag: ClassTag[T]) {
     CassandraSchema.from(schemaFactoryWrapper)
   }
 
-  def map(obj: T): Map[String, _] = {
-    jsonMapper.convertValue(obj, classOf[Map[String, Any]])
+  def map(obj: T): util.Map[String, _] = {
+    jsonMapper.convertValue(obj, classOf[util.Map[String, Any]])
   }
 
   def toJson(obj: T): String = jsonMapper.writeValueAsString(obj)

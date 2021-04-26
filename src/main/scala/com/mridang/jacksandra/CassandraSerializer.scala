@@ -14,8 +14,7 @@ import java.lang.reflect.Method
 import scala.collection.mutable
 
 class CassandraSerializer()
-    extends com.fasterxml.jackson.databind.ser.std.StdSerializer[
-      CassandraMappings](classOf[CassandraMappings])
+    extends com.fasterxml.jackson.databind.ser.std.StdSerializer[CassandraMappings](classOf[CassandraMappings])
     with ContextualSerializer {
 
   private val annotatedMethods =

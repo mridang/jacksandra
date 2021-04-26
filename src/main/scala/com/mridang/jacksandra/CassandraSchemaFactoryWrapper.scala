@@ -178,6 +178,7 @@ class CassandraSchemaFactoryWrapper(
 
     //noinspection SimplifyBooleanMatch
     visitorContext.asInstanceOf[CassandraVisitorContext].seenObjects match {
+      //noinspection RedundantBlock
       case false => {
         val name = convertedType.getRawClass.getAnnotation(classOf[CqlName])
         schema = new CassandraRootSchema(convertedType, objectSchema, name)
