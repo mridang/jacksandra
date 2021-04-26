@@ -93,7 +93,6 @@ class MainSuite extends AnyFunSuite {
         |      );
       """.stripMargin
 
-    println(ddl)
     compare(query, ddl)
   }
 }

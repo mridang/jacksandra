@@ -11,10 +11,10 @@ buildscript {
         }
         dependencies {
             classpath "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
-            classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.8"
-            classpath "net.ltgt.gradle:gradle-nullaway-plugin:0.2"
+            classpath "net.ltgt.gradle:gradle-errorprone-plugin:2.0.1"
+            classpath "net.ltgt.gradle:gradle-nullaway-plugin:1.1.0"
             classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
-            classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.25"
+            classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.31"
         }
     }
 }
@@ -23,7 +23,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'scalaStyle'
 apply plugin: 'scala'
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'java-library'
 apply plugin: 'net.ltgt.errorprone'
@@ -49,7 +48,7 @@ dependencies {
     testImplementation group: 'org.scalatest', name: 'scalatest_2.12', version: '3.2.8'
     testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.12:1.2.0'
     testRuntimeOnly 'com.vladsch.flexmark:flexmark-all:0.35.10'
-    compile group: 'org.scala-lang', name: 'scala-library', version: '2.12.13'
+    implementation group: 'org.scala-lang', name: 'scala-library', version: '2.12.13'
     implementation group: 'com.datastax.oss', name: 'java-driver-query-builder', version: '4.11.0'
     implementation group: 'com.datastax.oss', name: 'java-driver-mapper-runtime', version: '4.11.0'
     implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12', version: '2.12.3'
