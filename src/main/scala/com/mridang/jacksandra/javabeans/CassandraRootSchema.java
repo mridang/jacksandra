@@ -14,7 +14,14 @@ import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema;
  */
 public class CassandraRootSchema extends CassandraUdtSchema {
 
+    private final CqlName name;
+
     public CassandraRootSchema(JavaType javaType, ObjectSchema backing, CqlName name) {
         super(javaType, backing, name);
+        this.name = name;
+    }
+
+    public String getTableName() {
+        return name.value();
     }
 }

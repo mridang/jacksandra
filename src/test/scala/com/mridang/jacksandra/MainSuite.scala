@@ -74,7 +74,7 @@ class MainSuite extends AnyFunSuite {
         | CREATE
         |   TYPE
         | IF NOT
-        | EXISTS myjavabeanwithudt
+        | EXISTS myudt
         |      ( somelonglist           FROZEN<LIST<BIGINT>>
         |      , someintegerlist        LIST<INT>
         |      , somestring             TEXT
@@ -86,7 +86,7 @@ class MainSuite extends AnyFunSuite {
         | CREATE
         |  TABLE
         | IF NOT
-        | EXISTS cunt
+        | EXISTS myjavabeanwithudt
         |      ( mypartitionkey         TEXT                 PRIMARY KEY
         |      , toudtlist              LIST<myudt>
         |      , toudt                  myudt

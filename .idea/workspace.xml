@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

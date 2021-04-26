@@ -12,8 +12,9 @@ import scala.collection.JavaConverters.mapAsScalaMapConverter
 class CassandraTable(schema: JsonSchema) {
 
   def buildSchema: String = {
-    val xx = SchemaBuilder
-      .createTable("cunt")
+    val tableName = schema.asInstanceOf[CassandraRootSchema].getTableName
+    val tableStart = SchemaBuilder
+      .createTable(tableName)
       .ifNotExists()
 
     var createTable: CreateTable = null
@@ -47,7 +48,7 @@ class CassandraTable(schema: JsonSchema) {
             table.withPartitionKey(column.ann.value, column.cassandraType)
           }
           case _ => {
-            xx.withPartitionKey(column.ann.value, column.cassandraType)
+            tableStart.withPartitionKey(column.ann.value, column.cassandraType)
           }
         }
       }
@@ -123,7 +124,7 @@ class CassandraTable(schema: JsonSchema) {
       }
       .foreach { column =>
         createTable match {
-          case table: DefaultCreateTable => {
+          case _: DefaultCreateTable => {
             createTable =
               createTable.withColumn(column.ann.value, column.cassandraType)
           }
