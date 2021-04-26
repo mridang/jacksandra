@@ -119,6 +119,10 @@ use `FrozenSet` when possible.
 
 #### Other
 
+### Maps
+
+At the time of writing Jacksandra does not support mapping map types.
+
 Any property that derives from `java.util.Collection` will be mapped 
 as a `LIST` data type. If you require a "frozen" representation, 
 use any collection type simply implement the `Frozen` interface.
