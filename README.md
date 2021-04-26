@@ -21,14 +21,14 @@ import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
 import com.mridang.jacksandra.annotations.OrderedClusteringColumn;
 import com.mridang.jacksandra.types.FrozenList;
 
-@Entity(defaultKeyspace = "playcart")
-@CqlName("imagerelations")
-public class CassandraProductSimilarity {
+@Entity(defaultKeyspace = "mykeyspace")
+@CqlName("brandsimilarities")
+public class BrandSimilarities {
 
     @SuppressWarnings("DefaultAnnotationParam")
     @PartitionKey(0)
-    @CqlName("merchant")
-    public String merchant;
+    @CqlName("brand")
+    public String brand;
 
     @SuppressWarnings("DefaultAnnotationParam")
     @OrderedClusteringColumn(isAscending = false, value = 0)
@@ -36,20 +36,20 @@ public class CassandraProductSimilarity {
     public Date createdAt;
 
     @OrderedClusteringColumn(isAscending = true, value = 1)
-    @CqlName("productid")
-    public String productId;
+    @CqlName("skuid")
+    public String skuId;
 
     @CqlName("related")
-    public FrozenList<CassandraRelation> productRelations;
+    public FrozenList<Relation> productRelations;
 
-    @CqlName("productrelation")
-    public static class CassandraRelation {
+    @CqlName("relation")
+    public static class Relation {
 
-        @CqlName("merchant")
-        public String merchant;
+        @CqlName("brand")
+        public String brand;
 
-        @CqlName("productid")
-        public String productId;
+        @CqlName("skuid")
+        public String skuId;
 
         @CqlName("score")
         public Float score;
@@ -70,34 +70,34 @@ to yield the DDL:
 CREATE 
   TYPE 
 IF NOT 
-EXISTS productrelation 
+EXISTS relation 
      ( score FLOAT
-     , productid TEXT
-     , merchant TEXT
+     , skuid TEXT
+     , brand TEXT
      );
 
 CREATE 
  TABLE 
 IF NOT 
-EXISTS imagerelations 
-     ( merchant TEXT
+EXISTS brandsimilarities 
+     ( brand TEXT
      , shardkey TINTINT
      , createdat TEXT
-     , productid TEXT
-     , related LIST<productrelation>
+     , skuid TEXT
+     , related LIST<FROZEN<relation>>
      , PRIMARY KEY
-       ( ( merchant
+       ( ( brand
          , shardkey
           )
        , createdat
-       , productid
+       , skuid
        )
     )
   WITH CLUSTERING 
  ORDER 
     BY 
      ( createdat DESC
-     , productid ASC
+     , skuid ASC
      );
 ```
 
