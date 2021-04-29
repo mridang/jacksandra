@@ -10,8 +10,10 @@ import com.fasterxml.jackson.module.jsonSchema.factories._
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
 import java.lang.reflect.Method
-import java.time.{LocalDate, LocalDateTime}
+import java.sql.Timestamp
+import java.time.{Duration, Instant, LocalDate, LocalDateTime, LocalTime, MonthDay, OffsetDateTime, OffsetTime, Period, Year, YearMonth, ZoneId, ZoneOffset, ZonedDateTime}
 import java.util
+import java.util.Date
 import scala.reflect.ClassTag
 
 case class MappedMethod(method: Method, elasticsearchMapping: CqlName)
@@ -43,13 +45,22 @@ class CassandraMapper[T]()(implicit classTag: ClassTag[T]) {
       .setSerializerModifier(new ElasticsearchSchemaBeanSerializerModifier))
     .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 
-  schemaMapper
-    .configOverride(classOf[LocalDate])
-    .setFormat(Value.forShape(Shape.STRING))
-
-  schemaMapper
-    .configOverride(classOf[LocalDateTime])
-    .setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Date]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Timestamp]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Instant]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[OffsetDateTime]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[ZonedDateTime]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Duration]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[LocalDateTime]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[LocalDate]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[LocalTime]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[MonthDay]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[OffsetTime]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Period]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[Year]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[YearMonth]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[ZoneId]).setFormat(Value.forShape(Shape.STRING))
+  schemaMapper.configOverride(classOf[ZoneOffset]).setFormat(Value.forShape(Shape.STRING))
 
   def serializer: CassandraSerializer = new CassandraSerializer
 

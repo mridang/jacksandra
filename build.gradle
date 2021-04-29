@@ -31,7 +31,7 @@ apply plugin: "jacoco"
 apply plugin: "com.github.maiflai.scalatest"
 
 group 'com.mridang'
-version '0.0.1'
+version '0.0.2'
 
 repositories {
     google()

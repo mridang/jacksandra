@@ -65,6 +65,38 @@ class MainSuite extends AnyFunSuite {
     compare(query, ddl)
   }
 
+  test("that all temporal types are handled correctly") {
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithTemporal]()
+    val ddl: String = mapper.generateMappingProperties.mkString
+    //noinspection ScalaStyle
+    val query =
+      """CREATE
+        | TABLE
+        |IF NOT
+        |EXISTS myjavabeanwithtemporals
+        |     ( mypartitionkey TEXT PRIMARY KEY
+        |     , tolocaldatetimetimestamp TEXT
+        |     , totimestamptimestamp TEXT
+        |     , todatetimestamp TEXT
+        |     , tolocaltimetime TIME
+        |     , toperioddaterange TEXT
+        |     , toinstanttimestamp TIMESTAMP
+        |     , tozoneidstring TEXT
+        |     , toyearstring TEXT
+        |     , tozoneoffsetstring TEXT
+        |     , toyearmonthstring TEXT
+        |     , tozoneddatetimestring TEXT
+        |     , tomonthdaystring TEXT
+        |     , tooffsettimestring TEXT
+        |     , tojavadurationduration TEXT
+        |     , tooffsetdatetimestring TEXT
+        |     , tolocaldatedate DATE
+        |     )
+        """.stripMargin
+
+    compare(query, ddl)
+  }
+
   test("that all custom types are handled correctly") {
     val mapper = new CassandraJavaBeanMapper[JavaBeanWithUDT]()
     val ddl: String = mapper.generateMappingProperties.mkString("\n")
