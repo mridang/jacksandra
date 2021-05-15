@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Gradle 1" modules="jacksandra.main,jacksandra.test">
+    <profile name="Gradle 1" modules="jacksandra.jacksandra-core.main,jacksandra.jacksandra-core.test,jacksandra.main,jacksandra.spark-jacksandra-helper.main,jacksandra.spark-jacksandra-helper.test,jacksandra.test">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <parameters>

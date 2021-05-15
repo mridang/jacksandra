@@ -154,7 +154,7 @@ A schema may or may not have a `@StaticColumn` annotation at all static columns 
 
 ## License
 
-Apache License
+MIT License
 
 Copyright (c) 2021 Mridang Agarwalla
 

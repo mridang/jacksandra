@@ -35,6 +35,10 @@
         </processorPath>
         <module name="jacksandra.test" />
         <module name="jacksandra.main" />
+        <module name="jacksandra.jacksandra-core.main" />
+        <module name="jacksandra.spark-jacksandra-helper.test" />
+        <module name="jacksandra.jacksandra-core.test" />
+        <module name="jacksandra.spark-jacksandra-helper.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />

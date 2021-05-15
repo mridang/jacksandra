@@ -10,6 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/jacksandra-core" />
+            <option value="$PROJECT_DIR$/spark-jacksandra-helper" />
           </set>
         </option>
       </GradleProjectSettings>

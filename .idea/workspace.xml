@@ -5,11 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="Hardened the tests">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/datasource/CassandraScanHelper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/plus/package.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/AbstractCassandraRDD.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/CassandraJsonRowReader.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/JsonRowReader.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraBoundStatementBuilder.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraJsonRowWriter.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraTableWriter.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/JsonRowWriter.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/com/datastax/spark/connector/MyBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraAnnotatedSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraAnnotatedSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraColumnSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraColumnSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraContainerSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraContainerSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraItemSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraItemSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraJsonSchemaBase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraJsonSchemaBase.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMappings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraVisitorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraVisitorContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/ESMapperModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/ESMapperModule.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/ElasticsearchSchemaBeanSerializerModifier.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/ElasticsearchSchemaBeanSerializerModifier.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/annotations/OrderedClusteringColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/annotations/OrderedClusteringColumn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/annotations/StaticColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/annotations/StaticColumn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraAnySchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraAnySchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraArraySchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraArraySchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraBooleanSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraBooleanSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraIntegerSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraIntegerSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraNumberSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraNumberSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraRootSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraRootSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraStringSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraStringSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraUdtSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraUdtSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/Frozen.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/Frozen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/FrozenList.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/FrozenSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/MainSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +119,6 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="jacksandra" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -73,6 +129,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Package Object" />
         <option value="Class" />
       </list>
     </option>
@@ -87,6 +144,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -103,10 +163,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/scala/com/mridang" />
+    <property name="jdk.selected.PYTHON_MODULE" value="Python 3.6 (annoy)" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/jacksandra-core/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -114,6 +176,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jacksandra-core/src/test" />
+      <recent name="$PROJECT_DIR$/jacksandra-core/src/main" />
+      <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src/main" />
+      <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src/test" />
+      <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.mridang.jacksandra" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.mridang.jacksandra" />
     </key>
@@ -149,6 +221,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="MainSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -160,7 +252,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":jacksandra-core:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -170,7 +262,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="jacksandra [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="jacksandra [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -181,7 +273,70 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publish" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="jacksandra [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="jacksandra [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="jacksandra [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishToMavenLocal" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -198,23 +353,102 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="aws.lambda" factoryName="Remote">
-      <option name="credentialProviderId" />
-      <option name="regionId" />
-      <option name="functionName" />
-      <option name="input" />
-      <option name="inputIsFile" value="false" />
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="jacksandra.main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Gradle.MainSuite" />
-      <item itemvalue="Gradle.jacksandra [publish]" />
+      <item itemvalue="Gradle.jacksandra [build]" />
+      <item itemvalue="Gradle.jacksandra [clean]" />
+      <item itemvalue="Gradle.jacksandra [jar]" />
+      <item itemvalue="Gradle.jacksandra [publishToMavenLocal]" />
       <item itemvalue="ScalaTest.MainSuite" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.MainSuite" />
-        <item itemvalue="Gradle.jacksandra [publish]" />
+        <item itemvalue="Gradle.jacksandra [publishToMavenLocal]" />
+        <item itemvalue="Gradle.jacksandra [jar]" />
+        <item itemvalue="Gradle.jacksandra [clean]" />
+        <item itemvalue="Gradle.jacksandra [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -272,6 +506,9 @@
     <option name="localTasksCounter" value="7" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -294,19 +531,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala</url>
-          <line>17</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala</url>
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala</url>
           <line>80</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala</url>
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala</url>
           <line>112</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraTableWriter.scala</url>
+          <line>322</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
