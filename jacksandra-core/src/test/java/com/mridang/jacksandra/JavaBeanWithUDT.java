@@ -1,8 +1,6 @@
 package com.mridang.jacksandra;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -59,7 +57,7 @@ public class JavaBeanWithUDT implements Serializable {
 
     @CqlName("myudt")
     @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
-    public static class SomeUDT {
+    public static class SomeUDT implements Serializable {
 
         @Nullable
         @CqlName("somestring")
@@ -70,16 +68,8 @@ public class JavaBeanWithUDT implements Serializable {
         public Double someDouble;
 
         @Nullable
-        @CqlName("someintegerlist")
-        public List<Integer> someIntegerList;
-
-        @Nullable
         @CqlName("somelonglist")
         public FrozenList<Long> someLongList;
-
-        @Nullable
-        @CqlName("somefloatset")
-        public Set<Float> someFloatSet;
 
         @Nullable
         @CqlName("somedoubleset")

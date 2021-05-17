@@ -12,6 +12,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
 import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.google.common.collect.ImmutableList;
@@ -52,6 +54,7 @@ public class JavaBeanWithCollections implements Serializable {
 
     @Nullable
     @CqlName("toimmutableliststring")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     public ImmutableList<String> toImmutableListString;
 
     @Nullable
@@ -64,6 +67,7 @@ public class JavaBeanWithCollections implements Serializable {
 
     @Nullable
     @CqlName("toimmutablesetstring")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     public ImmutableSet<String> toImmutableSetString;
 
     @Override

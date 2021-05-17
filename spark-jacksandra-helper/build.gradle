@@ -11,7 +11,7 @@ dependencies {
     }
     implementation (group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-guava') {
         version {
-            strictly '2.10.0'
+            strictly '2.10.5'
         }
     }
     testImplementation group: 'com.dimafeng', name: 'testcontainers-scala-scalatest_2.12', version: '0.39.3'
