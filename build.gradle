@@ -19,7 +19,7 @@ buildscript {
     }
 }
 
-allprojects { project ->
+subprojects { project ->
 
     apply plugin: 'java'
     apply plugin: 'scalaStyle'
@@ -36,11 +36,7 @@ allprojects { project ->
     version '1.0.0'
 
     repositories {
-        google()
         mavenCentral()
-        maven {
-            url 'https://dl.bintray.com/palantir/releases'
-        }
     }
 
     dependencies {

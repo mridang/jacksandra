@@ -1,9 +1,18 @@
 package com.datastax.spark.connector
 
+import com.datastax.oss.driver.api.core.data.CqlDuration
+import com.google.common.collect.{ImmutableList, ImmutableSet}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.jeasy.random.EasyRandom
+import org.jeasy.random.randomizers.extras.{CqlDurationRandomizer, ImmutableListRandomizer, ImmutableSetRandomizer, InetAddressRandomizer, InstantRandomizer, LocalDateTimeRandomizer}
+import org.jeasy.random.randomizers.number.BigDecimalRandomizer
+import org.jeasy.random.randomizers.registry.CustomRandomizerRegistry
+import org.jeasy.random.{EasyRandom, EasyRandomParameters}
 import spire.ClassTag
+
+import java.math.BigDecimal
+import java.net.{Inet4Address, InetAddress}
+import java.time.{Instant, LocalDateTime}
 
 /**
  * A RDD factory that uses Objeneis under the hood to inflate N number of
@@ -19,8 +28,20 @@ import spire.ClassTag
  */
 case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
 
-  final val easyRandom: EasyRandom = new EasyRandom
-
+  final val easyRandom: EasyRandom = {
+    val randomiserList: CustomRandomizerRegistry = new CustomRandomizerRegistry()
+    randomiserList.registerRandomizer(classOf[ImmutableList[_]], new ImmutableListRandomizer())
+    randomiserList.registerRandomizer(classOf[ImmutableSet[_]], new ImmutableSetRandomizer())
+    randomiserList.registerRandomizer(classOf[BigDecimal], new BigDecimalRandomizer(Integer.valueOf(4)))
+    randomiserList.registerRandomizer(classOf[CqlDuration], new CqlDurationRandomizer())
+    randomiserList.registerRandomizer(classOf[InetAddress], new InetAddressRandomizer())
+    randomiserList.registerRandomizer(classOf[Inet4Address], new InetAddressRandomizer())
+    randomiserList.registerRandomizer(classOf[LocalDateTime], new LocalDateTimeRandomizer())
+    randomiserList.registerRandomizer(classOf[Instant], new InstantRandomizer())
+    val randomParams = new EasyRandomParameters()
+    randomParams.randomizerRegistry(randomiserList)
+    new EasyRandom(randomParams)
+  }
   def item: T = {
     easyRandom.nextObject(ctag.runtimeClass.asInstanceOf[Class[T]])
   }

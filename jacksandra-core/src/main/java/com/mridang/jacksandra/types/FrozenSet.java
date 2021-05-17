@@ -1,6 +1,8 @@
 package com.mridang.jacksandra.types;
 
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Spliterator;
@@ -15,9 +17,14 @@ import java.util.Spliterator;
  * @author mridang
  */
 @SuppressWarnings("NullableProblems")
-public class FrozenSet<E> implements Set<E>, Frozen {
+public class FrozenSet<E> implements Set<E>, Frozen, Serializable {
 
     private final Set<E> backingSet;
+
+    @SuppressWarnings("unused")
+    public FrozenSet() {
+        this(new HashSet<>());
+    }
 
     public FrozenSet(Set<E> backingSet) {
         this.backingSet = backingSet;

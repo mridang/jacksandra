@@ -1,12 +1,19 @@
 package com.mridang.jacksandra;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
 import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
  *
@@ -23,43 +30,59 @@ import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
  */
 @SuppressWarnings("unused")
 @CqlName("myjavabeanwithnumbers")
-public class JavaBeanWithNumbers {
+@JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
+public class JavaBeanWithNumbers implements Serializable {
 
     @PartitionKey
     @Nullable
-    @CqlName("mypartitionKey")
+    @CqlName("mypartitionkey")
     public String myPartitionKey;
 
     @Nullable
-    @CqlName("toTinyInt")
+    @CqlName("totinyint")
     public Byte toTinyInt;
 
     @Nullable
-    @CqlName("toSmallInt")
+    @CqlName("tosmallint")
     public Short toSmallInt;
 
     @Nullable
-    @CqlName("toInt")
+    @CqlName("toint")
     public Integer toInt;
 
     @Nullable
-    @CqlName("toBigInt")
+    @CqlName("tobigint")
     public Long toBigInt;
 
     @Nullable
-    @CqlName("toVarInt")
+    @CqlName("tovarint")
     public BigInteger toVarInt;
 
     @Nullable
-    @CqlName("toFloat")
+    @CqlName("tofloat")
     public Float toFloat;
 
     @Nullable
-    @CqlName("toDouble")
+    @CqlName("todouble")
     public Double toDouble;
 
     @Nullable
-    @CqlName("toBigDecimal")
+    @CqlName("tobigdecimal")
     public BigDecimal toBigDecimal;
 
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

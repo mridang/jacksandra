@@ -5,73 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="Hardened the tests">
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/datasource/CassandraScanHelper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/plus/package.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/AbstractCassandraRDD.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/CassandraJsonRowReader.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/JsonRowReader.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraBoundStatementBuilder.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraJsonRowWriter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraTableWriter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/JsonRowWriter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/com/datastax/spark/connector/MyBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/DurationTypeCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/LegacyDateCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/LegacyTimestampCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/LocalDateTimeCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/MonthDayCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/YearCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/YearMonthCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/ZoneIdCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/ZoneOffsetCodec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/CassandraModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/DateDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/DurationDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/InstantDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/LocalDateTimeDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/TimestampDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/ser/LocalDateTimeSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/CqlDurationRandomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableListRandomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableSetRandomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/InetAddressRandomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/InstantRandomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/LocalDateTimeRandomizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraAnnotatedSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraAnnotatedSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraColumnSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraColumnSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraContainerSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraContainerSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraItemSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraItemSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraJsonSchemaBase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraJsonSchemaBase.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraListSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraMappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMappings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraObjectSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSerializer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSetSchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraUDTs.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/CassandraVisitorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraVisitorContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/ESMapperModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/ESMapperModule.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/ElasticsearchSchemaBeanSerializerModifier.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/ElasticsearchSchemaBeanSerializerModifier.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/TypeOmittingSerializer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/annotations/OrderedClusteringColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/annotations/OrderedClusteringColumn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/annotations/StaticColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/annotations/StaticColumn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraAnySchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraAnySchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraArraySchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraArraySchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraBooleanSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraBooleanSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraIntegerSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraIntegerSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraNumberSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraNumberSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraRootSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraRootSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraStringSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraStringSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/javabeans/CassandraUdtSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraUdtSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/Frozen.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/Frozen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/FrozenList.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/mridang/jacksandra/types/FrozenSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/MainSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraTable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithTemporal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithUDT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/java/com/mridang/jacksandra/types/spark/FrozenSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/plus/package.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/plus/package.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraBoundStatementBuilder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraBoundStatementBuilder.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +74,12 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/jacksandra-core">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/spark-jacksandra-helper">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -111,13 +96,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="jacksandra" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="jacksandra" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
+                <item name="help" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -163,8 +142,9 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.6 (annoy)" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/jacksandra-core/src/main/java" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -184,10 +164,16 @@
       <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.time" />
+      <recent name="" />
       <recent name="com.mridang.jacksandra" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.mridang.jacksandra" />
+      <recent name="org.jeasy.random.randomizers.extras" />
+      <recent name="com.fasterxml.jackson.datatype.cql.deser" />
+      <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.time" />
+      <recent name="org" />
+      <recent name="com.datastax.spark.connector" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.MainSuite">
@@ -246,39 +232,18 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.mridang.jacksandra.MainSuite&quot;" />
+        <option name="scriptParameters" value="--tests &quot;com.datastax.spark.connector.MainSuite&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":jacksandra-core:test" />
+            <option value=":spark-jacksandra-helper:test" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="jacksandra [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -304,7 +269,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="jacksandra [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="jacksandra [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -315,7 +280,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="jar" />
+            <option value="dependencies" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -325,10 +290,10 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="jacksandra [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="jacksandra:jacksandra-core [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/jacksandra-core" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -336,7 +301,28 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishToMavenLocal" />
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="jacksandra:spark-jacksandra-helper [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/spark-jacksandra-helper" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -388,6 +374,15 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="jacksandra.main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -435,20 +430,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.MainSuite" />
-      <item itemvalue="Gradle.jacksandra [build]" />
       <item itemvalue="Gradle.jacksandra [clean]" />
-      <item itemvalue="Gradle.jacksandra [jar]" />
-      <item itemvalue="Gradle.jacksandra [publishToMavenLocal]" />
       <item itemvalue="ScalaTest.MainSuite" />
+      <item itemvalue="Gradle.jacksandra [dependencies]" />
+      <item itemvalue="Gradle.jacksandra:jacksandra-core [clean]" />
+      <item itemvalue="Gradle.jacksandra:spark-jacksandra-helper [clean]" />
+      <item itemvalue="Gradle.MainSuite" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.MainSuite" />
-        <item itemvalue="Gradle.jacksandra [publishToMavenLocal]" />
-        <item itemvalue="Gradle.jacksandra [jar]" />
+        <item itemvalue="Gradle.jacksandra [dependencies]" />
+        <item itemvalue="Gradle.jacksandra:spark-jacksandra-helper [clean]" />
+        <item itemvalue="Gradle.jacksandra:jacksandra-core [clean]" />
         <item itemvalue="Gradle.jacksandra [clean]" />
-        <item itemvalue="Gradle.jacksandra [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -540,10 +535,100 @@
           <line>112</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraTableWriter.scala</url>
-          <line>322</line>
-          <option name="timeStamp" value="27" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>158</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.12.0/5bcd0c3faf56de4a3b62539217fbbc91fefceb97/jackson-datatype-jsr310-2.12.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/ser/DurationSerializer.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java</url>
+          <line>209</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java</url>
+          <line>210</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java</url>
+          <line>211</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/DurationTypeCodec.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/DurationTypeCodec.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/ser/LocalDateTimeSerializer.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/jacksandra-core/src/main/java/com/fasterxml/jackson/datatype/cql/deser/LocalDateTimeDeserializer.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

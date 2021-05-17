@@ -1,5 +1,6 @@
 package com.mridang.jacksandra;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
@@ -14,21 +15,27 @@ import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
 import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @SuppressWarnings("unused")
 @CqlName("myjavabeanwithtemporals")
-public class JavaBeanWithTemporal {
+@JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
+public class JavaBeanWithTemporal implements Serializable {
 
     @PartitionKey
     @Nullable
-    @CqlName("mypartitionKey")
+    @CqlName("mypartitionkey")
     public String myPartitionKey;
 
     /**
@@ -36,7 +43,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
     @Nullable
-    @CqlName("toDateTimestamp")
+    @CqlName("todatetimestamp")
     public Date toDateTimestamp;
 
     /**
@@ -44,7 +51,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
     @Nullable
-    @CqlName("toTimestampTimestamp")
+    @CqlName("totimestamptimestamp")
     public Timestamp toTimestampTimestamp;
 
     /**
@@ -52,7 +59,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
     @Nullable
-    @CqlName("toInstantTimestamp")
+    @CqlName("toinstanttimestamp")
     public Instant toInstantTimestamp;
 
     /**
@@ -61,7 +68,7 @@ public class JavaBeanWithTemporal {
      *
      */
     @Nullable
-    @CqlName("toOffsetDateTimeString")
+    @CqlName("tooffsetdatetimestring")
     public OffsetDateTime toOffsetDateTimeString;
 
     /**
@@ -70,9 +77,9 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.internal.core.type.codec.extras.time.ZonedTimestampCodec}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
-    @Nullable
-    @CqlName("toZonedDateTimeString")
-    public ZonedDateTime toZonedDateTimeString;
+//    @Nullable
+//    @CqlName("tozoneddatetimestring")
+//    public ZonedDateTime toZonedDateTimeString;
 
     /**
      * {@link com.datastax.oss.driver.api.core.data.CqlDuration}
@@ -80,7 +87,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#DURATION}
      */
     @Nullable
-    @CqlName("toJavaDurationDuration")
+    @CqlName("tojavadurationduration")
     public Duration toJavaDurationDuration;
 
     /**
@@ -89,7 +96,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
     @Nullable
-    @CqlName("toLocalDateTimeTimeStamp")
+    @CqlName("tolocaldatetimetimestamp")
     public LocalDateTime toLocalDateTimeTimeStamp;
 
     /**
@@ -100,7 +107,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#DATE}
      */
     @Nullable
-    @CqlName("toLocalDateDate")
+    @CqlName("tolocaldatedate")
     public LocalDate toLocalDateDate;
 
     /**
@@ -111,7 +118,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIME
      */
     @Nullable
-    @CqlName("toLocalTimeTime")
+    @CqlName("tolocaltimetime")
     public LocalTime toLocalTimeTime;
 
     /**
@@ -122,7 +129,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
     @Nullable
-    @CqlName("toMonthDayString")
+    @CqlName("tomonthdaystring")
     public MonthDay toMonthDayString;
 
     /**
@@ -131,7 +138,7 @@ public class JavaBeanWithTemporal {
      * and {@link com.fasterxml.jackson.datatype.jsr310.deser.OffsetTimeDeserializer
      */
     @Nullable
-    @CqlName("toOffsetTimeString")
+    @CqlName("tooffsettimestring")
     public OffsetTime toOffsetTimeString;
 
     /**
@@ -139,7 +146,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.dse.driver.api.core.type.DseDataTypes#DATE_RANGE}
      */
     @Nullable
-    @CqlName("toPeriodDateRange")
+    @CqlName("toperioddaterange")
     public Period toPeriodDateRange;
 
     /**
@@ -148,7 +155,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT
      */
     @Nullable
-    @CqlName("toYearString")
+    @CqlName("toyearstring")
     public Year toYearString;
 
     /**
@@ -159,7 +166,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
     @Nullable
-    @CqlName("toYearMonthString")
+    @CqlName("toyearmonthstring")
     public YearMonth toYearMonthString;
 
     /**
@@ -168,7 +175,7 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
     @Nullable
-    @CqlName("toZoneIdString")
+    @CqlName("tozoneidstring")
     public ZoneId toZoneIdString;
 
     /**
@@ -177,6 +184,22 @@ public class JavaBeanWithTemporal {
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
     @Nullable
-    @CqlName("toZoneOffsetString")
+    @CqlName("tozoneoffsetstring")
     public ZoneOffset toZoneOffsetString;
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

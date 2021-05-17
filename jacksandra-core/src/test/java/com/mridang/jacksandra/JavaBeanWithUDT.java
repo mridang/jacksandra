@@ -1,72 +1,104 @@
 package com.mridang.jacksandra;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
 import com.datastax.oss.driver.api.mapper.annotations.Entity;
 import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.mridang.jacksandra.types.FrozenList;
 import com.mridang.jacksandra.types.FrozenSet;
 
 @SuppressWarnings("unused")
 @Entity(defaultKeyspace = "mykeyspace")
 @CqlName("myjavabeanwithudt")
-public class JavaBeanWithUDT {
+@JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
+public class JavaBeanWithUDT implements Serializable {
 
     @Nullable
     @PartitionKey
-    @CqlName("mypartitionKey")
+    @CqlName("mypartitionkey")
     public String myPartitionKey;
 
     @Nullable
-    @CqlName("toUdt")
+    @CqlName("toudt")
     public SomeUDT toUdt;
 
     @Nullable
-    @CqlName("toUdtList")
-    public List<SomeUDT> toUdtList;
-
-    @Nullable
-    @CqlName("toFrozenUdtList")
+    @CqlName("tofrozenudtlist")
     public FrozenList<SomeUDT> toFrozenUdtList;
 
     @Nullable
-    @CqlName("toUdtSet")
-    public Set<SomeUDT> toUdtSet;
-
-    @Nullable
-    @CqlName("toFrozenUdtSet")
+    @CqlName("tofrozenudtset")
     public FrozenSet<SomeUDT> toFrozenUdtSet;
 
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
+
     @CqlName("myudt")
+    @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
     public static class SomeUDT {
 
         @Nullable
-        @CqlName("someString")
+        @CqlName("somestring")
         public String someString;
 
         @Nullable
-        @CqlName("someDouble")
+        @CqlName("somedouble")
         public Double someDouble;
 
         @Nullable
-        @CqlName("someIntegerList")
+        @CqlName("someintegerlist")
         public List<Integer> someIntegerList;
 
         @Nullable
-        @CqlName("someLongList")
+        @CqlName("somelonglist")
         public FrozenList<Long> someLongList;
 
         @Nullable
-        @CqlName("someFloatSet")
+        @CqlName("somefloatset")
         public Set<Float> someFloatSet;
 
         @Nullable
-        @CqlName("someDoubleSet")
+        @CqlName("somedoubleset")
         public FrozenSet<Double> someDoubleSet;
 
+        @Override
+        public int hashCode() {
+            return HashCodeBuilder.reflectionHashCode(this);
+        }
+
+        @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+        @Override
+        public boolean equals(Object obj) {
+            return EqualsBuilder.reflectionEquals(this, obj);
+        }
+
+        @Override
+        public String toString() {
+            return ToStringBuilder.reflectionToString(this);
+        }
     }
 }

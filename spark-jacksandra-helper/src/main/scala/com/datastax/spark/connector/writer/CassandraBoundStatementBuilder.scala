@@ -28,6 +28,7 @@ class CassandraBoundStatementBuilder[T](
     val boundStatement = rowWriter match {
       case jsonRowWriter: JsonRowWriter[T] => {
         val json: String = jsonRowWriter.toJson(row)
+        println(json)
         val singleStatement: BoundStatement = preparedStmt.bind(json)
         val cc = new RichBoundStatementWrapper(singleStatement)
         cc.bytesCount = singleStatement.computeSizeInBytes(driverContext)

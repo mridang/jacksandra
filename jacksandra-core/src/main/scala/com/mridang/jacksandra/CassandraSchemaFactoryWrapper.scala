@@ -4,18 +4,15 @@ import com.datastax.oss.driver.api.core.`type`.reflect.GenericType
 import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.oss.driver.api.querybuilder.QueryBuilder
+import com.datastax.oss.driver.internal.core.`type`.codec.extras.time.{DurationTypeCodec, LegacyDateCodec, LegacyTimestampCodec, LocalDateTimeCodec, MonthDayCodec, YearCodec, YearMonthCodec, ZoneIdCodec, ZoneOffsetCodec}
 import com.datastax.oss.driver.internal.core.`type`.codec.registry.DefaultCodecRegistry
 import com.fasterxml.jackson.databind.`type`.CollectionType
 import com.fasterxml.jackson.databind.jsonFormatVisitors._
 import com.fasterxml.jackson.databind.{JavaType, SerializerProvider}
-import com.fasterxml.jackson.module.jsonSchema.factories.{
-  ObjectVisitor,
-  SchemaFactoryWrapper,
-  VisitorContext,
-  WrapperFactory
-}
+import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, SchemaFactoryWrapper, VisitorContext, WrapperFactory}
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra.javabeans._
+
 
 /**
   * A customized visitor that intercepts generated [[JsonSchema]] instances
@@ -26,6 +23,20 @@ class CassandraSchemaFactoryWrapper(
     /* use only as an initial value!! */
     _wrapperFactory: WrapperFactory)
     extends SchemaFactoryWrapper(_provider, _wrapperFactory) {
+
+  final val codecRegistry: DefaultCodecRegistry = {
+    val codecRegistry = new DefaultCodecRegistry("mridang")
+    codecRegistry.register(new YearMonthCodec)
+    codecRegistry.register(new MonthDayCodec)
+    codecRegistry.register(new YearCodec)
+    codecRegistry.register(new ZoneIdCodec)
+    codecRegistry.register(new ZoneOffsetCodec)
+    codecRegistry.register(new LegacyDateCodec)
+    codecRegistry.register(new LegacyTimestampCodec)
+    codecRegistry.register(new LocalDateTimeCodec)
+    codecRegistry.register(new DurationTypeCodec)
+    codecRegistry
+  }
 
   override def expectAnyFormat(convertedType: JavaType):
   JsonAnyFormatVisitor = {
@@ -152,8 +163,7 @@ class CassandraSchemaFactoryWrapper(
       case None => {
         try {
           val gt: GenericType[_] = GenericType.of(xx)
-          val xxxxx = new DefaultCodecRegistry("mridang").codecFor(gt)
-          xxxxx.getCqlType
+          codecRegistry.codecFor(gt).getCqlType
         } catch {
           case e: Exception => {
             println("Had an IOException trying to read that file" + e)

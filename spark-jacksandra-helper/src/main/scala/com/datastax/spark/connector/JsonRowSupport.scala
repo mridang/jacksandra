@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat.{Shape, Value}
 import com.fasterxml.jackson.databind.introspect.AnnotatedClass
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.{BeanDescription, JavaType, ObjectMapper, SerializationFeature}
+import com.fasterxml.jackson.datatype.cql.CassandraModule
+import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
-import java.time.{LocalDate, LocalDateTime}
+import java.sql.Timestamp
+import java.time.{Duration, Instant, LocalDate, LocalDateTime, LocalTime, MonthDay, OffsetDateTime, OffsetTime, Period, Year, YearMonth, ZoneId, ZoneOffset, ZonedDateTime}
+import java.util.Date
 import scala.collection.JavaConverters._
 import scala.reflect.ClassTag
 
@@ -39,15 +43,27 @@ trait JsonRowSupport[T] {
       .registerModule(new Jdk8Module)
       .registerModule(new JavaTimeModule)
       .registerModule(new SimpleModule())
-      .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+      .registerModule(new GuavaModule())
+      .registerModule(new CassandraModule)
+      .enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+      .disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS)
 
-    schemaMapper
-      .configOverride(classOf[LocalDate])
-      .setFormat(Value.forShape(Shape.STRING))
-
-    schemaMapper
-      .configOverride(classOf[LocalDateTime])
-      .setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Date]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Timestamp]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Instant]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[OffsetDateTime]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[ZonedDateTime]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Duration]).setFormat(Value.forShape(Shape.STRING)) // So we can store nanosecond precision. Queryable
+    schemaMapper.configOverride(classOf[LocalDateTime]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[LocalDate]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[LocalTime]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[MonthDay]).setFormat(Value.forShape(Shape.STRING)) // Jackson only serializes to string (or array) and it is easy to query when it is a string
+    schemaMapper.configOverride(classOf[OffsetTime]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Period]).setFormat(Value.forShape(Shape.STRING))
+    schemaMapper.configOverride(classOf[Year]).setFormat(Value.forShape(Shape.NUMBER_INT)) // Storing as number allows querying
+    schemaMapper.configOverride(classOf[YearMonth]).setFormat(Value.forShape(Shape.STRING)) // Jackson only serializes to string (or array) and it is easy to query when it is a string
+    schemaMapper.configOverride(classOf[ZoneId]).setFormat(Value.forShape(Shape.STRING)) // Jackson only serializes to string and it is easy to query when it is a string
+    schemaMapper.configOverride(classOf[ZoneOffset]).setFormat(Value.forShape(Shape.STRING))
 
     schemaMapper
   }

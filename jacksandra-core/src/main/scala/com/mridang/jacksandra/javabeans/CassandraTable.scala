@@ -1,5 +1,6 @@
 package com.mridang.jacksandra.javabeans
 
+import com.datastax.oss.driver.api.core.CqlIdentifier
 import com.datastax.oss.driver.api.core.metadata.schema.ClusteringOrder
 import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
 import com.datastax.oss.driver.api.querybuilder.schema.CreateTable
@@ -7,6 +8,7 @@ import com.datastax.oss.driver.internal.querybuilder.schema.DefaultCreateTable
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema
 import com.mridang.jacksandra.CassandraJsonSchemaBase
 
+import scala.collection.JavaConverters
 import scala.collection.JavaConverters.mapAsScalaMapConverter
 
 //noinspection DuplicatedCode
@@ -45,12 +47,13 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
           }
       }
       .foreach { column =>
+        val cqlId = CqlIdentifier.fromInternal(column.ann.value)
         createTable = createTable match {
           case table: CreateTable => {
-            table.withPartitionKey(column.ann.value, column.cassandraType)
+            table.withPartitionKey(cqlId, column.cassandraType)
           }
           case _ => {
-            tableStart.withPartitionKey(column.ann.value, column.cassandraType)
+            tableStart.withPartitionKey(cqlId, column.cassandraType)
           }
         }
       }
@@ -80,9 +83,8 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
           }
       }
       .foreach { column =>
-        createTable = createTable.withClusteringColumn(
-          column.ann.value,
-          column.cassandraType)
+        val cqlId = CqlIdentifier.fromInternal(column.ann.value)
+        createTable = createTable.withClusteringColumn(cqlId, column.cassandraType)
       }
 
     schema
@@ -100,8 +102,9 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
         column.staticColumn.nonEmpty
       }
       .foreach { column =>
+        val cqlId = CqlIdentifier.fromInternal(column.ann.value)
         createTable =
-          createTable.withStaticColumn(column.ann.value, column.cassandraType)
+          createTable.withStaticColumn(cqlId, column.cassandraType)
       }
 
     schema
@@ -127,8 +130,9 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
       .foreach { column =>
         createTable match {
           case _: DefaultCreateTable => {
+            val cqlId = CqlIdentifier.fromInternal(column.ann.value)
             createTable =
-              createTable.withColumn(column.ann.value, column.cassandraType)
+              createTable.withColumn(cqlId, column.cassandraType)
           }
           case _ =>
             throw new Exception("No partition keys specified")
@@ -137,7 +141,7 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
 
     // Build the clustering order statement by first finding all properties and
     // then getting the sort order
-    val clusteringOrder: Map[String, ClusteringOrder] = schema
+    val clusteringOrder: Map[CqlIdentifier, ClusteringOrder] = schema
       .asInstanceOf[CassandraRootSchema]
       .getProperties
       .asScala
@@ -162,6 +166,7 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
           }
       }
       .map((k: CassandraJsonSchemaBase) => {
+        val cqlId = CqlIdentifier.fromInternal(k.ann.value)
         val clusteringOrder = k.clusteringColumn match {
           case Some(value) => {
             if (value.isAscending) {
@@ -172,10 +177,10 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
           }
           case None => ClusteringOrder.ASC
         }
-        (k.ann.value(), clusteringOrder)
+        (cqlId, clusteringOrder)
       })
       .toMap
 
-    createTable.withClusteringOrder(scala.collection.JavaConverters.mapAsJavaMap(clusteringOrder)).asCql()
+    createTable.withClusteringOrderByIds(JavaConverters.mapAsJavaMap(clusteringOrder)).asCql()
   }
 }

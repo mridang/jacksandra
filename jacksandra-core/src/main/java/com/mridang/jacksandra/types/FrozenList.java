@@ -1,5 +1,7 @@
 package com.mridang.jacksandra.types;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -18,9 +20,14 @@ import java.util.function.UnaryOperator;
  * @author mridang
  */
 @SuppressWarnings("NullableProblems")
-public class FrozenList<E> implements List<E>, Frozen {
+public class FrozenList<E> implements List<E>, Frozen, Serializable {
 
     private final List<E> backingList;
+
+    @SuppressWarnings("unused")
+    public FrozenList() {
+        this(new ArrayList<>());
+    }
 
     public FrozenList(List<E> backingList) {
         this.backingList = backingList;
