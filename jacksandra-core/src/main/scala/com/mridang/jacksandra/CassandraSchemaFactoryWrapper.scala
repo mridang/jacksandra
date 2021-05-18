@@ -4,7 +4,8 @@ import com.datastax.oss.driver.api.core.`type`.reflect.GenericType
 import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.oss.driver.api.querybuilder.QueryBuilder
-import com.datastax.oss.driver.internal.core.`type`.codec.extras.time.{DurationTypeCodec, LegacyDateCodec, LegacyTimestampCodec, LocalDateTimeCodec, MonthDayCodec, YearCodec, YearMonthCodec, ZoneIdCodec, ZoneOffsetCodec}
+import com.datastax.oss.driver.internal.core.`type`.codec.extras.time._
+import com.datastax.oss.driver.internal.core.`type`.codec.extras.{CqlAsciiCodec, CqlBlobCodec, CqlTimeUUIDCodec}
 import com.datastax.oss.driver.internal.core.`type`.codec.registry.DefaultCodecRegistry
 import com.fasterxml.jackson.databind.`type`.CollectionType
 import com.fasterxml.jackson.databind.jsonFormatVisitors._
@@ -35,6 +36,9 @@ class CassandraSchemaFactoryWrapper(
     codecRegistry.register(new LegacyTimestampCodec)
     codecRegistry.register(new LocalDateTimeCodec)
     codecRegistry.register(new DurationTypeCodec)
+    codecRegistry.register(new CqlBlobCodec)
+    codecRegistry.register(new CqlAsciiCodec)
+    codecRegistry.register(new CqlTimeUUIDCodec)
     codecRegistry
   }
 

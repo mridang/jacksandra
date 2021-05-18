@@ -3,7 +3,7 @@ package org.jeasy.random.randomizers.extras;
 import org.jeasy.random.api.Randomizer;
 import org.jeasy.random.randomizers.time.DurationRandomizer;
 
-import com.datastax.oss.driver.api.core.data.CqlDuration;
+import com.mridang.jacksandra.types.CqlDuration;
 
 public class CqlDurationRandomizer implements Randomizer<CqlDuration> {
 

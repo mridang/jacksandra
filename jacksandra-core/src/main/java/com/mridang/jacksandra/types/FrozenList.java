@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.UnaryOperator;
 
@@ -114,15 +115,19 @@ public class FrozenList<E> implements List<E>, Frozen, Serializable {
         backingList.clear();
     }
 
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object o) {
-        return backingList.equals(o);
+        if (this == o) return true;
+        if (!(o instanceof FrozenList)) return false;
+
+        FrozenList<?> that = (FrozenList<?>) o;
+
+        return Objects.equals(backingList, that.backingList);
     }
 
     @Override
     public int hashCode() {
-        return backingList.hashCode();
+        return backingList != null ? backingList.hashCode() : 0;
     }
 
     @Override
@@ -174,6 +179,4 @@ public class FrozenList<E> implements List<E>, Frozen, Serializable {
     public Spliterator<E> spliterator() {
         return backingList.spliterator();
     }
-
-
 }

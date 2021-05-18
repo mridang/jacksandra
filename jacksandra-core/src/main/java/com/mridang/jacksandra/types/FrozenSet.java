@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.Spliterator;
 
@@ -96,21 +97,23 @@ public class FrozenSet<E> implements Set<E>, Frozen, Serializable {
         backingSet.clear();
     }
 
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object o) {
-        return backingSet.equals(o);
+        if (this == o) return true;
+        if (!(o instanceof FrozenSet)) return false;
+
+        FrozenSet<?> frozenSet = (FrozenSet<?>) o;
+
+        return Objects.equals(backingSet, frozenSet.backingSet);
     }
 
     @Override
     public int hashCode() {
-        return backingSet.hashCode();
+        return backingSet != null ? backingSet.hashCode() : 0;
     }
 
     @Override
     public Spliterator<E> spliterator() {
         return backingSet.spliterator();
     }
-
-
 }

@@ -6,7 +6,7 @@ import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWr
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
 import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
-import com.mridang.jacksandra.{JavaBeanWithCollections, JavaBeanWithNumbers, JavaBeanWithTemporal, JavaBeanWithUDT}
+import com.mridang.jacksandra.{JavaBeanWithCollections, JavaBeanWithExotics, JavaBeanWithNumbers, JavaBeanWithTemporal, JavaBeanWithUDT}
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.scalatest.funsuite.AnyFunSuite
@@ -129,6 +129,23 @@ class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkCon
 
     inputRDD.saveToCassandra(defaultKeyspace)
     sc.cassandraTable[JavaBeanWithUDT](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying entities with exotics works as expected") {
+    //container.start()
+    createTable[JavaBeanWithExotics]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[JavaBeanWithExotics] = new CassandraJsonRowWriterFactory[JavaBeanWithExotics]
+
+    val inputRDD: RDD[JavaBeanWithExotics] = RandomRDD[JavaBeanWithExotics](sc).of(randomItemsCount)
+    val inputItems: Set[JavaBeanWithExotics] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[JavaBeanWithExotics](defaultKeyspace)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
