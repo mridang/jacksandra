@@ -4,8 +4,7 @@ import com.datastax.oss.driver.api.core.`type`.reflect.GenericType
 import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.oss.driver.api.querybuilder.QueryBuilder
-import com.datastax.oss.driver.internal.core.`type`.codec.extras.{CqlAsciiCodec, CqlBlobCodec, CqlTimeUUIDCodec}
-import com.datastax.oss.driver.internal.core.`type`.codec.extras.time._
+import com.datastax.oss.driver.internal.core.`type`.codec.extras.CassandraCodecRegistry
 import com.datastax.oss.driver.internal.core.`type`.codec.registry.DefaultCodecRegistry
 import com.fasterxml.jackson.annotation.JsonFormat.{Shape, Value}
 import com.fasterxml.jackson.databind._
@@ -26,20 +25,7 @@ import scala.reflect.ClassTag
 object CassandraMapper {
 
   final val codecRegistry: DefaultCodecRegistry = {
-    val codecRegistry = new DefaultCodecRegistry("mridang")
-    codecRegistry.register(new YearMonthCodec)
-    codecRegistry.register(new MonthDayCodec)
-    codecRegistry.register(new YearCodec)
-    codecRegistry.register(new ZoneIdCodec)
-    codecRegistry.register(new ZoneOffsetCodec)
-    codecRegistry.register(new LegacyDateCodec)
-    codecRegistry.register(new LegacyTimestampCodec)
-    codecRegistry.register(new LocalDateTimeCodec)
-    codecRegistry.register(new DurationTypeCodec)
-    codecRegistry.register(new CqlBlobCodec)
-    codecRegistry.register(new CqlAsciiCodec)
-    codecRegistry.register(new CqlTimeUUIDCodec)
-    codecRegistry
+    new CassandraCodecRegistry
   }
 
   def getDT(javaType: JavaType): DataType = {

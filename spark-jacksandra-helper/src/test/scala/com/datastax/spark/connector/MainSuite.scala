@@ -1,6 +1,7 @@
 package com.datastax.spark.connector
 
 import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
+import com.datastax.oss.driver.internal.core.`type`.codec.extras.scala.ScalaCodecRegistry
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWriterFactory}
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
@@ -32,7 +33,7 @@ class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkCon
 
   def createTable[T]()(implicit ctag: ClassTag[T]): Unit = {
     CassandraConnector(conf).withSessionDo(session => {
-      val mapper = new CassandraJavaBeanMapper[T](defaultKeyspace)
+      val mapper = new CassandraJavaBeanMapper[T](defaultKeyspace, new ScalaCodecRegistry())
 
       session.execute(SchemaBuilder.dropKeyspace(defaultKeyspace).ifExists()
         .asCql())

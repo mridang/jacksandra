@@ -1,8 +1,9 @@
 package com.mridang.jacksandra.javabeans
 
+import com.datastax.oss.driver.api.core.`type`.DataType
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.{BeanProperty, JsonSerializer, SerializerProvider}
+import com.fasterxml.jackson.databind.{BeanProperty, JavaType, JsonSerializer, SerializerProvider}
 import com.fasterxml.jackson.module.jsonSchema.factories.{VisitorContext, WrapperFactory}
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra._
@@ -12,17 +13,15 @@ import java.lang.annotation.Annotation
 import java.lang.reflect.Method
 import scala.reflect.ClassTag
 
-class CassandraJavaBeanMapper[T](keyspace: String)(implicit classTag: ClassTag[T])
-    extends CassandraMapper[T](keyspace = keyspace, dataFn = CassandraMapper.getDT)
-    with JavaBeanSupport[T]
+class CassandraJavaBeanMapper[T](keyspace: String, dataTypeFn: JavaType => DataType = CassandraMapper.getDT)(implicit classTag: ClassTag[T])
+    extends CassandraMapper[T](keyspace = keyspace, dataFn = dataTypeFn) {
 
-trait JavaBeanSupport[T] { this: CassandraMapper[T] =>
   override def serializer: CassandraSerializer =
     new CassandraSerializer with JavaESAnnotatedBeanSupport
 
   override def wrapperFactory: WrapperFactory =
     new CassandraSchemaFactoryWrapperFactory((provider, factory) =>
-      new CassandraJavaBeanSchemaFactoryWrapper(provider, factory, CassandraMapper.getDT))
+      new CassandraJavaBeanSchemaFactoryWrapper(provider, factory, dataTypeFn))
 }
 
 trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
