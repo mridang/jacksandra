@@ -6,7 +6,7 @@ import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWr
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
 import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
-import com.mridang.jacksandra.{JavaBeanWithCollections, JavaBeanWithExotics, JavaBeanWithNumbers, JavaBeanWithTemporal, JavaBeanWithUDT}
+import com.mridang.jacksandra.{ClassWithCollections, ClassWithExotics, ClassWithNumbers, ClassWithTemporal, ClassWithUDT, JavaBeanWithCollections, JavaBeanWithExotics, JavaBeanWithNumbers, JavaBeanWithTemporal, JavaBeanWithUDT}
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.scalatest.funsuite.AnyFunSuite
@@ -146,6 +146,91 @@ class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkCon
 
     inputRDD.saveToCassandra(defaultKeyspace)
     sc.cassandraTable[JavaBeanWithExotics](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with collections works as expected") {
+    //container.start()
+    createTable[ClassWithCollections]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[ClassWithCollections] = new CassandraJsonRowWriterFactory[ClassWithCollections]
+
+    val inputRDD: RDD[ClassWithCollections] = RandomRDD[ClassWithCollections](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithCollections] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithCollections](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with numbers works as expected") {
+    //container.start()
+    createTable[ClassWithNumbers]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[ClassWithNumbers] = new CassandraJsonRowWriterFactory[ClassWithNumbers]
+
+    val inputRDD: RDD[ClassWithNumbers] = RandomRDD[ClassWithNumbers](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithNumbers] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithNumbers](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with temporals works as expected") {
+    //container.start()
+    createTable[ClassWithTemporal]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[ClassWithTemporal] = new CassandraJsonRowWriterFactory[ClassWithTemporal]
+
+    val inputRDD: RDD[ClassWithTemporal] = RandomRDD[ClassWithTemporal](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithTemporal] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithTemporal](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with udts works as expected") {
+    //container.start()
+    createTable[ClassWithUDT]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[ClassWithUDT] = new CassandraJsonRowWriterFactory[ClassWithUDT]
+
+    val inputRDD: RDD[ClassWithUDT] = RandomRDD[ClassWithUDT](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithUDT] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithUDT](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with exotics works as expected") {
+    //container.start()
+    createTable[ClassWithExotics]()
+
+    implicit val connector: CassandraConnector = CassandraConnector(conf)
+    implicit val rwf: RowWriterFactory[ClassWithExotics] = new CassandraJsonRowWriterFactory[ClassWithExotics]
+
+    val inputRDD: RDD[ClassWithExotics] = RandomRDD[ClassWithExotics](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithExotics] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithExotics](defaultKeyspace)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }

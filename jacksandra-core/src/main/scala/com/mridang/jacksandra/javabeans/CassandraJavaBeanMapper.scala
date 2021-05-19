@@ -3,9 +3,9 @@ package com.mridang.jacksandra.javabeans
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.{BeanProperty, JsonSerializer, SerializerProvider}
-import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, VisitorContext, WrapperFactory}
+import com.fasterxml.jackson.module.jsonSchema.factories.{VisitorContext, WrapperFactory}
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
-import com.mridang.jacksandra.{CassandraMapper, CassandraMappings, CassandraSchemaFactoryWrapper, CassandraSchemaFactoryWrapperFactory, CassandraSchemaObjectVisitor, CassandraSerializer}
+import com.mridang.jacksandra._
 
 import java.beans.Introspector
 import java.lang.annotation.Annotation
@@ -13,7 +13,7 @@ import java.lang.reflect.Method
 import scala.reflect.ClassTag
 
 class CassandraJavaBeanMapper[T](keyspace: String)(implicit classTag: ClassTag[T])
-    extends CassandraMapper[T](keyspace = keyspace)
+    extends CassandraMapper[T](keyspace = keyspace, dataFn = CassandraMapper.getDT)
     with JavaBeanSupport[T]
 
 trait JavaBeanSupport[T] { this: CassandraMapper[T] =>
@@ -22,7 +22,7 @@ trait JavaBeanSupport[T] { this: CassandraMapper[T] =>
 
   override def wrapperFactory: WrapperFactory =
     new CassandraSchemaFactoryWrapperFactory((provider, factory) =>
-      new CassandraJavaBeanSchemaFactoryWrapper(provider, factory))
+      new CassandraJavaBeanSchemaFactoryWrapper(provider, factory, CassandraMapper.getDT))
 }
 
 trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
@@ -98,26 +98,7 @@ trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
   }
 }
 
-class CassandraJavaBeanSchemaFactoryWrapper(
-    provider: SerializerProvider,
-    wrapperFactory: WrapperFactory)
-    extends CassandraSchemaFactoryWrapper(provider, wrapperFactory) {
 
-  override def visitor(
-      provider: SerializerProvider,
-      schema: ObjectSchema,
-      wrapperFactory: WrapperFactory,
-      visitorContext: VisitorContext): ObjectVisitor =
-    new CassandraJavaBeanSchemaObjectVisitor(
-      provider,
-      schema,
-      wrapperFactory,
-      visitorContext)
-
-  def cassandraVisitorContext: VisitorContext = {
-    visitorContext
-  }
-}
 
 class CassandraJavaBeanSchemaObjectVisitor(
     provider: SerializerProvider,
@@ -137,9 +118,4 @@ class CassandraJavaBeanSchemaObjectVisitor(
   override def property(prop: BeanProperty): Unit = {
     optionalProperty(prop)
   }
-}
-
-object CassandraJavaBeanMapper {
-  val ID = "id"
-  val ID_CONFIG = Map("es.mapping.id" -> ID)
 }

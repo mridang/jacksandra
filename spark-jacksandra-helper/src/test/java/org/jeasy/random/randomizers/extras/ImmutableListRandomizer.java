@@ -16,11 +16,15 @@ public class ImmutableListRandomizer implements ContextAwareRandomizer<Immutable
 
     @Override
     public ImmutableList<?> getRandomValue() {
-        try {
-            System.out.println(context.getTargetType().getField(context.getCurrentField()));
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(context.getTargetType().getField(context.getCurrentField()));
+//        } catch (NoSuchFieldException e) {
+//            try {
+//                System.out.println(context.getTargetType().getDeclaredField(context.getCurrentField()));
+//            } catch (NoSuchFieldException noSuchFieldException) {
+//                noSuchFieldException.printStackTrace();
+//            }
+//        }
         return ImmutableList.of();
     }
 }

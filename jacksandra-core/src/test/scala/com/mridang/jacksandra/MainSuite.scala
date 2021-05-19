@@ -46,7 +46,7 @@ class MainSuite extends AnyFunSuite {
   }
 
   test("that all collection types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithCollections](defaultKeyspace)
+    val mapper = new CassandraJavaBeanMapper[ClassWithCollections](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
