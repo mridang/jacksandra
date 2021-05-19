@@ -45,8 +45,9 @@ public class CassandraArraySchema extends ArraySchema implements CassandraSchema
                 this.dataType = DataTypes.setOf(dataType);
             }
         } else {
-            // Are there other collection types that should be handled?
-            throw new IllegalStateException("Unexpected array type " + javaType.getRawClass());
+            //TODO: Scala collections should be handled here.
+            //throw new IllegalStateException("Unexpected array type " + javaType.getRawClass());
+            this.dataType = DataTypes.listOf(dataType);
         }
     }
 

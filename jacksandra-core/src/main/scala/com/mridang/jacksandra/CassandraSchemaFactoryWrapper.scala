@@ -2,7 +2,7 @@ package com.mridang.jacksandra
 
 import com.datastax.oss.driver.api.core.`type`.DataType
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
-import com.fasterxml.jackson.databind.`type`.CollectionType
+import com.fasterxml.jackson.databind.`type`.CollectionLikeType
 import com.fasterxml.jackson.databind.jsonFormatVisitors._
 import com.fasterxml.jackson.databind.{JavaType, SerializerProvider}
 import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, SchemaFactoryWrapper, VisitorContext, WrapperFactory}
@@ -45,7 +45,7 @@ class CassandraSchemaFactoryWrapper
       super.expectArrayFormat(convertedType)
     this.schema = new CassandraArraySchema(
       convertedType,
-      dataFn(convertedType.asInstanceOf[CollectionType].getContentType))
+      dataFn(convertedType.asInstanceOf[CollectionLikeType].getContentType))
     jsonFormatVisitor
   }
 
