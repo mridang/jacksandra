@@ -11,11 +11,11 @@ import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import scala.collection.convert.DecorateAsScala
 
 /**
-  * Maps container types to Cassandra types. Otherwise Jackson deduces the type information
-  * as [[JsonSchema]] types which will lead to wrong [[com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver]]
-  */
+ * Maps container types to Cassandra types. Otherwise Jackson deduces the type information
+ * as [[JsonSchema]] types which will lead to wrong [[com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver]]
+ */
 trait CassandraContainerSchema
-    extends CassandraJsonSchemaBase
+  extends CassandraJsonSchemaBase
     with DecorateAsScala {
 
   val name: CqlName

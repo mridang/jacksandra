@@ -5,23 +5,23 @@ import com.datastax.oss.driver.api.core.context.DriverContext
 import com.datastax.oss.driver.api.core.cql.{BoundStatement, PreparedStatement}
 
 class CassandraBoundStatementBuilder[T](
-    override val rowWriter: RowWriter[T],
-    override val preparedStmt: PreparedStatement,
-    val driverContext: DriverContext,
-    override val prefixVals: Seq[Any] = Seq.empty,
-    override val ignoreNulls: Boolean = false,
-    override val protocolVersion: ProtocolVersion)
-    extends BoundStatementBuilder[T](
-      new RowWriter[T] {
-        override def columnNames: Seq[String] = Seq("jsondata")
+                                         override val rowWriter: RowWriter[T],
+                                         override val preparedStmt: PreparedStatement,
+                                         val driverContext: DriverContext,
+                                         override val prefixVals: Seq[Any] = Seq.empty,
+                                         override val ignoreNulls: Boolean = false,
+                                         override val protocolVersion: ProtocolVersion)
+  extends BoundStatementBuilder[T](
+    new RowWriter[T] {
+      override def columnNames: Seq[String] = Seq("jsondata")
 
-        override def readColumnValues(data: T, buffer: Array[Any]): Unit = ???
-      },
-      preparedStmt,
-      prefixVals,
-      ignoreNulls,
-      protocolVersion
-    ) {
+      override def readColumnValues(data: T, buffer: Array[Any]): Unit = ???
+    },
+    preparedStmt,
+    prefixVals,
+    ignoreNulls,
+    protocolVersion
+  ) {
 
   //noinspection UnstableApiUsage
   override def bind(row: T): RichBoundStatementWrapper = {

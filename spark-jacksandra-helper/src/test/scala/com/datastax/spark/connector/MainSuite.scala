@@ -7,7 +7,7 @@ import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWr
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
 import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
-import com.mridang.jacksandra.{ClassWithCollections, ClassWithExotics, ClassWithNumbers, ClassWithTemporal, ClassWithUDT, JavaBeanWithCollections, JavaBeanWithExotics, JavaBeanWithNumbers, JavaBeanWithTemporal, JavaBeanWithUDT}
+import com.mridang.jacksandra._
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.scalatest.funsuite.AnyFunSuite
@@ -19,17 +19,19 @@ import scala.reflect.ClassTag
 class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
 
   //noinspection ScalaStyle
+
   import com.datastax.spark.connector.plus.{toRDDFunctions, toSparkContextFunctions}
 
-  override def container: CassandraContainer = CassandraContainer()
+  final val defaultKeyspace: String = "jacksandra"
+  final val randomItemsCount: Int = 1
   override val conf: SparkConf = {
     super.conf
       .set("spark.cassandra.connection.host", "helenus.dev.nos.to")
       .set("spark.cassandra.connection.port", "9042")
       .set("spark.cassandra.output.batch.grouping.key", "none")
   }
-  final val defaultKeyspace: String = "jacksandra"
-  final val randomItemsCount: Int = 1
+
+  override def container: CassandraContainer = CassandraContainer()
 
   def createTable[T]()(implicit ctag: ClassTag[T]): Unit = {
     CassandraConnector(conf).withSessionDo(session => {

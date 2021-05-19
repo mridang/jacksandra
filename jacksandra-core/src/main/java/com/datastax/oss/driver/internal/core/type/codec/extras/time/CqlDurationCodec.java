@@ -27,20 +27,20 @@ import net.jcip.annotations.ThreadSafe;
 @ThreadSafe
 public class CqlDurationCodec extends MappingCodec<com.datastax.oss.driver.api.core.data.CqlDuration, CqlDuration> {
 
-  public CqlDurationCodec() {
-    super(TypeCodecs.DURATION, GenericType.of(CqlDuration.class));
-  }
+    public CqlDurationCodec() {
+        super(TypeCodecs.DURATION, GenericType.of(CqlDuration.class));
+    }
 
 
-  @Nullable
-  @Override
-  protected CqlDuration innerToOuter(@Nullable com.datastax.oss.driver.api.core.data.CqlDuration value) {
-    return value == null ? null : CqlDuration.from(value.toString());
-  }
+    @Nullable
+    @Override
+    protected CqlDuration innerToOuter(@Nullable com.datastax.oss.driver.api.core.data.CqlDuration value) {
+        return value == null ? null : CqlDuration.from(value.toString());
+    }
 
-  @Nullable
-  @Override
-  protected com.datastax.oss.driver.api.core.data.CqlDuration outerToInner(@Nullable CqlDuration value) {
-    return value == null ? null : com.datastax.oss.driver.api.core.data.CqlDuration.from(value.toString());
-  }
+    @Nullable
+    @Override
+    protected com.datastax.oss.driver.api.core.data.CqlDuration outerToInner(@Nullable CqlDuration value) {
+        return value == null ? null : com.datastax.oss.driver.api.core.data.CqlDuration.from(value.toString());
+    }
 }

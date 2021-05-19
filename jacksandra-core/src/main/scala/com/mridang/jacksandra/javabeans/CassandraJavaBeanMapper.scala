@@ -14,7 +14,7 @@ import java.lang.reflect.Method
 import scala.reflect.ClassTag
 
 class CassandraJavaBeanMapper[T](keyspace: String, dataTypeFn: JavaType => DataType = CassandraMapper.getDT)(implicit classTag: ClassTag[T])
-    extends CassandraMapper[T](keyspace = keyspace, dataFn = dataTypeFn) {
+  extends CassandraMapper[T](keyspace = keyspace, dataFn = dataTypeFn) {
 
   override def serializer: CassandraSerializer =
     new CassandraSerializer with JavaESAnnotatedBeanSupport
@@ -24,39 +24,25 @@ class CassandraJavaBeanMapper[T](keyspace: String, dataTypeFn: JavaType => DataT
       new CassandraJavaBeanSchemaFactoryWrapper(provider, factory, dataTypeFn))
 }
 
-trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
-
-  private def getAnnotatedMethods(c: Class[_]): Array[(Method, Annotation)] = {
-    val properties = Introspector.getBeanInfo(c)
-
-    val fieldAnnotations =
-      properties.getBeanDescriptor.getBeanClass.getDeclaredFields
-        .map(x => (x.getName, x.getDeclaredAnnotations))
-        .toMap
-
-    properties.getPropertyDescriptors.flatMap(
-      descriptor =>
-        fieldAnnotations
-          .getOrElse(descriptor.getName, Array.empty)
-          .map(annotation => (descriptor.getReadMethod, annotation)))
-  }
+trait JavaESAnnotatedBeanSupport {
+  this: CassandraSerializer =>
 
   override def serialize(
-      t: CassandraMappings,
-      jsonGenerator: JsonGenerator,
-      serializerProvider: SerializerProvider): Unit = {
+                          t: CassandraMappings,
+                          jsonGenerator: JsonGenerator,
+                          serializerProvider: SerializerProvider): Unit = {
 
     def writeObject(obj: Any, annotation: CqlName): Unit = {
       jsonGenerator.writeFieldName(annotation.value())
 
       (obj, annotation) match {
-//        case (d: LocalDateTime, prop) if prop.format().isEmpty =>
-//          jsonGenerator.writeNumber(d.toInstant(ZoneOffset.UTC).toEpochMilli)
-//        case (t: Temporal, prop) if !prop.format().isEmpty =>
-//          jsonGenerator.writeString(
-//            DateTimeFormatter.ofPattern(prop.format()).format(t))
-//        case (s: String, prop) if prop.name() == CassandraJavaBeanMapper.ID =>
-//          jsonGenerator.writeString(getIdTrimmed(s))
+        //        case (d: LocalDateTime, prop) if prop.format().isEmpty =>
+        //          jsonGenerator.writeNumber(d.toInstant(ZoneOffset.UTC).toEpochMilli)
+        //        case (t: Temporal, prop) if !prop.format().isEmpty =>
+        //          jsonGenerator.writeString(
+        //            DateTimeFormatter.ofPattern(prop.format()).format(t))
+        //        case (s: String, prop) if prop.name() == CassandraJavaBeanMapper.ID =>
+        //          jsonGenerator.writeString(getIdTrimmed(s))
         case (o, _) => jsonGenerator.writeObject(o)
       }
     }
@@ -75,45 +61,59 @@ trait JavaESAnnotatedBeanSupport { this: CassandraSerializer =>
           case null =>
         }
       case (_, a)
-          if a
-            .annotationType()
-            .getName == "jdk.internal.HotSpotIntrinsicCandidate" =>
+        if a
+          .annotationType()
+          .getName == "jdk.internal.HotSpotIntrinsicCandidate" =>
       // see https://bugs.openjdk.java.net/browse/JDK-8076112
       // with scala 2.12, the jvm target compatibility is still 1.8
       // so we need to match with the string class name
       case (_, a)
-          if a
-            .annotationType()
-            .getName == "com.fasterxml.jackson.annotation.JsonProperty" =>
+        if a
+          .annotationType()
+          .getName == "com.fasterxml.jackson.annotation.JsonProperty" =>
     }
 
     jsonGenerator.writeEndObject()
   }
 
+  private def getAnnotatedMethods(c: Class[_]): Array[(Method, Annotation)] = {
+    val properties = Introspector.getBeanInfo(c)
+
+    val fieldAnnotations =
+      properties.getBeanDescriptor.getBeanClass.getDeclaredFields
+        .map(x => (x.getName, x.getDeclaredAnnotations))
+        .toMap
+
+    properties.getPropertyDescriptors.flatMap(
+      descriptor =>
+        fieldAnnotations
+          .getOrElse(descriptor.getName, Array.empty)
+          .map(annotation => (descriptor.getReadMethod, annotation)))
+  }
+
   override def createContextual(
-      prov: SerializerProvider,
-      prop: BeanProperty): JsonSerializer[_] = {
+                                 prov: SerializerProvider,
+                                 prop: BeanProperty): JsonSerializer[_] = {
     new CassandraSerializer with JavaESAnnotatedBeanSupport
   }
 }
 
 
-
 class CassandraJavaBeanSchemaObjectVisitor(
-    provider: SerializerProvider,
-    schema: ObjectSchema,
-    wrapperFactory: WrapperFactory,
-    visitorContext: VisitorContext)
-    extends CassandraSchemaObjectVisitor(
-      provider,
-      schema,
-      wrapperFactory,
-      visitorContext) {
+                                            provider: SerializerProvider,
+                                            schema: ObjectSchema,
+                                            wrapperFactory: WrapperFactory,
+                                            visitorContext: VisitorContext)
+  extends CassandraSchemaObjectVisitor(
+    provider,
+    schema,
+    wrapperFactory,
+    visitorContext) {
 
   /**
-    * Falling back to the same property handling as for optional property
-    * (needed for Java bean support)
-    */
+   * Falling back to the same property handling as for optional property
+   * (needed for Java bean support)
+   */
   override def property(prop: BeanProperty): Unit = {
     optionalProperty(prop)
   }

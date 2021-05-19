@@ -12,15 +12,15 @@ import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema;
 /**
  * Wraps the object-schema returned by Jackson and contains the deduced corresponding
  * user-defined type
- *
+ * <p>
  * https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlRefUDType.html
  *
  * @author mridang
  */
 public class CassandraUdtSchema extends ObjectSchema implements CassandraSchema {
 
-    private final JavaType javaType;
     public final ObjectSchema backing;
+    private final JavaType javaType;
     private final DataType dataType;
 
     public CassandraUdtSchema(JavaType javaType, ObjectSchema backing, CqlName name) {

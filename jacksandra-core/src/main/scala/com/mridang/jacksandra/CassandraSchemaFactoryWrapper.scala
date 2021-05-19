@@ -10,9 +10,9 @@ import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra.javabeans._
 
 /**
-  * A customized visitor that intercepts generated [[JsonSchema]] instances
-  * and uses [[CassandraJsonSchemaBase]] based objects instead.
-  */
+ * A customized visitor that intercepts generated [[JsonSchema]] instances
+ * and uses [[CassandraJsonSchemaBase]] based objects instead.
+ */
 class CassandraSchemaFactoryWrapper
 (
   _provider: SerializerProvider,
@@ -28,17 +28,17 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Returns a visitor when the bean properties are being traversed and and an
-    * collection-like is found.
-    *
-    * Since Cassandra supports more tha just integers, we return a custom
-    * `JsonSchema` that will contain the correct `DataType`.
-    *
-    * <ul>
-    * <li>`DataTypes.listOf`</li>
-    *
-    * <ul>
-    */
+   * Returns a visitor when the bean properties are being traversed and and an
+   * collection-like is found.
+   *
+   * Since Cassandra supports more tha just integers, we return a custom
+   * `JsonSchema` that will contain the correct `DataType`.
+   *
+   * <ul>
+   * <li>`DataTypes.listOf`</li>
+   *
+   * <ul>
+   */
   override def expectArrayFormat(convertedType: JavaType):
   JsonArrayFormatVisitor = {
     val jsonFormatVisitor: JsonArrayFormatVisitor =
@@ -50,16 +50,16 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Returns a visitor when the bean properties are being traversed and and an
-    * boolean is found.
-    *
-    * Since Cassandra supports more tha just integers, we return a custom
-    * `JsonSchema` that will contain the correct `DataType`.
-    *
-    * <ul>
-    * <li>`DataTypes.BOOLEAN`</li>
-    * <ul>
-    */
+   * Returns a visitor when the bean properties are being traversed and and an
+   * boolean is found.
+   *
+   * Since Cassandra supports more tha just integers, we return a custom
+   * `JsonSchema` that will contain the correct `DataType`.
+   *
+   * <ul>
+   * <li>`DataTypes.BOOLEAN`</li>
+   * <ul>
+   */
   override def expectBooleanFormat(convertedType: JavaType):
   JsonBooleanFormatVisitor = {
     val booleanSchema = new CassandraBooleanSchema(convertedType, dataFn(convertedType))
@@ -68,23 +68,23 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Returns a visitor when the bean properties are being traversed and and an
-    * integer is found.
-    *
-    * Since Cassandra supports more tha just integers, we return a custom
-    * `JsonSchema` that will contain the correct `DataType`.
-    *
-    * <ul>
-    * <li>`DataTypes.BIGINT`</li>
-    * <li>`DataTypes.DECIMAL`</li>
-    * <li>`DataTypes.DOUBLE`</li>
-    * <li>`DataTypes.FLOAT`</li>
-    * <li>`DataTypes.INT`</li>
-    * <li>`DataTypes.SMALLINT`</li>
-    * <li>`DataTypes.TINYINT`</li>
-    * <li>`DataTypes.VARINT`</li>
-    * <ul>
-    */
+   * Returns a visitor when the bean properties are being traversed and and an
+   * integer is found.
+   *
+   * Since Cassandra supports more tha just integers, we return a custom
+   * `JsonSchema` that will contain the correct `DataType`.
+   *
+   * <ul>
+   * <li>`DataTypes.BIGINT`</li>
+   * <li>`DataTypes.DECIMAL`</li>
+   * <li>`DataTypes.DOUBLE`</li>
+   * <li>`DataTypes.FLOAT`</li>
+   * <li>`DataTypes.INT`</li>
+   * <li>`DataTypes.SMALLINT`</li>
+   * <li>`DataTypes.TINYINT`</li>
+   * <li>`DataTypes.VARINT`</li>
+   * <ul>
+   */
   override def expectIntegerFormat(convertedType: JavaType):
   JsonIntegerFormatVisitor = {
     val integerSchema = new CassandraIntegerSchema(convertedType, dataFn(convertedType))
@@ -93,23 +93,23 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Returns a visitor when the bean properties are being traversed and and an
-    * integer is found.
-    *
-    * Since Cassandra supports more tha just integers, we return a custom
-    * `JsonSchema` that will contain the correct `DataType`.
-    *
-    * <ul>
-    * <li>`DataTypes.BIGINT`</li>
-    * <li>`DataTypes.DECIMAL`</li>
-    * <li>`DataTypes.DOUBLE`</li>
-    * <li>`DataTypes.FLOAT`</li>
-    * <li>`DataTypes.INT`</li>
-    * <li>`DataTypes.SMALLINT`</li>
-    * <li>`DataTypes.TINYINT`</li>
-    * <li>`DataTypes.VARINT`</li>
-    * <ul>
-    */
+   * Returns a visitor when the bean properties are being traversed and and an
+   * integer is found.
+   *
+   * Since Cassandra supports more tha just integers, we return a custom
+   * `JsonSchema` that will contain the correct `DataType`.
+   *
+   * <ul>
+   * <li>`DataTypes.BIGINT`</li>
+   * <li>`DataTypes.DECIMAL`</li>
+   * <li>`DataTypes.DOUBLE`</li>
+   * <li>`DataTypes.FLOAT`</li>
+   * <li>`DataTypes.INT`</li>
+   * <li>`DataTypes.SMALLINT`</li>
+   * <li>`DataTypes.TINYINT`</li>
+   * <li>`DataTypes.VARINT`</li>
+   * <ul>
+   */
   override def expectNumberFormat(convertedType: JavaType):
   JsonNumberFormatVisitor = {
     val numberSchema = new CassandraNumberSchema(convertedType, dataFn(convertedType))
@@ -118,18 +118,18 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Returns a visitor when the bean properties are being traversed and and an
-    * string-like field is found.
-    *
-    * Since Cassandra supports more tha just just string, we return a custom
-    * `JsonSchema` that will contain the correct `DataType`.
-    *
-    * <ul>
-    * <li>`DataTypes.ASCII`</li>
-    * <li>`DataTypes.TEXT`</li>
-    * <li>`DataTypes.VARCHAR`</li>
-    * <ul>
-    */
+   * Returns a visitor when the bean properties are being traversed and and an
+   * string-like field is found.
+   *
+   * Since Cassandra supports more tha just just string, we return a custom
+   * `JsonSchema` that will contain the correct `DataType`.
+   *
+   * <ul>
+   * <li>`DataTypes.ASCII`</li>
+   * <li>`DataTypes.TEXT`</li>
+   * <li>`DataTypes.VARCHAR`</li>
+   * <ul>
+   */
   override def expectStringFormat(convertedType: JavaType):
   JsonStringFormatVisitor = {
     val stringSchema = new CassandraStringSchema(convertedType, dataFn(convertedType))
@@ -138,10 +138,10 @@ class CassandraSchemaFactoryWrapper
   }
 
   /**
-    * Customised [[ObjectSchema]] visits:
-    * - Disable reference schemas as there is no support for such things in Cassandra (so don't call visitorContext.addSeenSchemaUri)
-    * - Put [[CassandraJsonSchemaBase]] based objects to schema instead of standard [[JsonSchema]] ones.
-    */
+   * Customised [[ObjectSchema]] visits:
+   * - Disable reference schemas as there is no support for such things in Cassandra (so don't call visitorContext.addSeenSchemaUri)
+   * - Put [[CassandraJsonSchemaBase]] based objects to schema instead of standard [[JsonSchema]] ones.
+   */
   override def expectObjectFormat(convertedType: JavaType):
   JsonObjectFormatVisitor = {
     // if we don't already have a recursive visitor context, create one
@@ -170,10 +170,10 @@ class CassandraSchemaFactoryWrapper
   }
 
   def visitor(
-      provider: SerializerProvider,
-      schema: ObjectSchema,
-      wrapperFactory: WrapperFactory,
-      visitorContext: VisitorContext): ObjectVisitor =
+               provider: SerializerProvider,
+               schema: ObjectSchema,
+               wrapperFactory: WrapperFactory,
+               visitorContext: VisitorContext): ObjectVisitor =
     new CassandraSchemaObjectVisitor(
       provider,
       schema,

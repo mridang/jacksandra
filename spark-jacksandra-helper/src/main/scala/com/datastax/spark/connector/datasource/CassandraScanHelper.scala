@@ -11,35 +11,6 @@ import com.datastax.spark.connector.util.Logging
 
 object CassandraScanHelper extends Logging {
 
-  def tokenRangeToCqlQuery(
-      range: CqlTokenRange[_, _],
-      tableDef: TableDef,
-      cqlQueryParts: CqlQueryParts): (String, Seq[Any]) = {
-
-    val columns = cqlQueryParts.selectedColumnRefs.map((ref: ColumnRef) => ref.cql).mkString(", ")
-
-    val (cql, values) =
-      if (containsPartitionKey(tableDef, cqlQueryParts.whereClause)) {
-        ("", Seq.empty)
-      } else {
-        range.cql(partitionKeyStr(tableDef))
-      }
-    val filter = (cql +: cqlQueryParts.whereClause.predicates)
-      .filter(_.nonEmpty)
-      .mkString(" AND ")
-    val limitClause = limitToClause(cqlQueryParts.limitClause)
-    val orderBy =
-      cqlQueryParts.clusteringOrder.map(_.toCql(tableDef)).getOrElse("")
-    val keyspaceName = fromInternal(tableDef.keyspaceName)
-    val tableName = fromInternal(tableDef.tableName)
-    val queryTemplate =
-      s"SELECT JSON $columns " +
-        s"FROM ${keyspaceName.asCql(true)}.${tableName.asCql(true)} " +
-        s"WHERE $filter $orderBy $limitClause ALLOW FILTERING"
-    val queryParamValues = values ++ cqlQueryParts.whereClause.values
-    (queryTemplate, queryParamValues)
-  }
-
   def fetchTokenRange(scanner: Scanner,
                       tableDef: TableDef,
                       queryParts: CqlQueryParts,
@@ -66,5 +37,34 @@ object CassandraScanHelper extends Logging {
       s"Row iterator for range ${range.cql(partitionKeyStr(tableDef))} obtained successfully.")
 
     scanResult
+  }
+
+  def tokenRangeToCqlQuery(
+                            range: CqlTokenRange[_, _],
+                            tableDef: TableDef,
+                            cqlQueryParts: CqlQueryParts): (String, Seq[Any]) = {
+
+    val columns = cqlQueryParts.selectedColumnRefs.map((ref: ColumnRef) => ref.cql).mkString(", ")
+
+    val (cql, values) =
+      if (containsPartitionKey(tableDef, cqlQueryParts.whereClause)) {
+        ("", Seq.empty)
+      } else {
+        range.cql(partitionKeyStr(tableDef))
+      }
+    val filter = (cql +: cqlQueryParts.whereClause.predicates)
+      .filter(_.nonEmpty)
+      .mkString(" AND ")
+    val limitClause = limitToClause(cqlQueryParts.limitClause)
+    val orderBy =
+      cqlQueryParts.clusteringOrder.map(_.toCql(tableDef)).getOrElse("")
+    val keyspaceName = fromInternal(tableDef.keyspaceName)
+    val tableName = fromInternal(tableDef.tableName)
+    val queryTemplate =
+      s"SELECT JSON $columns " +
+        s"FROM ${keyspaceName.asCql(true)}.${tableName.asCql(true)} " +
+        s"WHERE $filter $orderBy $limitClause ALLOW FILTERING"
+    val queryParamValues = values ++ cqlQueryParts.whereClause.values
+    (queryTemplate, queryParamValues)
   }
 }

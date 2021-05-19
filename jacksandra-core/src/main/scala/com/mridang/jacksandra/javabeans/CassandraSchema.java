@@ -13,7 +13,7 @@ public interface CassandraSchema {
 
     /**
      * Returns the deduced Cassandra type for the given schema node.
-     *
+     * <p>
      * https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cql_data_types_c.html
      *
      * @return the deduced Cassandra type

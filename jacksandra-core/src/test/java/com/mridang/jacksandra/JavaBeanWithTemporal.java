@@ -65,7 +65,6 @@ public class JavaBeanWithTemporal implements Serializable {
     /**
      * Force shaping.
      * {@link com.fasterxml.jackson.datatype.jsr310.ser.OffsetDateTimeSerializer}
-     *
      */
     @Nullable
     @CqlName("tooffsetdatetimestring")
@@ -122,7 +121,6 @@ public class JavaBeanWithTemporal implements Serializable {
     public LocalTime toLocalTimeTime;
 
     /**
-     *
      * Force shaping
      * {@link com.fasterxml.jackson.datatype.jsr310.deser.MonthDayDeserializer}
      * and {@link com.fasterxml.jackson.datatype.jsr310.ser.MonthDaySerializer}
@@ -159,7 +157,6 @@ public class JavaBeanWithTemporal implements Serializable {
     public Year toYearString;
 
     /**
-     *
      * Force shaping
      * {@link com.fasterxml.jackson.datatype.jsr310.deser.YearMonthDeserializer
      * and {@link com.fasterxml.jackson.datatype.jsr310.ser.YearMonthSerializer}

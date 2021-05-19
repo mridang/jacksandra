@@ -4,7 +4,7 @@ import com.google.common.collect.{ImmutableList, ImmutableSet}
 import com.mridang.jacksandra.types.{CqlAscii, CqlDuration, CqlTimeUUID}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.jeasy.random.randomizers.extras.{ByteBufferRandomizer, CqTimeUUIDRandomizer, CqlAsciiRandomizer, CqlDurationRandomizer, ImmutableListRandomizer, ImmutableSetRandomizer, InetAddressRandomizer, InstantRandomizer, ListRandomizer, LocalDateTimeRandomizer, SetRandomizer}
+import org.jeasy.random.randomizers.extras._
 import org.jeasy.random.randomizers.number.BigDecimalRandomizer
 import org.jeasy.random.randomizers.registry.CustomRandomizerRegistry
 import org.jeasy.random.{EasyRandom, EasyRandomParameters}
@@ -22,7 +22,7 @@ import java.time.{Instant, LocalDateTime}
  * An explanation of EasyRandom works is outside the scope of this. Refer to
  * https://github.com/j-easy/easy-random
  *
- * @param sc the instance of the Spark context
+ * @param sc   the instance of the Spark context
  * @param ctag an implicit class-tag reference as runtime evidence
  * @tparam T the type of entity to generate
  * @author mridang
@@ -48,9 +48,6 @@ case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
     randomParams.randomizerRegistry(randomiserList)
     new EasyRandom(randomParams)
   }
-  def item: T = {
-    easyRandom.nextObject(ctag.runtimeClass.asInstanceOf[Class[T]])
-  }
 
   /**
    * Generates an RDD of N items by inflating and hydrating random objects
@@ -60,5 +57,9 @@ case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
    */
   def of(numItems: Int): RDD[T] = {
     sc.parallelize(List.fill(numItems)(item))
+  }
+
+  def item: T = {
+    easyRandom.nextObject(ctag.runtimeClass.asInstanceOf[Class[T]])
   }
 }

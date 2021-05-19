@@ -7,7 +7,7 @@ import com.fasterxml.jackson.module.jsonSchema.types.AnySchema;
 /**
  * Wraps the any-schema returned by Jackson and contains the deduced corresponding
  * type.
- *
+ * <p>
  * This is used rarely as I'm not sure what comprises any "any" type.
  *
  * @author mridang

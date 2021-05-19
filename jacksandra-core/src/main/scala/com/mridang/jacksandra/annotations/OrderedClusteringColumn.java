@@ -18,7 +18,7 @@ import com.datastax.oss.driver.api.mapper.annotations.Select;
  * <pre>
  * &#64;OrderedClusteringColumn(isAscending = false, value = 0)
  * </pre>
- *
+ * <p>
  * This information is used by the mapper processor to generate default queries (for example a basic
  * {@link Select}).
  *
@@ -29,7 +29,7 @@ import com.datastax.oss.driver.api.mapper.annotations.Select;
  * &#64;OrderedClusteringColumn(isAscending = false, value = 1) private int month;
  * &#64;OrderedClusteringColumn(isAscending = false, value = 2) private int day;
  * </pre>
- *
+ * <p>
  * If you don't specify positions, or if there are duplicates, the mapper processor will issue a
  * compile-time error.
  *

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
 import org.apache.commons.lang3.builder.{EqualsBuilder, HashCodeBuilder, ToStringBuilder}
 
 import java.sql.Timestamp
-import java.time.{Duration, Instant, LocalDate, LocalDateTime, LocalTime, MonthDay, OffsetDateTime, OffsetTime, Period, Year, YearMonth, ZoneId, ZoneOffset}
+import java.time._
 import java.util.Date
 
 @CqlName("myjavabeanwithtemporals")

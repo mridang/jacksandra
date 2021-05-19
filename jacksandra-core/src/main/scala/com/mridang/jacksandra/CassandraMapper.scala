@@ -48,18 +48,18 @@ object CassandraMapper {
 }
 
 /**
-  * A class for mapping scala pojos to elasticsearch query compatible objects.
-  * The mapping is marked using [[CqlName]] annotations. Note that
-  * we rely on java reflection instead of scala reflection since the scala API
-  * still seems pretty experimental. Especially fetching annotation values in
-  * a robust way turned out to be a nightmare.
-  *
-  * This class can do the following:
-  * - Generate a map from the given class that can be serialized to JSON and used in Cassandra mapping definitions.
-  * - Generate a map from a given instance that can be serialized to JSON and used in Cassandra index queries.
-  *
-  * @tparam T The class to be mapped
-  */
+ * A class for mapping scala pojos to elasticsearch query compatible objects.
+ * The mapping is marked using [[CqlName]] annotations. Note that
+ * we rely on java reflection instead of scala reflection since the scala API
+ * still seems pretty experimental. Especially fetching annotation values in
+ * a robust way turned out to be a nightmare.
+ *
+ * This class can do the following:
+ * - Generate a map from the given class that can be serialized to JSON and used in Cassandra mapping definitions.
+ * - Generate a map from a given instance that can be serialized to JSON and used in Cassandra index queries.
+ *
+ * @tparam T The class to be mapped
+ */
 class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = getDT)(implicit classTag: ClassTag[T]) {
 
   private val schemaMapper = new ObjectMapper()
@@ -90,10 +90,6 @@ class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = getDT)
 
   def serializer: CassandraSerializer = new CassandraSerializer
 
-  def wrapperFactory: WrapperFactory =
-    new CassandraSchemaFactoryWrapperFactory((provider, factory) =>
-      new CassandraSchemaFactoryWrapper(provider, factory, dataFn))
-
   def generateMappingProperties: List[String] = {
     val schemaFactoryWrapper: SchemaFactoryWrapper =
       wrapperFactory.getWrapper(schemaMapper.getSerializerProvider)
@@ -103,6 +99,10 @@ class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = getDT)
 
     CassandraSchema.from(keyspace, schemaFactoryWrapper)
   }
+
+  def wrapperFactory: WrapperFactory =
+    new CassandraSchemaFactoryWrapperFactory((provider, factory) =>
+      new CassandraSchemaFactoryWrapper(provider, factory, dataFn))
 
   def map(obj: T): util.Map[String, _] = {
     schemaMapper.convertValue(obj, classOf[util.Map[String, Any]])

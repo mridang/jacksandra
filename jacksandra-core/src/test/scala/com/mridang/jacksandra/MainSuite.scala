@@ -12,7 +12,7 @@ class MainSuite extends AnyFunSuite {
    * Utility method to compare two queries by replacing all spaces and newlines
    * as one of the queries is formatted for readability by generated one isn't
    *
-   * @param actualQuery the actual hard-coded query to assert against
+   * @param actualQuery   the actual hard-coded query to assert against
    * @param expectedQuery the generated query to assert with
    */
   def compare(actualQuery: String, expectedQuery: String): Unit = {
@@ -26,20 +26,20 @@ class MainSuite extends AnyFunSuite {
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
-    """ CREATE
-      |  TABLE
-      | IF NOT
-      | EXISTS jacksandra.myjavabeanwithnumbers
-      |      ( mypartitionkey           TEXT                 PRIMARY KEY
-      |      , toint                    INT
-      |      , todouble                 DOUBLE
-      |      , tosmallint               SMALLINT
-      |      , totinyint                TINYINT
-      |      , tofloat                  FLOAT
-      |      , tobigint                 BIGINT
-      |      , tovarint                 VARINT
-      |      , tobigdecimal             DECIMAL
-      |      )
+      """ CREATE
+        |  TABLE
+        | IF NOT
+        | EXISTS jacksandra.myjavabeanwithnumbers
+        |      ( mypartitionkey           TEXT                 PRIMARY KEY
+        |      , toint                    INT
+        |      , todouble                 DOUBLE
+        |      , tosmallint               SMALLINT
+        |      , totinyint                TINYINT
+        |      , tofloat                  FLOAT
+        |      , tobigint                 BIGINT
+        |      , tovarint                 VARINT
+        |      , tobigdecimal             DECIMAL
+        |      )
       """.stripMargin
 
     compare(query, ddl)
@@ -50,18 +50,18 @@ class MainSuite extends AnyFunSuite {
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
-    """ CREATE
-      |  TABLE
-      | IF NOT
-      | EXISTS jacksandra.myjavabeanwithcollections
-      |      ( mypartitionkey           TEXT                 PRIMARY KEY
-      |      , toliststring             LIST<TEXT>
-      |      , tosetstring              SET<TEXT>
-      |      , toimmutablesetstring     SET<TEXT>
-      |      , tofrozenliststring       FROZEN<LIST<TEXT>>
-      |      , tosetliststring          FROZEN<SET<TEXT>>
-      |      , toimmutableliststring    LIST<TEXT>
-      |      )
+      """ CREATE
+        |  TABLE
+        | IF NOT
+        | EXISTS jacksandra.myjavabeanwithcollections
+        |      ( mypartitionkey           TEXT                 PRIMARY KEY
+        |      , toliststring             LIST<TEXT>
+        |      , tosetstring              SET<TEXT>
+        |      , toimmutablesetstring     SET<TEXT>
+        |      , tofrozenliststring       FROZEN<LIST<TEXT>>
+        |      , tosetliststring          FROZEN<SET<TEXT>>
+        |      , toimmutableliststring    LIST<TEXT>
+        |      )
       """.stripMargin
 
     compare(query, ddl)

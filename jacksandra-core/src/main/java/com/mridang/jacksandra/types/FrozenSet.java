@@ -11,7 +11,7 @@ import java.util.Spliterator;
 /**
  * Wrapped set implementation used during schema introspection to deduce if the set
  * is frozen.
- *
+ * <p>
  * The name may sound misleading as this acts a marker and does not provide any
  * immutability guarantees.
  *

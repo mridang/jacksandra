@@ -11,16 +11,16 @@ import scala.annotation.meta.field
 
 //noinspection DuplicatedCode
 class CassandraSetSchema(
-    @(JsonIgnore @field) override val name: CqlName,
-    @(JsonIgnore @field) override val backing: JsonSchema,
-    override val isPartitionKey: Option[PartitionKey],
-    override val clusteringColumn: Option[OrderedClusteringColumn],
-    override val staticColumn: Option[StaticColumn])
-    extends CassandraJsonSchemaBase(
-      name,
-      isPartitionKey,
-      clusteringColumn,
-      staticColumn)
+                          @(JsonIgnore@field) override val name: CqlName,
+                          @(JsonIgnore@field) override val backing: JsonSchema,
+                          override val isPartitionKey: Option[PartitionKey],
+                          override val clusteringColumn: Option[OrderedClusteringColumn],
+                          override val staticColumn: Option[StaticColumn])
+  extends CassandraJsonSchemaBase(
+    name,
+    isPartitionKey,
+    clusteringColumn,
+    staticColumn)
     with CassandraContainerSchema {
 
   override def cassandraType: DataType = {

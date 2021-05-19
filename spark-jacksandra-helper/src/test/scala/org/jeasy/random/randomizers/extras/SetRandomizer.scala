@@ -5,6 +5,6 @@ import scala.collection.immutable
 class SetRandomizer extends CollectionTypeRandomizer[immutable.Set[_]] {
 
   override def getRandomValue(value: Array[AnyRef]): Set[_] = {
-    immutable.Set(value:_*)
+    immutable.Set(value: _*)
   }
 }

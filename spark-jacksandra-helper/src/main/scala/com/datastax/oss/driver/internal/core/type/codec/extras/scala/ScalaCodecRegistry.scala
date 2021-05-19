@@ -1,8 +1,8 @@
 package com.datastax.oss.driver.internal.core.`type`.codec.extras.scala
 
 import com.datastax.oss.driver.api.core.`type`.codec.CodecNotFoundException
-import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.core.`type`.reflect.GenericType
+import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.oss.driver.api.querybuilder.QueryBuilder
 import com.datastax.oss.driver.internal.core.`type`.codec.extras.CassandraCodecRegistry

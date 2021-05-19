@@ -34,7 +34,7 @@ import com.datastax.oss.driver.api.mapper.annotations.Select;
  * <pre>
  * &#64;StaticColumn private int month;
  * </pre>
- *
+ * <p>
  * This information is used by the mapper processor to generate default queries (for example a basic
  * {@link Select}).
  *

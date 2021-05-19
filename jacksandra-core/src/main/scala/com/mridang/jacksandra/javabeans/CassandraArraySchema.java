@@ -14,9 +14,9 @@ import com.mridang.jacksandra.types.FrozenSet;
 /**
  * Wraps the array-schema returned by Jackson and contains the deduced corresponding
  * collection type.
- *
+ * <p>
  * https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/collection_type_r.html
- *
+ * <p>
  * If a frozen collection type is needed, you must use {@link FrozenList}
  * or {@link FrozenSet}. if those don't suit the needs, any collection
  * type can be used so long as it implements the {@link Frozen}

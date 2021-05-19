@@ -9,7 +9,7 @@ import scala.compat.Platform
 
 object CassandraSchema {
 
-  def from(keyspace: String, schemaFactoryWrapper: SchemaFactoryWrapper): List[String] =  {
+  def from(keyspace: String, schemaFactoryWrapper: SchemaFactoryWrapper): List[String] = {
     val types: List[String] = schemaFactoryWrapper
       .asInstanceOf[CassandraJavaBeanSchemaFactoryWrapper]
       .cassandraVisitorContext

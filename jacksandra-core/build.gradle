@@ -14,43 +14,43 @@ dependencies {
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.core', name: 'jackson-annotations') {
+    api(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12') {
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.module', name: 'jackson-module-jsonSchema') {
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-jsonSchema') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.module', name: 'jackson-module-paranamer') {
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-paranamer') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8') {
+    api(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12') {
+    api(group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12') {
         version {
             strictly '2.10.5'
             force = true
         }
     }
-    api (group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310') {
+    api(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310') {
         version {
             strictly '2.10.5'
             force = true

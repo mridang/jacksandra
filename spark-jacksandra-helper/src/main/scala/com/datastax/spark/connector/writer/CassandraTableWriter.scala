@@ -1,14 +1,7 @@
 package com.datastax.spark.connector.writer
 
-import java.io.{Closeable, IOException}
-import java.util.function.Supplier
-
 import com.datastax.oss.driver.api.core.CqlSession
-import com.datastax.oss.driver.api.core.cql.{
-  DefaultBatchType,
-  PreparedStatement,
-  SimpleStatement
-}
+import com.datastax.oss.driver.api.core.cql.{DefaultBatchType, PreparedStatement, SimpleStatement}
 import com.datastax.spark.connector._
 import com.datastax.spark.connector.cql._
 import com.datastax.spark.connector.types.{ListType, MapType}
@@ -18,29 +11,25 @@ import com.datastax.spark.connector.writer.AsyncExecutor.Handler
 import org.apache.spark.TaskContext
 import org.apache.spark.metrics.OutputMetricsUpdater
 
+import java.io.{Closeable, IOException}
+import java.util.function.Supplier
 import scala.collection._
 
 /** Writes RDD data into given Cassandra table.
  * Individual column values are extracted from RDD objects using given [[RowWriter]]
  * Then, data are inserted into Cassandra with batches of CQL INSERT statements.
  * Each RDD partition is processed by a single thread. */
-class CassandraTableWriter[T] private (connector: CassandraConnector,
-                                       tableDef: TableDef,
-                                       columnSelector: IndexedSeq[ColumnRef],
-                                       rowWriter: RowWriter[T],
-                                       writeConf: WriteConf)
+class CassandraTableWriter[T] private(connector: CassandraConnector,
+                                      tableDef: TableDef,
+                                      columnSelector: IndexedSeq[ColumnRef],
+                                      rowWriter: RowWriter[T],
+                                      writeConf: WriteConf)
   extends Serializable
     with Logging {
 
   require(
     !tableDef.isView,
     s"${tableDef.name} is a Materialized View and Views are not writable")
-
-  val keyspaceName: String = tableDef.keyspaceName
-  val tableName: String = tableDef.tableName
-  val columnNames
-  : Seq[String] = rowWriter.columnNames diff writeConf.optionPlaceholders
-  val columns: Seq[ColumnDef] = columnNames.map(tableDef.columnByName)
 
   private[connector] lazy val jsonQueryTemplateUsingInsert: String = {
 
@@ -66,29 +55,6 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
       if (options.nonEmpty) s"USING ${options.mkString(" AND  ")}" else ""
 
     s"INSERT INTO ${quote(keyspaceName)}.${quote(tableName)} JSON :jsondata $ifNotExistsSpec$optionsSpec".trim
-  }
-
-  private def deleteQueryTemplate(deleteColumns: ColumnSelector): String = {
-    val deleteColumnNames: Seq[String] =
-      deleteColumns.selectFrom(tableDef).map(_.columnName)
-    val (primaryKey, regularColumns) = columns.partition(_.isPrimaryKeyColumn)
-    if (regularColumns.nonEmpty) {
-      throw new IllegalArgumentException(
-        s"Only primary key columns can be used in delete. Regular columns found: ${regularColumns
-          .mkString(", ")}")
-    }
-    CassandraTableWriter.checkMissingColumns(tableDef, deleteColumnNames)
-
-    def quotedColumnNames(columns: Seq[ColumnDef]) =
-      columns.map(_.columnName).map(quote)
-    val deleteColumnsClause = deleteColumnNames.map(quote).mkString(", ")
-    val whereClause =
-      quotedColumnNames(primaryKey)
-        .map(c => s"$c = :$c")
-        .mkString(" " + "AND" + " ")
-
-    s"DELETE ${deleteColumnsClause} FROM ${quote(keyspaceName)}.${quote(
-      tableName)} WHERE $whereClause"
   }
   private lazy val queryTemplateUsingUpdate: String = {
     val (primaryKey, regularColumns) = columns.partition(_.isPrimaryKeyColumn)
@@ -117,6 +83,7 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
 
     def quotedColumnNames(columns: Seq[ColumnDef]) =
       columns.map(_.columnName).map(quote)
+
     val setCounterColumnsClause =
       quotedColumnNames(counterColumns).map(c => s"$c = $c + :$c")
     val setClause =
@@ -126,13 +93,15 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
 
     s"UPDATE ${quote(keyspaceName)}.${quote(tableName)} SET $setClause WHERE $whereClause"
   }
-
+  val keyspaceName: String = tableDef.keyspaceName
+  val tableName: String = tableDef.tableName
+  val columnNames
+  : Seq[String] = rowWriter.columnNames diff writeConf.optionPlaceholders
+  val columns: Seq[ColumnDef] = columnNames.map(tableDef.columnByName)
   private val isCounterUpdate =
     tableDef.columns.exists(_.isCounterColumn)
-
   private val containsCollectionBehaviors =
     columnSelector.exists(_.isInstanceOf[CollectionColumnName])
-
   private[connector] val isIdempotent: Boolean = {
     //All counter operations are not Idempotent
     if (columns.exists(_.isCounterColumn)) {
@@ -156,42 +125,6 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
     }
   }
 
-  private def prepareStatement(queryTemplate: String,
-                               session: CqlSession): PreparedStatement = {
-    try {
-      val stmt = SimpleStatement
-        .newInstance(queryTemplate)
-        .setIdempotent(isIdempotent)
-        .setConsistencyLevel(writeConf.consistencyLevel)
-      session.prepare(stmt)
-    } catch {
-      case t: Throwable =>
-        throw new IOException(
-          s"Failed to prepare statement $queryTemplate: " + t.getMessage,
-          t)
-    }
-  }
-
-  def batchRoutingKey(session: CqlSession)(
-    bs: RichBoundStatementWrapper): Any = {
-    def missingMetadataException = new Supplier[IllegalArgumentException] {
-      override def get(): IllegalArgumentException =
-        new IllegalArgumentException("TokenMap Metadata Missing")
-    }
-
-    writeConf.batchGroupingKey match {
-      case BatchGroupingKey.None => 0
-
-      case BatchGroupingKey.ReplicaSet =>
-        session.getMetadata.getTokenMap
-          .orElseThrow(missingMetadataException)
-          .getReplicas(keyspaceName, QueryUtils.getRoutingKeyOrError(bs.stmt))
-
-      case BatchGroupingKey.Partition =>
-        QueryUtils.getRoutingKeyOrError(bs.stmt)
-    }
-  }
-
   /**
    * Main entry point
    * if counter or collection column need to be updated Cql UPDATE command will be used
@@ -201,11 +134,20 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
     writeInternal(getAsyncWriter, taskContext, data)
   }
 
+  def getAsyncWriter: CassandraAsyncStatementWriter[T] = {
+    if (isCounterUpdate || containsCollectionBehaviors) {
+      getAsyncWriterInternal(queryTemplateUsingUpdate)
+    } else {
+      getAsyncWriterInternal(jsonQueryTemplateUsingInsert)
+    }
+  }
+
   /**
    * Cql DELETE statement
+   *
    * @param columns columns to delete, the row will be deleted completely if the list is empty
    * @param taskContext
-   * @param data primary key values to select delete rows
+   * @param data    primary key values to select delete rows
    */
   def delete(columns: ColumnSelector)(taskContext: TaskContext,
                                       data: Iterator[T]): Unit =
@@ -213,12 +155,32 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
       taskContext,
       data)
 
-  def getAsyncWriter: CassandraAsyncStatementWriter[T] = {
-    if (isCounterUpdate || containsCollectionBehaviors) {
-      getAsyncWriterInternal(queryTemplateUsingUpdate)
-    } else {
-      getAsyncWriterInternal(jsonQueryTemplateUsingInsert)
+  private def deleteQueryTemplate(deleteColumns: ColumnSelector): String = {
+    val deleteColumnNames: Seq[String] =
+      deleteColumns.selectFrom(tableDef).map(_.columnName)
+    val (primaryKey, regularColumns) = columns.partition(_.isPrimaryKeyColumn)
+    if (regularColumns.nonEmpty) {
+      throw new IllegalArgumentException(
+        s"Only primary key columns can be used in delete. Regular columns found: ${
+          regularColumns
+            .mkString(", ")
+        }")
     }
+    CassandraTableWriter.checkMissingColumns(tableDef, deleteColumnNames)
+
+    def quotedColumnNames(columns: Seq[ColumnDef]) =
+      columns.map(_.columnName).map(quote)
+
+    val deleteColumnsClause = deleteColumnNames.map(quote).mkString(", ")
+    val whereClause =
+      quotedColumnNames(primaryKey)
+        .map(c => s"$c = :$c")
+        .mkString(" " + "AND" + " ")
+
+    s"DELETE ${deleteColumnsClause} FROM ${quote(keyspaceName)}.${
+      quote(
+        tableName)
+    } WHERE $whereClause"
   }
 
   private def getAsyncWriterInternal(
@@ -268,6 +230,42 @@ class CassandraTableWriter[T] private (connector: CassandraConnector,
     }
   }
 
+  private def prepareStatement(queryTemplate: String,
+                               session: CqlSession): PreparedStatement = {
+    try {
+      val stmt = SimpleStatement
+        .newInstance(queryTemplate)
+        .setIdempotent(isIdempotent)
+        .setConsistencyLevel(writeConf.consistencyLevel)
+      session.prepare(stmt)
+    } catch {
+      case t: Throwable =>
+        throw new IOException(
+          s"Failed to prepare statement $queryTemplate: " + t.getMessage,
+          t)
+    }
+  }
+
+  def batchRoutingKey(session: CqlSession)(
+    bs: RichBoundStatementWrapper): Any = {
+    def missingMetadataException = new Supplier[IllegalArgumentException] {
+      override def get(): IllegalArgumentException =
+        new IllegalArgumentException("TokenMap Metadata Missing")
+    }
+
+    writeConf.batchGroupingKey match {
+      case BatchGroupingKey.None => 0
+
+      case BatchGroupingKey.ReplicaSet =>
+        session.getMetadata.getTokenMap
+          .orElseThrow(missingMetadataException)
+          .getReplicas(keyspaceName, QueryUtils.getRoutingKeyOrError(bs.stmt))
+
+      case BatchGroupingKey.Partition =>
+        QueryUtils.getRoutingKeyOrError(bs.stmt)
+    }
+  }
+
   private def writeInternal(
                              asyncStatementWriter: CassandraAsyncStatementWriter[T],
                              taskContext: TaskContext,
@@ -309,14 +307,13 @@ case class CassandraAsyncStatementWriter[T](
 
   //Don't grab a connection or queryExecutor unless we are using this statement writer
   private lazy val session: CqlSession = connector.openSession()
-  private val keyspaceName: String = tableDef.keyspaceName
-  private val tableName: String = tableDef.tableName
-
   private lazy val queryExecutor = new QueryExecutor(
     session,
     writeConf.parallelismLevel,
     successHandler,
     failureHandler)
+  private val keyspaceName: String = tableDef.keyspaceName
+  private val tableName: String = tableDef.tableName
 
   def write(record: T): Unit = {
     groupingBatchBuilderBase.batchRecord(record).foreach { stmt =>
@@ -349,6 +346,55 @@ case class CassandraAsyncStatementWriter[T](
 
 object CassandraTableWriter {
 
+  /** Columns that cannot actually be written to because they representt virtual endpoints
+   */
+  private val InternalColumns = Set("solr_query")
+
+  def apply[T: RowWriterFactory](
+                                  connector: CassandraConnector,
+                                  keyspaceName: String,
+                                  tableName: String,
+                                  columnNames: ColumnSelector,
+                                  writeConf: WriteConf,
+                                  checkPartitionKey: Boolean = false): CassandraTableWriter[T] = {
+
+    val tableDef = tableFromCassandra(connector, keyspaceName, tableName)
+    val optionColumns = writeConf.optionsAsColumns(keyspaceName, tableName)
+    val tablDefWithMeta =
+      tableDef.copy(regularColumns = tableDef.regularColumns ++ optionColumns)
+
+    val selectedColumns = columnNames
+      .selectFrom(tablDefWithMeta)
+      .filter(col => !InternalColumns.contains(col.columnName))
+    val rowWriter = implicitly[RowWriterFactory[T]]
+      .rowWriter(tablDefWithMeta, selectedColumns)
+
+    checkColumns(tablDefWithMeta, selectedColumns, checkPartitionKey)
+    new CassandraTableWriter[T](connector,
+      tablDefWithMeta,
+      selectedColumns,
+      rowWriter,
+      writeConf)
+  }
+
+  private def checkColumns(table: TableDef,
+                           columnRefs: IndexedSeq[ColumnRef],
+                           checkPartitionKey: Boolean): Unit = {
+    val columnNames = columnRefs.map(_.columnName)
+    checkMissingColumns(table, columnNames)
+    if (checkPartitionKey) {
+      // For Deletes we only need a partition Key for a valid delete statement
+      checkMissingPartitionKeyColumns(table, columnNames)
+    } else if (onlyPartitionKeyAndStatic(table, columnNames)) {
+      // Cassandra only requires a Partition Key Column on insert if all other columns are Static
+      checkMissingPartitionKeyColumns(table, columnNames)
+    } else {
+      // For all other normal Cassandra writes we require the full primary key to be present
+      checkMissingPrimaryKeyColumns(table, columnNames)
+    }
+    checkCollectionBehaviors(table, columnRefs)
+  }
+
   private def checkMissingColumns(table: TableDef,
                                   columnNames: Seq[String]): Unit = {
     val allColumnNames = table.columns.map(_.columnName)
@@ -364,8 +410,10 @@ object CassandraTableWriter {
     val missingPrimaryKeyColumns = primaryKeyColumnNames.toSet -- columnNames
     if (missingPrimaryKeyColumns.nonEmpty)
       throw new IllegalArgumentException(
-        s"Some primary key columns are missing in RDD or have not been selected: ${missingPrimaryKeyColumns
-          .mkString(", ")}")
+        s"Some primary key columns are missing in RDD or have not been selected: ${
+          missingPrimaryKeyColumns
+            .mkString(", ")
+        }")
   }
 
   private def checkMissingPartitionKeyColumns(
@@ -375,8 +423,10 @@ object CassandraTableWriter {
     val missingPartitionKeyColumns = partitionKeyColumnNames.toSet -- columnNames
     if (missingPartitionKeyColumns.nonEmpty)
       throw new IllegalArgumentException(
-        s"Some partition key columns are missing in RDD or have not been selected: ${missingPartitionKeyColumns
-          .mkString(", ")}")
+        s"Some partition key columns are missing in RDD or have not been selected: ${
+          missingPartitionKeyColumns
+            .mkString(", ")
+        }")
   }
 
   private def onlyPartitionKeyAndStatic(table: TableDef,
@@ -449,54 +499,5 @@ object CassandraTableWriter {
       throw new IllegalArgumentException(
         s"The remove operation is currently not supported for Maps. Remove used on: ${removeOnMap.mkString}"
       )
-  }
-
-  private def checkColumns(table: TableDef,
-                           columnRefs: IndexedSeq[ColumnRef],
-                           checkPartitionKey: Boolean): Unit = {
-    val columnNames = columnRefs.map(_.columnName)
-    checkMissingColumns(table, columnNames)
-    if (checkPartitionKey) {
-      // For Deletes we only need a partition Key for a valid delete statement
-      checkMissingPartitionKeyColumns(table, columnNames)
-    } else if (onlyPartitionKeyAndStatic(table, columnNames)) {
-      // Cassandra only requires a Partition Key Column on insert if all other columns are Static
-      checkMissingPartitionKeyColumns(table, columnNames)
-    } else {
-      // For all other normal Cassandra writes we require the full primary key to be present
-      checkMissingPrimaryKeyColumns(table, columnNames)
-    }
-    checkCollectionBehaviors(table, columnRefs)
-  }
-
-  /** Columns that cannot actually be written to because they representt virtual endpoints
-   */
-  private val InternalColumns = Set("solr_query")
-
-  def apply[T: RowWriterFactory](
-                                  connector: CassandraConnector,
-                                  keyspaceName: String,
-                                  tableName: String,
-                                  columnNames: ColumnSelector,
-                                  writeConf: WriteConf,
-                                  checkPartitionKey: Boolean = false): CassandraTableWriter[T] = {
-
-    val tableDef = tableFromCassandra(connector, keyspaceName, tableName)
-    val optionColumns = writeConf.optionsAsColumns(keyspaceName, tableName)
-    val tablDefWithMeta =
-      tableDef.copy(regularColumns = tableDef.regularColumns ++ optionColumns)
-
-    val selectedColumns = columnNames
-      .selectFrom(tablDefWithMeta)
-      .filter(col => !InternalColumns.contains(col.columnName))
-    val rowWriter = implicitly[RowWriterFactory[T]]
-      .rowWriter(tablDefWithMeta, selectedColumns)
-
-    checkColumns(tablDefWithMeta, selectedColumns, checkPartitionKey)
-    new CassandraTableWriter[T](connector,
-      tablDefWithMeta,
-      selectedColumns,
-      rowWriter,
-      writeConf)
   }
 }

@@ -7,11 +7,11 @@ import com.fasterxml.jackson.module.jsonSchema.JsonSchema
 import com.mridang.jacksandra.annotations.{OrderedClusteringColumn, StaticColumn}
 
 abstract class CassandraJsonSchemaBase(
-    val ann: CqlName,
-    val isPartitionKey: Option[PartitionKey],
-    val clusteringColumn: Option[OrderedClusteringColumn],
-    val staticColumn: Option[StaticColumn])
-    extends JsonSchema {
+                                        val ann: CqlName,
+                                        val isPartitionKey: Option[PartitionKey],
+                                        val clusteringColumn: Option[OrderedClusteringColumn],
+                                        val staticColumn: Option[StaticColumn])
+  extends JsonSchema {
 
   override def getType: JsonFormatTypes =
     JsonFormatTypes.ANY // the value is irrelevant

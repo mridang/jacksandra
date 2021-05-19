@@ -14,22 +14,18 @@ import org.apache.spark.{Partition, SparkContext, TaskContext}
 import java.io.IOException
 
 abstract class AbstractCassandraRDD[ENTITY](
-                                     sc: SparkContext,
-                                     val keyspaceName: String,
-                                     val tableName: String,
-                                     val columnNames: ColumnSelector = AllColumns,
-                                     val whereClause: CqlWhereClause = CqlWhereClause.empty,
-                                     val maybeLimit: Option[CassandraLimit] = None,
-                                     val clusteringOrder: Option[ClusteringOrder] = None,
-                                     val readConf: ReadConf = ReadConf()
-                                   )(implicit val classTag: reflect.ClassTag[ENTITY],
-                                     implicit val connector: CassandraConnector = CassandraConnector(sc))
+                                             sc: SparkContext,
+                                             val keyspaceName: String,
+                                             val tableName: String,
+                                             val columnNames: ColumnSelector = AllColumns,
+                                             val whereClause: CqlWhereClause = CqlWhereClause.empty,
+                                             val maybeLimit: Option[CassandraLimit] = None,
+                                             val clusteringOrder: Option[ClusteringOrder] = None,
+                                             val readConf: ReadConf = ReadConf()
+                                           )(implicit val classTag: reflect.ClassTag[ENTITY],
+                                             implicit val connector: CassandraConnector = CassandraConnector(sc))
   extends RDD[ENTITY](sc, Seq.empty)
     with CassandraTableRowReaderProvider[ENTITY] {
-
-  def minimalSplitCount: Int = {
-    context.defaultParallelism * 2 + 1
-  }
 
   override def compute(split: Partition,
                        context: TaskContext): Iterator[ENTITY] = {
@@ -105,5 +101,9 @@ abstract class AbstractCassandraRDD[ENTITY](
         splitSize)
       .partitions
       .toArray
+  }
+
+  def minimalSplitCount: Int = {
+    context.defaultParallelism * 2 + 1
   }
 }

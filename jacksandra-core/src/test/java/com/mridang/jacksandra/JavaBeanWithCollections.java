@@ -22,17 +22,15 @@ import com.mridang.jacksandra.types.FrozenList;
 import com.mridang.jacksandra.types.FrozenSet;
 
 /**
- *
  * tinyint	integers	1 byte integer
  * smallint	integers	2 byte integer
  * int	integers	32-bit signed integer
  * bigint	integers	64-bit signed long
  * varint	integers	Arbitrary-precision integer
- *
+ * <p>
  * float	integers, floats	32-bit IEEE-754 floating point
  * double	integers, floats	64-bit IEEE-754 floating point
  * decimal	integers, floats	Variable-precision decimal
- *
  */
 @SuppressWarnings("unused")
 @CqlName("myjavabeanwithcollections")

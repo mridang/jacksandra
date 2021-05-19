@@ -8,8 +8,8 @@ import com.mridang.jacksandra.javabeans.CassandraSchema
 
 import scala.annotation.meta.field
 
-class CassandraItemSchema(@(JsonIgnore @field) val backing: ObjectSchema)
-    extends ObjectSchema {
+class CassandraItemSchema(@(JsonIgnore@field) val backing: ObjectSchema)
+  extends ObjectSchema {
 
   override def getType: JsonFormatTypes =
     JsonFormatTypes.ANY // the value is irrelevant
