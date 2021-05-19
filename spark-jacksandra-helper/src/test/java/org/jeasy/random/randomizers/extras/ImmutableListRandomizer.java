@@ -1,30 +1,11 @@
 package org.jeasy.random.randomizers.extras;
 
-import org.jeasy.random.api.ContextAwareRandomizer;
-import org.jeasy.random.api.RandomizerContext;
-
 import com.google.common.collect.ImmutableList;
 
-public class ImmutableListRandomizer implements ContextAwareRandomizer<ImmutableList<?>> {
-
-    private RandomizerContext context;
+public class ImmutableListRandomizer extends CollectionTypeRandomizer<ImmutableList<?>> {
 
     @Override
-    public void setRandomizerContext(RandomizerContext context) {
-        this.context = context;
-    }
-
-    @Override
-    public ImmutableList<?> getRandomValue() {
-//        try {
-//            System.out.println(context.getTargetType().getField(context.getCurrentField()));
-//        } catch (NoSuchFieldException e) {
-//            try {
-//                System.out.println(context.getTargetType().getDeclaredField(context.getCurrentField()));
-//            } catch (NoSuchFieldException noSuchFieldException) {
-//                noSuchFieldException.printStackTrace();
-//            }
-//        }
-        return ImmutableList.of();
+    public ImmutableList<?> getRandomValue(Object[] value) {
+        return ImmutableList.copyOf(value);
     }
 }

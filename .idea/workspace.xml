@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="Hardened the tests">
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanSchemaFactoryWrapper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/oss/driver/internal/core/type/codec/extras/scala/BigDecimalCodec.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/oss/driver/internal/core/type/codec/extras/scala/BigIntCodec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/CollectionTypeRandomizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/javabeans/CassandraJavaBeanMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithExotics.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithExotics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/MainSuite.scala" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableListRandomizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableListRandomizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableSetRandomizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/java/org/jeasy/random/randomizers/extras/ImmutableSetRandomizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +68,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Package Object" />
-        <option value="Class" />
         <option value="Scala Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -111,7 +104,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.6 (annoy)" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -123,6 +116,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.jeasy.random.randomizers.extras" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/jacksandra-core/src/test" />
       <recent name="$PROJECT_DIR$/jacksandra-core/src/main" />
@@ -131,17 +127,17 @@
       <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.jeasy.random.randomizers.extras" />
       <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.scala" />
       <recent name="com.mridang.jacksandra.javabeans" />
       <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.time" />
       <recent name="" />
-      <recent name="com.mridang.jacksandra" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.jeasy.random.randomizers.extras" />
       <recent name="com.mridang.jacksandra" />
       <recent name="com.fasterxml.jackson.datatype.cql.ser" />
       <recent name="com.fasterxml.jackson.datatype.cql.deser" />
-      <recent name="org.jeasy.random.randomizers.extras" />
       <recent name="com.mridang.jacksandra.types" />
     </key>
   </component>
@@ -583,11 +579,6 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java</url>
           <line>210</line>
           <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/fa7bb655432311553c9717ef01d1b12989db4090/jackson-datatype-jsr310-2.10.0-sources.jar!/com/fasterxml/jackson/datatype/jsr310/deser/InstantDeserializer.java</url>
-          <line>211</line>
-          <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/time/DurationTypeCodec.java</url>

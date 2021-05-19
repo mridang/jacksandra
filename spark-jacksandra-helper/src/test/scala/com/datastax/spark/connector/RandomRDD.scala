@@ -4,7 +4,7 @@ import com.google.common.collect.{ImmutableList, ImmutableSet}
 import com.mridang.jacksandra.types.{CqlAscii, CqlDuration, CqlTimeUUID}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.jeasy.random.randomizers.extras.{ByteBufferRandomizer, CqTimeUUIDRandomizer, CqlAsciiRandomizer, CqlDurationRandomizer, ImmutableListRandomizer, ImmutableSetRandomizer, InetAddressRandomizer, InstantRandomizer, LocalDateTimeRandomizer}
+import org.jeasy.random.randomizers.extras.{ByteBufferRandomizer, CqTimeUUIDRandomizer, CqlAsciiRandomizer, CqlDurationRandomizer, ImmutableListRandomizer, ImmutableSetRandomizer, InetAddressRandomizer, InstantRandomizer, ListRandomizer, LocalDateTimeRandomizer, SetRandomizer}
 import org.jeasy.random.randomizers.number.BigDecimalRandomizer
 import org.jeasy.random.randomizers.registry.CustomRandomizerRegistry
 import org.jeasy.random.{EasyRandom, EasyRandomParameters}
@@ -42,6 +42,8 @@ case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
     randomiserList.registerRandomizer(classOf[LocalDateTime], new LocalDateTimeRandomizer())
     randomiserList.registerRandomizer(classOf[Instant], new InstantRandomizer())
     randomiserList.registerRandomizer(classOf[ByteBuffer], new ByteBufferRandomizer())
+    randomiserList.registerRandomizer(classOf[scala.collection.immutable.List[_]], new ListRandomizer())
+    randomiserList.registerRandomizer(classOf[scala.collection.immutable.Set[_]], new SetRandomizer())
     val randomParams = new EasyRandomParameters()
     randomParams.randomizerRegistry(randomiserList)
     new EasyRandom(randomParams)
