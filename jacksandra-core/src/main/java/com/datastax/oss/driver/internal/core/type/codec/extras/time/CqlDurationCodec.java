@@ -22,9 +22,6 @@ import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 import com.mridang.jacksandra.types.CqlDuration;
 
-import net.jcip.annotations.ThreadSafe;
-
-@ThreadSafe
 public class CqlDurationCodec extends MappingCodec<com.datastax.oss.driver.api.core.data.CqlDuration, CqlDuration> {
 
     public CqlDurationCodec() {

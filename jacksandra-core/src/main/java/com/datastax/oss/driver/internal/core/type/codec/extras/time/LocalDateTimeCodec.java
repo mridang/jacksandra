@@ -15,79 +15,32 @@
  */
 package com.datastax.oss.driver.internal.core.type.codec.extras.time;
 
-import java.nio.ByteBuffer;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.time.ZoneOffset;
 
-import com.datastax.oss.driver.api.core.ProtocolVersion;
-import com.datastax.oss.driver.api.core.type.DataType;
-import com.datastax.oss.driver.api.core.type.DataTypes;
-import com.datastax.oss.driver.api.core.type.codec.TypeCodec;
+import com.datastax.oss.driver.api.core.type.codec.MappingCodec;
 import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
-import net.jcip.annotations.ThreadSafe;
 
-@ThreadSafe
-public class LocalDateTimeCodec implements TypeCodec<LocalDateTime> {
+public class LocalDateTimeCodec extends MappingCodec<Instant, LocalDateTime> {
 
-    @NonNull
-    @Override
-    public GenericType<LocalDateTime> getJavaType() {
-        return GenericType.of(LocalDateTime.class);
-    }
-
-    @NonNull
-    @Override
-    public DataType getCqlType() {
-        return DataTypes.TIMESTAMP;
-    }
-
-    @Override
-    public boolean accepts(@NonNull Object value) {
-        return value instanceof LocalDateTime;
-    }
-
-    @Override
-    public boolean accepts(@NonNull Class<?> javaClass) {
-        return javaClass == LocalDateTime.class;
+    public LocalDateTimeCodec() {
+        super(TypeCodecs.TIMESTAMP, GenericType.of(LocalDateTime.class));
     }
 
     @Nullable
     @Override
-    @SuppressWarnings("FromTemporalAccessor")
-    public ByteBuffer encode(@Nullable LocalDateTime value, @NonNull ProtocolVersion protocolVersion) {
-        return Optional.ofNullable(value)
-                .map(val -> TypeCodecs.TIMESTAMP.encode(Instant.from(value), protocolVersion))
-                .orElse(null);
+    protected LocalDateTime innerToOuter(@Nullable Instant value) {
+        return value == null ? null : LocalDateTime.ofInstant(value, ZoneOffset.UTC);
     }
 
     @Nullable
     @Override
-    public LocalDateTime decode(@Nullable ByteBuffer bytes, @NonNull ProtocolVersion protocolVersion) {
-        return Optional.ofNullable(TypeCodecs.TIMESTAMP.decode(bytes, protocolVersion))
-                .map(LocalDateTime::from)
-                .orElse(null);
-    }
-
-    @NonNull
-    @Override
-    @SuppressWarnings("FromTemporalAccessor")
-    public String format(@Nullable LocalDateTime value) {
-        return (value == null) ? "NULL" : TypeCodecs.TIMESTAMP.format(Instant.from(value));
-    }
-
-    @Nullable
-    @Override
-    public LocalDateTime parse(@Nullable String value) {
-        if (value == null || value.isEmpty() || value.equalsIgnoreCase("NULL")) {
-            return null;
-        }
-        return Optional.ofNullable(TypeCodecs.TIMESTAMP.parse(value))
-                .map(LocalDateTime::from)
-                .orElse(null);
+    protected Instant outerToInner(@Nullable LocalDateTime value) {
+        return value == null ? null : value.toInstant(ZoneOffset.UTC);
     }
 }
+
