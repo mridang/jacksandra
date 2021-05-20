@@ -18,6 +18,7 @@ class MainSuite extends AnyFunSuite {
   def compare(actualQuery: String, expectedQuery: String): Unit = {
     val actualQueryNorm = actualQuery.toLowerCase.trim.replaceAll("[\\n\\s]*", "")
     val expectedQueryNorm = expectedQuery.toLowerCase.trim.replaceAll("[\\n\\s]*", "")
+
     actualQueryNorm shouldEqual expectedQueryNorm
   }
 
@@ -31,16 +32,18 @@ class MainSuite extends AnyFunSuite {
         | IF NOT
         | EXISTS jacksandra.myjavabeanwithnumbers
         |      ( mypartitionkey           TEXT                 PRIMARY KEY
+        |      , tobigdecimal             DECIMAL
         |      , toint                    INT
-        |      , todouble                 DOUBLE
-        |      , tosmallint               SMALLINT
-        |      , totinyint                TINYINT
-        |      , tofloat                  FLOAT
         |      , tobigint                 BIGINT
         |      , tovarint                 VARINT
-        |      , tobigdecimal             DECIMAL
+        |      , tofloat                  FLOAT
+        |      , totinyint                TINYINT
+        |      , tosmallint               SMALLINT
+        |      , todouble                 DOUBLE
         |      )
       """.stripMargin
+
+
 
     compare(query, ddl)
   }
@@ -55,12 +58,12 @@ class MainSuite extends AnyFunSuite {
         | IF NOT
         | EXISTS jacksandra.myjavabeanwithcollections
         |      ( mypartitionkey           TEXT                 PRIMARY KEY
-        |      , toliststring             LIST<TEXT>
-        |      , tosetstring              SET<TEXT>
-        |      , toimmutablesetstring     SET<TEXT>
-        |      , tofrozenliststring       FROZEN<LIST<TEXT>>
         |      , tosetliststring          FROZEN<SET<TEXT>>
+        |      , tofrozenliststring       FROZEN<LIST<TEXT>>
+        |      , toimmutablesetstring     SET<TEXT>
         |      , toimmutableliststring    LIST<TEXT>
+        |      , tosetstring              LIST<TEXT>
+        |      , toliststring             LIST<TEXT>
         |      )
       """.stripMargin
 
@@ -76,24 +79,23 @@ class MainSuite extends AnyFunSuite {
         | TABLE
         |IF NOT
         |EXISTS jacksandra.myjavabeanwithtemporals
-        |     ( mypartitionkey TEXT PRIMARY KEY
-        |     , tolocaldatetimetimestamp TEXT
-        |     , totimestamptimestamp TEXT
-        |     , todatetimestamp TEXT
-        |     , tolocaltimetime TIME
-        |     , toperioddaterange TEXT
-        |     , toinstanttimestamp TIMESTAMP
-        |     , tozoneidstring TEXT
-        |     , toyearstring TEXT
-        |     , tozoneoffsetstring TEXT
-        |     , toyearmonthstring TEXT
-        |     , tozoneddatetimestring TEXT
-        |     , tomonthdaystring TEXT
-        |     , tooffsettimestring TEXT
-        |     , tojavadurationduration TEXT
-        |     , tooffsetdatetimestring TEXT
-        |     , tolocaldatedate DATE
-        |     )
+        |     (      mypartitionkey            TEXT PRIMARY KEY
+        |     , tolocaldatetimetimestamp TIMESTAMP
+        |     , toyearstring             INT
+        |     , tolocaldatedate          DATE
+        |     , toperioddaterange        TEXT
+        |     , tozoneoffsetstring       TEXT
+        |     ,  toyearmonthstring        TEXT
+        |     ,tolocaltimetime          TIME
+        |     ,tooffsettimestring       TEXT
+        |     ,toinstanttimestamp       TIMESTAMP
+        |     ,tomonthdaystring         TEXT
+        |     ,todatetimestamp          TEXT
+        |     ,tojavadurationduration   DURATION
+        |     ,totimestamptimestamp     TIMESTAMP
+        |     ,tooffsetdatetimestring   TEXT
+        |     ,tozoneidstring           TEXT
+        |  )
         """.stripMargin
 
     compare(query, ddl)
@@ -109,24 +111,20 @@ class MainSuite extends AnyFunSuite {
         |   TYPE
         | IF NOT
         | EXISTS jacksandra.myudt
-        |      ( somelonglist           FROZEN<LIST<BIGINT>>
-        |      , someintegerlist        LIST<INT>
-        |      , somestring             TEXT
-        |      , somedoubleset          FROZEN<SET<DOUBLE>>
-        |      , somedouble             DOUBLE
-        |      , somefloatset           SET<FLOAT>
+        |      ( somestring               TEXT
+        |      , somedoubleset            FROZEN<SET<DOUBLE>>
+        |      , somedouble               DOUBLE
+        |      , somelonglist             FROZEN<LIST<BIGINT>>
         |      )
         |
         | CREATE
         |  TABLE
         | IF NOT
         | EXISTS jacksandra.myjavabeanwithudt
-        |      ( mypartitionkey         TEXT                 PRIMARY KEY
-        |      , tofrozenudtlist        FROZEN<LIST<myudt>>
-        |      , toudtset               SET<myudt>
-        |      , toudtlist              LIST<myudt>
-        |      , toudt                  myudt
-        |      , tofrozenudtset         FROZEN<SET<myudt>>
+        |      ( mypartitionkey            TEXT                PRIMARY KEY
+        |      , toudt                     myudt
+        |      , tofrozenudtlist           FROZEN<LIST<myudt>>
+        |      , tofrozenudtset            FROZEN<SET<myudt>>
         |      )
       """.stripMargin
 
