@@ -88,8 +88,6 @@ class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = getDT)
   schemaMapper.configOverride(classOf[ZoneId]).setFormat(Value.forShape(Shape.STRING)) // Jackson only serializes to string and it is easy to query when it is a string
   schemaMapper.configOverride(classOf[ZoneOffset]).setFormat(Value.forShape(Shape.STRING))
 
-  def serializer: CassandraSerializer = new CassandraSerializer
-
   def generateMappingProperties: List[String] = {
     val schemaFactoryWrapper: SchemaFactoryWrapper =
       wrapperFactory.getWrapper(schemaMapper.getSerializerProvider)
