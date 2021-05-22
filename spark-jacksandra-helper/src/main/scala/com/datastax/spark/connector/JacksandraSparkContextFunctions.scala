@@ -18,7 +18,7 @@ class JacksandraSparkContextFunctions(@transient val sc: SparkContext) extends S
 
     val tableName = classTag.runtimeClass.getAnnotation(classOf[CqlName]).value()
 
-    new AbstractCassandraRDD[T](sc, keyspace, tableName)(classTag = classTag) {
+    new AbstractCassandraRDD[T](sc, keyspace, tableName)(classTag = classTag, connector = connector) {
       override def buildWhereClause(index: Int): CqlWhereClause = {
         CqlWhereClause.empty
       }

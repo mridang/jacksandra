@@ -130,4 +130,27 @@ class MainSuite extends AnyFunSuite {
 
     compare(query, ddl)
   }
+
+  test("that all exotic types are handled correctly") {
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithExotics](defaultKeyspace)
+    val ddl: String = mapper.generateMappingProperties.mkString("\n")
+    //noinspection ScalaStyle
+    val query =
+      """
+        | CREATE
+        |  TABLE
+        | IF NOT
+        | EXISTS jacksandra.myjavabeanwithexotics
+        |      ( mypartitionkey           TEXT                 PRIMARY KEY
+        |      , touuid                   UUID
+        |      , totimeuuid               TIMEUUID
+        |      , toip                     INET
+        |      , toblob                   BLOB
+        |      , toduration               DURATION
+        |      , toascii                  ASCII
+        |      )
+      """.stripMargin
+
+    compare(query, ddl)
+  }
 }
