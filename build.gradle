@@ -3,19 +3,17 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 //noinspection GroovyAssignabilityCheck
 
 buildscript {
-    buildscript {
-        repositories {
-            google()
-            mavenCentral()
-            gradlePluginPortal()
-        }
-        dependencies {
-            classpath "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
-            classpath "net.ltgt.gradle:gradle-errorprone-plugin:2.0.1"
-            classpath "net.ltgt.gradle:gradle-nullaway-plugin:1.1.0"
-            classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
-            classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.31"
-        }
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:1.0.1"
+        classpath "net.ltgt.gradle:gradle-errorprone-plugin:2.0.1"
+        classpath "net.ltgt.gradle:gradle-nullaway-plugin:1.1.0"
+        classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.5"
+        classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.31"
     }
 }
 
@@ -194,6 +192,4 @@ subprojects { project ->
             }
         }
     }
-
-
 }
