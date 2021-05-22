@@ -4,7 +4,7 @@ import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
-class MainSuite extends AnyFunSuite {
+class SparkIntegrationSuite extends AnyFunSuite {
 
   final val defaultKeyspace: String = "jacksandra"
 

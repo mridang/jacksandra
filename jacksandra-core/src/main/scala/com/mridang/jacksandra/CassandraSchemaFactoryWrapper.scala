@@ -20,6 +20,10 @@ class CassandraSchemaFactoryWrapper
   dataFn: JavaType => DataType
 ) extends SchemaFactoryWrapper(_provider, _wrapperFactory) {
 
+  def cassandraVisitorContext: VisitorContext = {
+    visitorContext
+  }
+
   override def expectAnyFormat(convertedType: JavaType):
   JsonAnyFormatVisitor = {
     val anySchema = new CassandraAnySchema(convertedType, dataFn(convertedType))
