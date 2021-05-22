@@ -26,7 +26,8 @@ class CassandraBoundStatementBuilder[T](
   //noinspection UnstableApiUsage
   override def bind(row: T): RichBoundStatementWrapper = {
     val boundStatement = rowWriter match {
-      case jsonRowWriter: JsonRowWriter[T] => {
+      case jsonRowWriter: JsonRowWriter[T] => //noinspection RedundantBlock
+      {
         val json: String = jsonRowWriter.toJson(row)
         val singleStatement: BoundStatement = preparedStmt.bind(json)
         val cc = new RichBoundStatementWrapper(singleStatement)

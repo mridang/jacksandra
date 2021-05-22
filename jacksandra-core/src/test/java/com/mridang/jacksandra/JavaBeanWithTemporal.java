@@ -28,7 +28,7 @@ import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "CommentedOutCode"})
 @CqlName("myjavabeanwithtemporals")
 @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
 public class JavaBeanWithTemporal implements Serializable {
@@ -94,6 +94,7 @@ public class JavaBeanWithTemporal implements Serializable {
      * {@link com.datastax.oss.driver.internal.core.type.codec.extras.time.LocalTimestampCodec}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
+    @SuppressWarnings("JavadocReference")
     @Nullable
     @CqlName("tolocaldatetimetimestamp")
     public LocalDateTime toLocalDateTimeTimeStamp;

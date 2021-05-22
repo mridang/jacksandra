@@ -38,6 +38,7 @@ class CassandraJsonRowWriter[T](implicit override val ct: ClassTag[T])
     with JsonRowWriter[T]
     with Serializable {
 
+  //noinspection NotImplementedCode
   override def readColumnValues(data: T, buffer: Array[Any]): Unit = {
     ??? // Intentionally unimplemented so we don't accidentally use this.
   }

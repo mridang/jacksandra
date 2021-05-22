@@ -19,7 +19,7 @@ import com.mridang.jacksandra.types.CqlBlob;
 import com.mridang.jacksandra.types.CqlDuration;
 import com.mridang.jacksandra.types.CqlTimeUUID;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavadocReference"})
 @CqlName("myjavabeanwithexotics")
 @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
 public class JavaBeanWithExotics implements Serializable {

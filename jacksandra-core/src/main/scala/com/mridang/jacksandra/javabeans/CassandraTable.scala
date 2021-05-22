@@ -49,10 +49,12 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
       .foreach { column =>
         val cqlId = CqlIdentifier.fromInternal(column.ann.value)
         createTable = createTable match {
-          case table: CreateTable => {
+          case table: CreateTable => //noinspection RedundantBlock
+          {
             table.withPartitionKey(cqlId, column.cassandraType)
           }
-          case _ => {
+          case _ => //noinspection RedundantBlock
+          {
             tableStart.withPartitionKey(cqlId, column.cassandraType)
           }
         }
@@ -129,7 +131,8 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
       }
       .foreach { column =>
         createTable match {
-          case _: DefaultCreateTable => {
+          case _: DefaultCreateTable => //noinspection RedundantBlock
+          {
             val cqlId = CqlIdentifier.fromInternal(column.ann.value)
             createTable =
               createTable.withColumn(cqlId, column.cassandraType)
@@ -168,7 +171,8 @@ class CassandraTable(keyspace: String, schema: JsonSchema) {
       .map((k: CassandraJsonSchemaBase) => {
         val cqlId = CqlIdentifier.fromInternal(k.ann.value)
         val clusteringOrder = k.clusteringColumn match {
-          case Some(value) => {
+          case Some(value) => //noinspection RedundantBlock
+          {
             if (value.isAscending) {
               ClusteringOrder.ASC
             } else {

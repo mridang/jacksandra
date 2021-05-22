@@ -51,11 +51,13 @@ trait JavaESAnnotatedBeanSupport {
     getAnnotatedMethods(t.getClass).foreach {
       case (m, a: CqlName) =>
         m.invoke(t) match {
-          case Some(obj) => {
+          case Some(obj) => //noinspection RedundantBlock
+          {
             writeObject(obj, a)
           }
           case None => Unit
-          case x if x != null => {
+          case x if x != null => //noinspection RedundantBlock
+          {
             writeObject(x, a)
           }
           case null =>

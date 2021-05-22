@@ -10,12 +10,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
-    protected LocalDateTimeSerializer(Class<LocalDateTime> t) {
-        super(t);
-    }
-
     public LocalDateTimeSerializer() {
-        this(LocalDateTime.class);
+        super(LocalDateTime.class);
     }
 
     @Override

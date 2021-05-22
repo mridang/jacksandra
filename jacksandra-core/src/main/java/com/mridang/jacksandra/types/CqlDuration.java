@@ -246,6 +246,7 @@ public class CqlDuration implements TemporalAmount, Serializable {
         return Long.parseLong(matcher.group(group));
     }
 
+    @SuppressWarnings({"UnusedReturnValue", "IfCanBeSwitch"})
     private static Builder add(@NonNull Builder builder, long number, @NonNull String symbol) {
         String s = symbol.toLowerCase(Locale.ROOT);
         if (s.equals("y")) {

@@ -146,7 +146,7 @@ class CassandraTableWriter[T] private(connector: CassandraConnector,
    * Cql DELETE statement
    *
    * @param columns columns to delete, the row will be deleted completely if the list is empty
-   * @param taskContext
+   * @param taskContext the current task context
    * @param data    primary key values to select delete rows
    */
   def delete(columns: ColumnSelector)(taskContext: TaskContext,
@@ -177,6 +177,7 @@ class CassandraTableWriter[T] private(connector: CassandraConnector,
         .map(c => s"$c = :$c")
         .mkString(" " + "AND" + " ")
 
+    //noinspection RedundantBlock
     s"DELETE ${deleteColumnsClause} FROM ${quote(keyspaceName)}.${
       quote(
         tableName)
@@ -330,7 +331,7 @@ case class CassandraAsyncStatementWriter[T](
 
     queryExecutor.waitForCurrentlyExecutingTasks()
     queryExecutor.getLatestException().map {
-      case exception =>
+      exception =>
         throw new IOException(
           s"""Failed to write statements to $keyspaceName.$tableName. The
              |latest exception was

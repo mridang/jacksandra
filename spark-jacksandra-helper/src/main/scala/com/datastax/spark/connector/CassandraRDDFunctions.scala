@@ -34,6 +34,7 @@ class CassandraRDDFunctions[T](rdd: RDD[T])(implicit classTag: ClassTag[T])
     rdd.sparkContext.runJob(rdd, writer.write _)
   }
 
+  //noinspection NotImplementedCode
   override def deleteFromCassandra(keyspaceName: String,
                                    tableName: String,
                                    deleteColumns: ColumnSelector,

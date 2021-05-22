@@ -25,16 +25,20 @@ class CassandraSerializer()
     getAnnotatedMethods(t.getClass).foreach {
       case (m, a) if a.annotationType() == classOf[CqlName] =>
         m.invoke(t) match {
-          case Some(obj) => {
+          case Some(obj) => //noinspection RedundantBlock
+          {
             jsonGenerator.writeFieldName(a.asInstanceOf[CqlName].value())
             jsonGenerator.writeObject(obj)
           }
           case None => Unit
-          case x if x != null => {
+          case x if x != null => //noinspection RedundantBlock
+          {
             jsonGenerator.writeFieldName(a.asInstanceOf[CqlName].value())
             jsonGenerator.writeObject(x)
           }
-          case null => {
+          case null => //noinspection RedundantBlock
+          {
+            //noinspection RedundantBlock
             println(
               s"Omitting null field ${a.asInstanceOf[CqlName].value()} on object ${t}")
           }

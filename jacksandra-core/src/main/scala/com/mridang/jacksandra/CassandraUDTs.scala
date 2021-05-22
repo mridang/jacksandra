@@ -30,10 +30,12 @@ class CassandraUDTs(keyspace: String) {
       .values
       .foreach { column =>
         createType = createType match {
-          case table: CreateType => {
+          case table: CreateType => //noinspection RedundantBlock
+          {
             table.withField(column.ann.value, column.cassandraType)
           }
-          case _ => {
+          case _ => //noinspection RedundantBlock
+          {
             xx.withField(column.ann.value, column.cassandraType)
           }
         }

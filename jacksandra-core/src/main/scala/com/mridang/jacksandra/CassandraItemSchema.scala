@@ -16,7 +16,8 @@ class CassandraItemSchema(@(JsonIgnore@field) val backing: ObjectSchema)
 
   def getDataType: DataType = {
     backing match {
-      case cassandraColumn: CassandraSchema => {
+      case cassandraColumn: CassandraSchema => //noinspection RedundantBlock
+      {
         cassandraColumn.getDataType
       }
       case _ => DataTypes.TEXT
