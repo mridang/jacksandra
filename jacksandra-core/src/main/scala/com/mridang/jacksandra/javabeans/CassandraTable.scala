@@ -6,7 +6,7 @@ import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
 import com.datastax.oss.driver.api.querybuilder.schema.CreateTable
 import com.datastax.oss.driver.internal.querybuilder.schema.DefaultCreateTable
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema
-import com.mridang.jacksandra.CassandraJsonSchemaBase
+import com.mridang.jacksandra.{CassandraJsonSchemaBase, CassandraRootSchema}
 
 import scala.collection.JavaConverters
 import scala.collection.JavaConverters.mapAsScalaMapConverter

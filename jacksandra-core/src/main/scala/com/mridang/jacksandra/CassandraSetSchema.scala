@@ -5,7 +5,6 @@ import com.datastax.oss.driver.api.mapper.annotations.{CqlName, PartitionKey}
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema
 import com.mridang.jacksandra.annotations.{OrderedClusteringColumn, StaticColumn}
-import com.mridang.jacksandra.javabeans.CassandraSchema
 
 import scala.annotation.meta.field
 
@@ -25,7 +24,7 @@ class CassandraSetSchema(
 
   override def cassandraType: DataType = {
     backing match {
-      case cassandraColumn: CassandraSchema =>
+      case cassandraColumn: CassandraType =>
         DataTypes.listOf(cassandraColumn.getDataType)
       case cassandraColumn: CassandraItemSchema =>
         DataTypes.listOf(cassandraColumn.getDataType)

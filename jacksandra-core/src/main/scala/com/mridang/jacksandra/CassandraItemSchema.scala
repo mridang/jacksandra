@@ -4,7 +4,6 @@ import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
-import com.mridang.jacksandra.javabeans.CassandraSchema
 
 import scala.annotation.meta.field
 
@@ -16,7 +15,7 @@ class CassandraItemSchema(@(JsonIgnore@field) val backing: ObjectSchema)
 
   def getDataType: DataType = {
     backing match {
-      case cassandraColumn: CassandraSchema => //noinspection RedundantBlock
+      case cassandraColumn: CassandraType => //noinspection RedundantBlock
       {
         cassandraColumn.getDataType
       }

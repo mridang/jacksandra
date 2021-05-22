@@ -9,7 +9,6 @@ import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, Visitor
 import com.fasterxml.jackson.module.jsonSchema.types.ArraySchema.SingleItems
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra.annotations.{OrderedClusteringColumn, StaticColumn}
-import com.mridang.jacksandra.javabeans.{CassandraArraySchema, CassandraRootSchema, CassandraSchema}
 
 class CassandraSchemaObjectVisitor(
                                     provider: SerializerProvider,
@@ -159,7 +158,7 @@ class CassandraSchemaObjectVisitor(
         }
 
         //noinspection RedundantBlock
-        case cassandraSchema: CassandraSchema => {
+        case cassandraSchema: CassandraType => {
           val cassandraType: DataType = cassandraSchema.getDataType
           val cassandraColumn = new CassandraColumnSchema(
             ann,
