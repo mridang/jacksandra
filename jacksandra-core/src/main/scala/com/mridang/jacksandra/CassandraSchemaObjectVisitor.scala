@@ -146,6 +146,16 @@ class CassandraSchemaObjectVisitor(
           schema.putOptionalProperty(ann.value(), inner)
         }
 
+        case os: CassandraEntrySchema => {
+          val cassandraColumn = new CassandraMapSchema(
+            ann,
+            os,
+            isPartitionKey,
+            clusteringColumn,
+            staticColumn)
+          schema.putOptionalProperty(ann.value(), cassandraColumn)
+        }
+
         //noinspection RedundantBlock
         case os: ObjectSchema => {
           val cassandraColumn = new CassandraObjectSchema(

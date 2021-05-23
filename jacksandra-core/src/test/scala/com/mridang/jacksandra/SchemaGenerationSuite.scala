@@ -4,7 +4,7 @@ import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
-class SparkIntegrationSuite extends AnyFunSuite {
+class SchemaGenerationSuite extends AnyFunSuite {
 
   final val defaultKeyspace: String = "jacksandra"
 
@@ -43,13 +43,11 @@ class SparkIntegrationSuite extends AnyFunSuite {
         |      )
       """.stripMargin
 
-
-
     compare(query, ddl)
   }
 
   test("that all collection types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[ClassWithCollections](defaultKeyspace)
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithCollections](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
@@ -62,7 +60,7 @@ class SparkIntegrationSuite extends AnyFunSuite {
         |      , tofrozenliststring       FROZEN<LIST<TEXT>>
         |      , toimmutablesetstring     SET<TEXT>
         |      , toimmutableliststring    LIST<TEXT>
-        |      , tosetstring              LIST<TEXT>
+        |      , tosetstring              SET<TEXT>
         |      , toliststring             LIST<TEXT>
         |      )
       """.stripMargin
@@ -79,22 +77,22 @@ class SparkIntegrationSuite extends AnyFunSuite {
         | TABLE
         |IF NOT
         |EXISTS jacksandra.myjavabeanwithtemporals
-        |     (      mypartitionkey            TEXT PRIMARY KEY
+        |     ( mypartitionkey           TEXT                  PRIMARY KEY
         |     , tolocaldatetimetimestamp TIMESTAMP
         |     , toyearstring             INT
         |     , tolocaldatedate          DATE
         |     , toperioddaterange        TEXT
         |     , tozoneoffsetstring       TEXT
-        |     ,  toyearmonthstring        TEXT
-        |     ,tolocaltimetime          TIME
-        |     ,tooffsettimestring       TEXT
-        |     ,toinstanttimestamp       TIMESTAMP
-        |     ,tomonthdaystring         TEXT
-        |     ,todatetimestamp          TEXT
-        |     ,tojavadurationduration   DURATION
-        |     ,totimestamptimestamp     TIMESTAMP
-        |     ,tooffsetdatetimestring   TEXT
-        |     ,tozoneidstring           TEXT
+        |     , toyearmonthstring        TEXT
+        |     , tolocaltimetime          TIME
+        |     , tooffsettimestring       TEXT
+        |     , toinstanttimestamp       TIMESTAMP
+        |     , tomonthdaystring         TEXT
+        |     , todatetimestamp          TEXT
+        |     , tojavadurationduration   DURATION
+        |     , totimestamptimestamp     TIMESTAMP
+        |     , tooffsetdatetimestring   TEXT
+        |     , tozoneidstring           TEXT
         |  )
         """.stripMargin
 
@@ -128,6 +126,7 @@ class SparkIntegrationSuite extends AnyFunSuite {
         |      )
       """.stripMargin
 
+    println(ddl)
     compare(query, ddl)
   }
 
@@ -148,6 +147,25 @@ class SparkIntegrationSuite extends AnyFunSuite {
         |      , toblob                   BLOB
         |      , toduration               DURATION
         |      , toascii                  ASCII
+        |      )
+      """.stripMargin
+
+    compare(query, ddl)
+  }
+
+  test("that all map types are handled correctly") {
+    val mapper = new CassandraJavaBeanMapper[JavaBeanWithMaps](defaultKeyspace)
+    val ddl: String = mapper.generateMappingProperties.mkString("\n")
+    //noinspection ScalaStyle
+    val query =
+      """
+        | CREATE
+        |  TABLE
+        | IF NOT
+        | EXISTS jacksandra.myjavabeanwithmaps
+        |      ( mypartitionkey           TEXT                 PRIMARY KEY
+        |      , tostringfloatmap         MAP<TEXT, FLOAT>
+        |      , toimmutablestringdoublemap MAP<TEXT, DOUBLE>
         |      )
       """.stripMargin
 

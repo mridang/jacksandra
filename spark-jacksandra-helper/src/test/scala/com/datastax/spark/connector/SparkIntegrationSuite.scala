@@ -17,7 +17,7 @@ import org.testcontainers.utility.DockerImageName
 
 import scala.reflect.ClassTag
 
-class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
+class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
 
   //noinspection ScalaStyle
 
@@ -152,6 +152,23 @@ class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkCon
       .toSet should contain theSameElementsAs inputItems
   }
 
+  test("that saving and querying entities with maps works as expected") {
+    createTable[JavaBeanWithMaps]()
+
+    val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
+    implicit val connector: CassandraConnector = CassandraConnector(contactInfo)
+    implicit val rwf: RowWriterFactory[JavaBeanWithMaps] = new CassandraJsonRowWriterFactory[JavaBeanWithMaps]
+
+    val inputRDD: RDD[JavaBeanWithMaps] = RandomRDD[JavaBeanWithMaps](sc).of(randomItemsCount)
+    val inputItems: Set[JavaBeanWithMaps] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[JavaBeanWithMaps](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
   test("that saving and querying scala classes with collections works as expected") {
     createTable[ClassWithCollections]()
 
@@ -233,6 +250,23 @@ class MainSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkCon
 
     inputRDD.saveToCassandra(defaultKeyspace)
     sc.cassandraTable[ClassWithExotics](defaultKeyspace)
+      .collect()
+      .toSet should contain theSameElementsAs inputItems
+  }
+
+  test("that saving and querying scala classes with maps works as expected") {
+    createTable[ClassWithMaps]()
+
+    val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
+    implicit val connector: CassandraConnector = CassandraConnector(contactInfo)
+    implicit val rwf: RowWriterFactory[ClassWithMaps] = new CassandraJsonRowWriterFactory[ClassWithMaps]
+
+    val inputRDD: RDD[ClassWithMaps] = RandomRDD[ClassWithMaps](sc).of(randomItemsCount)
+    val inputItems: Set[ClassWithMaps] = inputRDD.collect()
+      .toSet
+
+    inputRDD.saveToCassandra(defaultKeyspace)
+    sc.cassandraTable[ClassWithMaps](defaultKeyspace)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }

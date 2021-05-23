@@ -2,12 +2,11 @@ package com.mridang.jacksandra
 
 import com.datastax.oss.driver.api.core.`type`.DataType
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
-import com.fasterxml.jackson.databind.`type`.CollectionLikeType
+import com.fasterxml.jackson.databind.`type`.{CollectionLikeType, MapLikeType}
 import com.fasterxml.jackson.databind.jsonFormatVisitors._
 import com.fasterxml.jackson.databind.{JavaType, SerializerProvider}
 import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, SchemaFactoryWrapper, VisitorContext, WrapperFactory}
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
-import com.mridang.jacksandra.javabeans._
 
 /**
  * A customized visitor that intercepts generated [[JsonSchema]] instances
@@ -22,6 +21,16 @@ class CassandraSchemaFactoryWrapper
 
   def cassandraVisitorContext: VisitorContext = {
     visitorContext
+  }
+
+  override def expectMapFormat(convertedType: JavaType):
+  JsonMapFormatVisitor = {
+    val jsonFormatVisitor: JsonMapFormatVisitor = super.expectMapFormat(convertedType)
+    this.schema = new CassandraEntrySchema(
+      convertedType,
+      dataFn(convertedType.asInstanceOf[MapLikeType].getKeyType),
+      dataFn(convertedType.asInstanceOf[MapLikeType].getContentType))
+    jsonFormatVisitor
   }
 
   override def expectAnyFormat(convertedType: JavaType):
@@ -45,8 +54,7 @@ class CassandraSchemaFactoryWrapper
    */
   override def expectArrayFormat(convertedType: JavaType):
   JsonArrayFormatVisitor = {
-    val jsonFormatVisitor: JsonArrayFormatVisitor =
-      super.expectArrayFormat(convertedType)
+    val jsonFormatVisitor: JsonArrayFormatVisitor = super.expectArrayFormat(convertedType)
     this.schema = new CassandraArraySchema(
       convertedType,
       dataFn(convertedType.asInstanceOf[CollectionLikeType].getContentType))

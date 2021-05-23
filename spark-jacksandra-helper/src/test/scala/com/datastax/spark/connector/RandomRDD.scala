@@ -1,10 +1,11 @@
 package com.datastax.spark.connector
 
-import com.google.common.collect.{ImmutableList, ImmutableSet}
+import com.google.common.collect.{ImmutableList, ImmutableMap, ImmutableSet}
 import com.mridang.jacksandra.types.{CqlAscii, CqlDuration, CqlTimeUUID}
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.jeasy.random.randomizers.extras._
+import org.jeasy.random.randomizers.guava.ImmutableMapRandomizer
 import org.jeasy.random.randomizers.number.BigDecimalRandomizer
 import org.jeasy.random.randomizers.registry.CustomRandomizerRegistry
 import org.jeasy.random.{EasyRandom, EasyRandomParameters}
@@ -33,6 +34,7 @@ case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
     val randomiserList: CustomRandomizerRegistry = new CustomRandomizerRegistry()
     randomiserList.registerRandomizer(classOf[ImmutableList[_]], new ImmutableListRandomizer())
     randomiserList.registerRandomizer(classOf[ImmutableSet[_]], new ImmutableSetRandomizer())
+    randomiserList.registerRandomizer(classOf[ImmutableMap[_, _]], new ImmutableMapRandomizer())
     randomiserList.registerRandomizer(classOf[BigDecimal], new BigDecimalRandomizer(Integer.valueOf(4)))
     randomiserList.registerRandomizer(classOf[CqlDuration], new CqlDurationRandomizer())
     randomiserList.registerRandomizer(classOf[CqlTimeUUID], new CqTimeUUIDRandomizer())
@@ -44,6 +46,8 @@ case class RandomRDD[T](sc: SparkContext)(implicit ctag: ClassTag[T]) {
     randomiserList.registerRandomizer(classOf[ByteBuffer], new ByteBufferRandomizer())
     randomiserList.registerRandomizer(classOf[scala.collection.immutable.List[_]], new ListRandomizer())
     randomiserList.registerRandomizer(classOf[scala.collection.immutable.Set[_]], new SetRandomizer())
+    randomiserList.registerRandomizer(classOf[scala.collection.immutable.Map[_, _]], new MapRandomizer.Immutable())
+    randomiserList.registerRandomizer(classOf[scala.collection.mutable.Map[_, _]], new MapRandomizer.Mutable())
     val randomParams = new EasyRandomParameters()
     randomParams.randomizerRegistry(randomiserList)
     new EasyRandom(randomParams)
