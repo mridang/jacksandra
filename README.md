@@ -202,11 +202,51 @@ A schema may or may not have a `@StaticColumn` annotation at all static columns 
 
 You can easily add support for custom types.
 
+## Usage (Spark)
 
+```scala
+@CqlName("mytable")
+class MyBean(@PartitionKey val ssn: Int, val firstName: String, val lastName: String) 
+  extends Serializable
+```
+
+### Writing
+
+In order to persist an RDD into a Cassandra table, you can use the following. The
+connector must be provided as an implicit variable.
+
+This method does not create the keyspace, the table or any types. The name of the
+table is read from the `CqlName` annotation on the entity.
+
+```scala
+import com.datastax.spark.connector.plus.toRDDFunctions
+
+implicit val connector: CassandraConnector = CassandraConnector(sc.getConf)
+implicit val rwf: RowWriterFactory[MyBean] = new CassandraJsonRowWriterFactory[MyBean]
+
+val inputRDD: RDD[MyBean] = RandomRDD[MyBean](sc).of(randomItemsCount)
+inputRDD.saveToCassandra("mykeyspace")
+```
+
+### Reading
+
+In order to read a Cassandra table into an RDD, you can use the following. The
+connector must be provided as an implicit variable.
+
+This method does not create the keyspace, the table or any types. The name of the
+table is read from the `CqlName` annotation on the entity.
+
+```scala
+import com.datastax.spark.connector.plus.toSparkContextFunctions
+
+implicit val connector: CassandraConnector = CassandraConnector(sc.getConf)
+
+val inputRDD: RDD[MyBean] = sc.cassandraTable[MyBean]("mykeyspace")
+```
 
 ## License
 
-MIT License
+Apache 2.0 License
 
 Copyright (c) 2021 Mridang Agarwalla
 
