@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraEntrySchema.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapSchema.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithMaps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/ClassWithMaps.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/org/jeasy/random/randomizers/extras/MapRandomizer.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/org/jeasy/random/randomizers/extras/MapTypeRandomizer.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/org/jeasy/random/randomizers/guava/ImmutableMapRandomizer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaObjectVisitor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SparkIntegrationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/MainSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/RandomRDD.scala" afterDir="false" />
-    </list>
+    <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment="." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -403,12 +389,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="ScalaTest.MainSuite" />
       <item itemvalue="Gradle.jacksandra:jacksandra-core [clean]" />
       <item itemvalue="Gradle.jacksandra:spark-jacksandra-helper [clean]" />
       <item itemvalue="Gradle.MainSuite" />
       <item itemvalue="Gradle.SchemaGenerationSuite" />
       <item itemvalue="Gradle.SparkIntegrationSuite" />
+      <item itemvalue="ScalaTest.MainSuite" />
     </list>
     <recent_temporary>
       <list>
