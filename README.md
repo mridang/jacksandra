@@ -105,26 +105,76 @@ EXISTS brandsimilarities
      );
 ```
 
+### Types
+
+The follow exhaustive list outlines all the CQL types along with the 
+JVM counterparts.
+
+| CQL         |           Java                             |          Scala         |
+|-------------|--------------------------------------------|-----------------------:|
+| `BOOLEAN`   | `java.lang.Boolean`                        |                        |
+| `TEXT`      | `java.lang.String`                         |                        |
+| `VARCHAR`   | `java.lang.String`                         |                        |
+| `FLOAT`     | `java.lang.Float`                          |                        |
+| `DOUBLE`    | `java.lang.Double`                         |                        |
+| `BIGINT`    | `java.lang.Long`                           |                        |
+| `INT`       | `java.lang.Integer`                        |                        |
+| `SMALLINT`  | `java.lang.Short`                          |                        |
+| `TINYINT`   | `java.lang.Byte`                           |                        |
+| `VARINT`    | `java.math.BigInteger`                     |                        |
+| `DECIMAL`   | `java.math.BigDecimal`                     |                        |
+| `ASCII`     | `com.mridang.jacksandra.types.CqlAscii`    |                        |
+| `INET`      | `java.net.InetAddress`                     |                        |
+| `UUID`      | `java.util.UUID`                           |                        |
+| `TIMEUUID`  | `com.mridang.jacksandra.types.CqlTimeUUID` |                        |
+| `DURATION`  | `com.mridang.jacksandra.types.CqlDuration` |                        |
+|             | `java.time.Duration`                       |                        |
+| `BLOB`      | `com.mridang.jacksandra.types.CqlBlob`     |                        |
+| `DATE`      | `java.time.LocalDate`                      |                        |
+| `TIME`      | `java.time.LocalTime`                      |                        |
+| `TIMESTAMP` | `java.sql.Timestamp`                       |                        |
+|             | `java.util.Instant`                        |                        |
+|             | `java.time.LocalDateTime`                  |                        |
+
 ### Collections
 
-Jacksandra supports all collection types including the "frozen" variants.
+Jacksandra supports all collection types including the "frozen" variants. 
+Any property that derives from `java.util.Collection` will be mapped 
+as a `LIST` data type. If you require a "frozen" representation, use any 
+collection type simply implement the `Frozen` interface.
 
 #### Lists
 
-Any property that derives from `java.util.List` will be mapped as a `LIST` data type. If you require a "frozen" representation, use `FrozenList` when possible.
+When using Java: any property that derives from `java.util.List` will be mapped 
+as a `LIST` data type. If you require a "frozen" representation, 
+use `FrozenList` when possible.
+
+When using Scala: any property that derives from `scala.collection.mutable.List` 
+will bbe mapped as `LIST` data type. If you require a "frozen" representation,
+use `scala.collection.immutable.List` when possible.
 
 #### Sets
 
-Any property that derives from `java.util.Set` will be mapped as a `SET` data type. If you require a "frozen" representation, use `FrozenSet` when possible.
+When using Java: any property that derives from `java.util.Set` will be mapped 
+as a `SET` data type. If you require a "frozen" representation, use `FrozenSet` 
+when possible.
 
-#### Other
+When using Scala: any property that derives from `scala.collection.mutable.Set`
+will bbe mapped as `LIST` data type. If you require a "frozen" representation,
+use `scala.collection.immutable.Set` when possible.
 
 ### Maps
 
-At the time of writing Jacksandra does not support mapping map types.
+AnWhen using Java: any property that derives from `java.util.Map` will be mapped 
+as a `MAP` data type.
 
-Any property that derives from `java.util.Collection` will be mapped as a `LIST` data type. If you require a "frozen" representation, use any collection type
-simply implement the `Frozen` interface.
+When using Scala: any property that derives from `scala.collection.mutable.Map`
+will bbe mapped as `MAP` data type.
+
+### Tuples
+
+At the time of writing, there is no support for tuples. 
+See https://github.com/mridang/jacksandra/issues/4
 
 ### Partition Keys
 
@@ -147,6 +197,12 @@ Use the `@StaticColumn` annotation to denote static columns. The custom `@Static
 annotation is provided as there doesn't seem to be corresponding annotation in the Datastax libraries.
 
 A schema may or may not have a `@StaticColumn` annotation at all static columns are optional.
+
+### Adding custom types
+
+You can easily add support for custom types.
+
+
 
 ## License
 
