@@ -7,7 +7,6 @@ import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWr
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
 import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra._
-import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.scalatest.funsuite.AnyFunSuite
@@ -34,7 +33,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
   def createTable[T]()(implicit ctag: ClassTag[T]): Unit = {
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
     CassandraConnector(contactInfo).withSessionDo(session => {
-      val mapper = new CassandraJavaBeanMapper[T](defaultKeyspace, new ScalaCodecRegistry())
+      val mapper = new CassandraMapper[T](defaultKeyspace, new ScalaCodecRegistry())
 
       session.execute(SchemaBuilder.dropKeyspace(defaultKeyspace).ifExists()
         .asCql())

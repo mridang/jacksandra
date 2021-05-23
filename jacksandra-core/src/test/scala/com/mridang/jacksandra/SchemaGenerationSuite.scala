@@ -1,6 +1,5 @@
 package com.mridang.jacksandra
 
-import com.mridang.jacksandra.javabeans.CassandraJavaBeanMapper
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
@@ -23,7 +22,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all numeric types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithNumbers](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithNumbers](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
@@ -47,7 +46,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all collection types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithCollections](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithCollections](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
@@ -69,7 +68,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all temporal types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithTemporal](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithTemporal](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString
     //noinspection ScalaStyle
     val query =
@@ -100,7 +99,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all custom types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithUDT](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithUDT](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString("\n")
     //noinspection ScalaStyle
     val query =
@@ -131,7 +130,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all exotic types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithExotics](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithExotics](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString("\n")
     //noinspection ScalaStyle
     val query =
@@ -154,7 +153,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
   }
 
   test("that all map types are handled correctly") {
-    val mapper = new CassandraJavaBeanMapper[JavaBeanWithMaps](defaultKeyspace)
+    val mapper = new CassandraMapper[JavaBeanWithMaps](defaultKeyspace)
     val ddl: String = mapper.generateMappingProperties.mkString("\n")
     //noinspection ScalaStyle
     val query =

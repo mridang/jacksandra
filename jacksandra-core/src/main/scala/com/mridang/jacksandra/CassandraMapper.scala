@@ -14,7 +14,6 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.jsonSchema.factories._
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import com.mridang.jacksandra.CassandraMapper.getDT
 
 import java.sql.Timestamp
 import java.time._
@@ -60,7 +59,7 @@ object CassandraMapper {
  *
  * @tparam T The class to be mapped
  */
-class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = getDT)(implicit classTag: ClassTag[T]) {
+class CassandraMapper[T](keyspace: String, dataFn: JavaType => DataType = CassandraMapper.getDT)(implicit classTag: ClassTag[T]) {
 
   private val schemaMapper = new ObjectMapper()
     .registerModule(DefaultScalaModule)
