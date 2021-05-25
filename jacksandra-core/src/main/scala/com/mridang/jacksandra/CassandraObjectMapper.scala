@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.{Shape, Value}
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.fasterxml.jackson.datatype.cql.CassandraModule
+import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
@@ -12,15 +13,17 @@ import java.sql.Timestamp
 import java.time._
 import java.util.Date
 
-class CassandraObjectMapper extends ObjectMapper {
+class CassandraObjectMapper extends ObjectMapper with Serializable {
 
   super.registerModule(DefaultScalaModule)
   super.registerModule(new Jdk8Module)
   super.registerModule(new JavaTimeModule)
   super.registerModule(new SimpleModule())
+  super.registerModule(new GuavaModule())
   super.registerModule(new CassandraModule)
 
-  disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+  enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+  disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS)
 
 
   configOverride(classOf[Date]).setFormat(Value.forShape(Shape.STRING))

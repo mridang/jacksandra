@@ -4,6 +4,7 @@ import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.datastax.spark.connector.rdd.reader.{CassandraJsonRowReaderFactory, RowReaderFactory}
 import com.datastax.spark.connector.rdd.{AbstractCassandraRDD, CqlWhereClause, ReadConf}
+import com.mridang.jacksandra.CassandraObjectMapper
 import org.apache.spark.SparkContext
 
 import scala.reflect.ClassTag
@@ -28,7 +29,7 @@ class JacksandraSparkContextFunctions(@transient val sc: SparkContext) extends S
       }
 
       override protected val rowReaderFactory: RowReaderFactory[T] = {
-        new CassandraJsonRowReaderFactory[T]()(ct = classTag)
+        new CassandraJsonRowReaderFactory[T](() => new CassandraObjectMapper)(ct = classTag)
       }
     }
   }

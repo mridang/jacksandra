@@ -2,6 +2,8 @@ package com.datastax.spark.connector.writer
 
 import com.datastax.spark.connector.ColumnRef
 import com.datastax.spark.connector.cql.TableDef
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.mridang.jacksandra.CassandraObjectMapper
 
 import scala.reflect.ClassTag
 
@@ -33,7 +35,8 @@ import scala.reflect.ClassTag
  * @tparam T the type of the entity to serialize
  * @author mridang
  */
-class CassandraJsonRowWriter[T](implicit override val ct: ClassTag[T])
+class CassandraJsonRowWriter[T](override val objectMapper: () => ObjectMapper)
+                               (implicit override val ct: ClassTag[T])
   extends RowWriter[T]
     with JsonRowWriter[T]
     with Serializable {
@@ -44,7 +47,7 @@ class CassandraJsonRowWriter[T](implicit override val ct: ClassTag[T])
   }
 
   override def toJson(row: T): String = {
-    objectMapper.writeValueAsString(row)
+    objectMapper.apply().writeValueAsString(row)
   }
 }
 
@@ -56,12 +59,13 @@ class CassandraJsonRowWriter[T](implicit override val ct: ClassTag[T])
  * @param ct the internal class-tag evidence for building the type-reference
  * @tparam T the type of the entity to serialize
  */
-class CassandraJsonRowWriterFactory[T](implicit val ct: ClassTag[T])
+class CassandraJsonRowWriterFactory[T](val objectMapper: () => ObjectMapper = () => new CassandraObjectMapper)
+                                      (implicit val ct: ClassTag[T])
   extends RowWriterFactory[T]
     with Serializable {
 
   override def rowWriter(table: TableDef,
                          columns: IndexedSeq[ColumnRef]): RowWriter[T] = {
-    new CassandraJsonRowWriter[T]()
+    new CassandraJsonRowWriter[T](objectMapper)
   }
 }

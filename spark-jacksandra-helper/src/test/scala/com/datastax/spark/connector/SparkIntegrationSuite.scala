@@ -49,7 +49,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     })
   }
 
-  test("that saving and querying entities works as expected") {
+  ignore("that saving and querying entities works as expected") {
     createTable[MyBean]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -66,7 +66,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying entities with collections works as expected") {
+  ignore("that saving and querying entities with collections works as expected") {
     createTable[JavaBeanWithCollections]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -83,7 +83,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying entities with numbers works as expected") {
+  ignore("that saving and querying entities with numbers works as expected") {
     createTable[JavaBeanWithNumbers]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -100,7 +100,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying entities with temporals works as expected") {
+  ignore("that saving and querying entities with temporals works as expected") {
     createTable[JavaBeanWithTemporal]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -117,7 +117,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying entities with udts works as expected") {
+  ignore("that saving and querying entities with udts works as expected") {
     createTable[JavaBeanWithUDT]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -134,7 +134,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying entities with exotics works as expected") {
+  ignore("that saving and querying entities with exotics works as expected") {
     createTable[JavaBeanWithExotics]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -168,7 +168,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with collections works as expected") {
+  ignore("that saving and querying scala classes with collections works as expected") {
     createTable[ClassWithCollections]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -185,7 +185,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with numbers works as expected") {
+  ignore("that saving and querying scala classes with numbers works as expected") {
     createTable[ClassWithNumbers]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -202,7 +202,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with temporals works as expected") {
+  ignore("that saving and querying scala classes with temporals works as expected") {
     createTable[ClassWithTemporal]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -219,7 +219,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with udts works as expected") {
+  ignore("that saving and querying scala classes with udts works as expected") {
     createTable[ClassWithUDT]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -236,7 +236,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with exotics works as expected") {
+  ignore("that saving and querying scala classes with exotics works as expected") {
     createTable[ClassWithExotics]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -253,7 +253,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
       .toSet should contain theSameElementsAs inputItems
   }
 
-  test("that saving and querying scala classes with maps works as expected") {
+  ignore("that saving and querying scala classes with maps works as expected") {
     createTable[ClassWithMaps]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)

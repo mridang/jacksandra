@@ -174,7 +174,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
         |      ( mypartitionkey                TEXT                 PRIMARY KEY
         |      , tostringfloatmap              MAP<TEXT, FLOAT>
         |      , toimmutablestringdoublemap    MAP<TEXT, DOUBLE>
-        |      , tomapfrozenudtkeyfrozenudtval MAP<FROZEN<myudt>,FROZEN<myudt>>
+        |      , tomapstringkeyfrozenudtval    MAP<TEXT, FROZEN<myudt>>
         |      )
       """.stripMargin
 

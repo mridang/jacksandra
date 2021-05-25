@@ -3,6 +3,8 @@ package com.datastax.spark.connector.rdd.reader
 import com.datastax.oss.driver.api.core.cql.Row
 import com.datastax.spark.connector.cql.TableDef
 import com.datastax.spark.connector.{CassandraRowMetadata, ColumnName, ColumnRef}
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.mridang.jacksandra.CassandraObjectMapper
 
 import java.nio.ByteBuffer
 import scala.reflect.ClassTag
@@ -32,7 +34,8 @@ import scala.reflect.ClassTag
  * @tparam T the type of the entity to serialize
  * @author mridang
  */
-class CassandraJsonRowReader[T](implicit override val ct: ClassTag[T])
+class CassandraJsonRowReader[T](@transient override val objectMapper: () => ObjectMapper)
+                               (implicit override val ct: ClassTag[T])
   extends RowReader[T]
     with JsonRowReader[T]
     with Serializable {
@@ -61,7 +64,7 @@ class CassandraJsonRowReader[T](implicit override val ct: ClassTag[T])
    */
   override def read(row: Row, rowMetaData: CassandraRowMetadata): T = {
     val rowBytes: ByteBuffer = row.getBytesUnsafe(0)
-    objectMapper.readValue(rowBytes.array(),
+    objectMapper.apply().readValue(rowBytes.array(),
       ct.runtimeClass.asInstanceOf[Class[T]])
   }
 }
@@ -72,13 +75,14 @@ class CassandraJsonRowReader[T](implicit override val ct: ClassTag[T])
  * @param ct the internal class-tag evidence for building the type-reference
  * @tparam T the type of the entity to serialize
  */
-class CassandraJsonRowReaderFactory[T](implicit val ct: ClassTag[T])
+class CassandraJsonRowReaderFactory[T](val objectMapper: () => ObjectMapper = () => new CassandraObjectMapper)
+                                      (implicit val ct: ClassTag[T])
   extends RowReaderFactory[T]
     with Serializable {
 
   override def rowReader(table: TableDef,
                          columns: IndexedSeq[ColumnRef]): RowReader[T] = {
-    new CassandraJsonRowReader[T]()
+    new CassandraJsonRowReader[T](objectMapper)
   }
 
   override def targetClass: Class[T] = ct.runtimeClass.asInstanceOf[Class[T]]

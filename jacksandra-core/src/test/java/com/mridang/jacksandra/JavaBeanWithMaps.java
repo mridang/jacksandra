@@ -42,9 +42,9 @@ public class JavaBeanWithMaps implements Serializable {
     public ImmutableMap<String, Double> toImmutableStringDoubleMap;
 
     @Nullable
-    @CqlName("tomapfrozenudtkeyfrozenudtval")
+    @CqlName("tomapstringkeyfrozenudtval")
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    public ImmutableMap<SomeUDT, SomeUDT> toMapFrozenUdtKeyVal;
+    public Map<String, SomeUDT> toMapStringKeyFrozenUdtVal;
 
     @Override
     public int hashCode() {
