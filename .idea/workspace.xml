@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraArraySchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraArraySchema.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +142,7 @@
       <recent name="com.mridang.jacksandra.types" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SparkIntegrationSuite">
+  <component name="RunManager" selected="Gradle.SchemaGenerationSuite">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -337,6 +340,15 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="jacksandra.main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -393,8 +405,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SparkIntegrationSuite" />
         <item itemvalue="Gradle.SchemaGenerationSuite" />
+        <item itemvalue="Gradle.SparkIntegrationSuite" />
         <item itemvalue="Gradle.MainSuite" />
         <item itemvalue="Gradle.MainSuite" />
         <item itemvalue="Gradle.MainSuite" />

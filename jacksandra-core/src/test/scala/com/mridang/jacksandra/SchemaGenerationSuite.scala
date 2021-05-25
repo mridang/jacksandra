@@ -120,12 +120,11 @@ class SchemaGenerationSuite extends AnyFunSuite {
         | EXISTS jacksandra.myjavabeanwithudt
         |      ( mypartitionkey            TEXT                PRIMARY KEY
         |      , toudt                     myudt
-        |      , tofrozenudtlist           FROZEN<LIST<myudt>>
-        |      , tofrozenudtset            FROZEN<SET<myudt>>
+        |      , tofrozenudtlist           FROZEN<LIST<FROZEN<myudt>>>
+        |      , tofrozenudtset            FROZEN<SET<FROZEN<myudt>>>
         |      )
       """.stripMargin
 
-    println(ddl)
     compare(query, ddl)
   }
 

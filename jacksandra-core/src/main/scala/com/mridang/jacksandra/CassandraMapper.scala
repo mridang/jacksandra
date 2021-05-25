@@ -3,19 +3,11 @@ package com.mridang.jacksandra
 import com.datastax.oss.driver.api.core.`type`.codec.registry.CodecRegistry
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.datastax.oss.driver.internal.core.`type`.codec.extras.CassandraCodecRegistry
-import com.datastax.oss.driver.internal.core.`type`.codec.registry.DefaultCodecRegistry
 import com.fasterxml.jackson.databind._
 import com.fasterxml.jackson.module.jsonSchema.factories._
 
 import java.util
 import scala.reflect.ClassTag
-
-object CassandraMapper {
-
-  final val codecRegistry: DefaultCodecRegistry = {
-    new CassandraCodecRegistry
-  }
-}
 
 /**
  * A class for mapping scala pojos to elasticsearch query compatible objects.
@@ -39,7 +31,7 @@ class CassandraMapper[T](keyspace: String, codecProvider: CodecProvider)(implici
   }
 
   def this(keyspace: String)(implicit classTag: ClassTag[T]) {
-    this(keyspace, CassandraMapper.codecRegistry)(classTag)
+    this(keyspace, new CassandraCodecRegistry())(classTag)
   }
 
   def toSchema: List[String] = {

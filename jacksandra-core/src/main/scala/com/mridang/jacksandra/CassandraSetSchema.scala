@@ -28,11 +28,8 @@ class CassandraSetSchema(
         DataTypes.listOf(cassandraColumn.getDataType)
       case cassandraColumn: CassandraItemSchema =>
         DataTypes.listOf(cassandraColumn.getDataType)
-      case _ => //noinspection RedundantBlock
-      {
-        println("random column encountered" + name.value)
-        DataTypes.listOf(DataTypes.TEXT)
-      }
+      case _ =>
+        throw new RuntimeException("Unsupported type" + backing)
     }
   }
 }

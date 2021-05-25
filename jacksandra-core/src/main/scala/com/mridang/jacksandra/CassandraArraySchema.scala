@@ -1,6 +1,7 @@
 package com.mridang.jacksandra
 
-import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
+import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes, UserDefinedType}
+import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.module.jsonSchema.types.ArraySchema
 import com.mridang.jacksandra.types.Frozen
@@ -18,13 +19,20 @@ import com.mridang.jacksandra.types.Frozen
  *
  * @author mridang
  */
-class CassandraArraySchema(val javaType: JavaType, val dataType: DataType)
+class CassandraArraySchema(val javaType: JavaType, var dataType: DataType)
   extends ArraySchema with CassandraType {
 
   val isFrozen: Boolean = classOf[Frozen].isAssignableFrom(javaType.getRawClass)
 
   //noinspection SimplifyBooleanMatch
   override def getDataType: DataType = {
+    // if the inner item is a UDT, it must be frozen or it will lead to this error
+    // "Non-frozen UDTs are not allowed inside collections"
+    dataType = dataType match {
+      case x: UserDefinedType =>
+        SchemaBuilder.udt(x.getName, true)
+      case _ => dataType
+    }
     javaType.getRawClass match {
       case x if classOf[java.util.List[Any]].isAssignableFrom(x) =>
         isFrozen match {
