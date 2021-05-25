@@ -158,12 +158,23 @@ class SchemaGenerationSuite extends AnyFunSuite {
     val query =
       """
         | CREATE
+        |   TYPE
+        | IF NOT
+        | EXISTS jacksandra.myudt
+        |      ( somestring               TEXT
+        |      , somedoubleset            FROZEN<SET<DOUBLE>>
+        |      , somedouble               DOUBLE
+        |      , somelonglist             FROZEN<LIST<BIGINT>>
+        |      )
+        |
+        | CREATE
         |  TABLE
         | IF NOT
         | EXISTS jacksandra.myjavabeanwithmaps
-        |      ( mypartitionkey           TEXT                 PRIMARY KEY
-        |      , tostringfloatmap         MAP<TEXT, FLOAT>
-        |      , toimmutablestringdoublemap MAP<TEXT, DOUBLE>
+        |      ( mypartitionkey                TEXT                 PRIMARY KEY
+        |      , tostringfloatmap              MAP<TEXT, FLOAT>
+        |      , toimmutablestringdoublemap    MAP<TEXT, DOUBLE>
+        |      , tomapfrozenudtkeyfrozenudtval MAP<FROZEN<myudt>,FROZEN<myudt>>
         |      )
       """.stripMargin
 

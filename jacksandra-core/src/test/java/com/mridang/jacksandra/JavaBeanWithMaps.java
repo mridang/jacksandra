@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.google.common.collect.ImmutableMap;
+import com.mridang.jacksandra.JavaBeanWithUDT.SomeUDT;
 
 @SuppressWarnings("unused")
 @CqlName("myjavabeanwithmaps")
@@ -39,6 +40,11 @@ public class JavaBeanWithMaps implements Serializable {
     @CqlName("toimmutablestringdoublemap")
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     public ImmutableMap<String, Double> toImmutableStringDoubleMap;
+
+    @Nullable
+    @CqlName("tomapfrozenudtkeyfrozenudtval")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    public ImmutableMap<SomeUDT, SomeUDT> toMapFrozenUdtKeyVal;
 
     @Override
     public int hashCode() {

@@ -1,6 +1,7 @@
 package com.mridang.jacksandra
 
-import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes}
+import com.datastax.oss.driver.api.core.`type`.{DataType, DataTypes, UserDefinedType}
+import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 import com.mridang.jacksandra.types.Frozen
@@ -18,12 +19,28 @@ import com.mridang.jacksandra.types.Frozen
  *
  * @author mridang
  */
-class CassandraEntrySchema(val javaType: JavaType, val keyDataType: DataType, val valueDataType: DataType)
+class CassandraEntrySchema(val javaType: JavaType, var keyDataType: DataType, var valueDataType: DataType)
   extends ObjectSchema with CassandraType {
 
   val isFrozen: Boolean = classOf[Frozen].isAssignableFrom(javaType.getRawClass)
 
   override def getDataType: DataType = {
+    // if the inner item is a UDT, it must be frozen or it will lead to this error
+    // "Non-frozen UDTs are not allowed inside collections"
+    keyDataType = keyDataType match {
+      case x: UserDefinedType =>
+        SchemaBuilder.udt(x.getName, true)
+      case _ => keyDataType
+    }
+
+    // if the inner item is a UDT, it must be frozen or it will lead to this error
+    // "Non-frozen UDTs are not allowed inside collections"
+    valueDataType = valueDataType match {
+      case x: UserDefinedType =>
+        SchemaBuilder.udt(x.getName, true)
+      case _ => valueDataType
+    }
+
     DataTypes.mapOf(keyDataType, valueDataType)
   }
 
