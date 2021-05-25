@@ -23,7 +23,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all numeric types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithNumbers](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString
+    val ddl: String = mapper.toSchema.mkString
     //noinspection ScalaStyle
     val query =
       """ CREATE
@@ -47,7 +47,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all collection types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithCollections](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString
+    val ddl: String = mapper.toSchema.mkString
     //noinspection ScalaStyle
     val query =
       """ CREATE
@@ -69,7 +69,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all temporal types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithTemporal](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString
+    val ddl: String = mapper.toSchema.mkString
     //noinspection ScalaStyle
     val query =
       """CREATE
@@ -100,7 +100,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all custom types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithUDT](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString("\n")
+    val ddl: String = mapper.toSchema.mkString("\n")
     //noinspection ScalaStyle
     val query =
       """
@@ -131,7 +131,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all exotic types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithExotics](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString("\n")
+    val ddl: String = mapper.toSchema.mkString("\n")
     //noinspection ScalaStyle
     val query =
       """
@@ -154,7 +154,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
 
   test("that all map types are handled correctly") {
     val mapper = new CassandraMapper[JavaBeanWithMaps](defaultKeyspace)
-    val ddl: String = mapper.generateMappingProperties.mkString("\n")
+    val ddl: String = mapper.toSchema.mkString("\n")
     //noinspection ScalaStyle
     val query =
       """

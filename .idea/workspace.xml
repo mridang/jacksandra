@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/CassandraJavaMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraObjectMapper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CodecProvider.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/RegistryBasedCodecProvider.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/CassandraCodecRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/datastax/oss/driver/internal/core/type/codec/extras/CassandraCodecRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraSchemaFactoryWrapperFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/oss/driver/internal/core/type/codec/extras/scala/ScalaCodecRegistry.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/oss/driver/internal/core/type/codec/extras/scala/ScalaCodecRegistry.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +75,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Package Object" />
-        <option value="Class" />
         <option value="Scala Class" />
+        <option value="Class" />
+        <option value="Scala Trait" />
       </list>
     </option>
   </component>
@@ -124,11 +135,11 @@
       <recent name="$PROJECT_DIR$/spark-jacksandra-helper/src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.mridang" />
       <recent name="com.mridang.jacksandra.javabeans" />
       <recent name="org.jeasy.random.randomizers.extras" />
       <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.scala" />
       <recent name="com.datastax.oss.driver.internal.core.type.codec.extras.time" />
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.jeasy.random.randomizers.extras" />
@@ -346,14 +357,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="aws.lambda" factoryName="Remote">
-      <option name="credentialProviderId" />
-      <option name="regionId" />
-      <option name="functionName" />
-      <option name="input" />
-      <option name="inputIsFile" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">

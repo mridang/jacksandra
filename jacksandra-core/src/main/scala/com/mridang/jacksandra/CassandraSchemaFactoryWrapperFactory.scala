@@ -7,9 +7,7 @@ import com.fasterxml.jackson.module.jsonSchema.factories.{SchemaFactoryWrapper, 
  * Allows overwriting expectXFormat methods by instantiating sublasses of
  * [[SchemaFactoryWrapper]] instead of the default implementations.
  */
-class CassandraSchemaFactoryWrapperFactory(wrapperFactory: (
-  SerializerProvider,
-    WrapperFactory) => SchemaFactoryWrapper)
+class CassandraSchemaFactoryWrapperFactory(wrapperFactory: (SerializerProvider, WrapperFactory) => SchemaFactoryWrapper)
   extends WrapperFactory {
   override def getWrapper(
                            provider: SerializerProvider): SchemaFactoryWrapper = {

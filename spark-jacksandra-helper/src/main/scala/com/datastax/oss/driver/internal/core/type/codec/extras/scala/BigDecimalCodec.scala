@@ -10,6 +10,6 @@ class BigDecimalCodec extends MappingCodec[java.math.BigDecimal, BigDecimal](Typ
   }
 
   override def outerToInner(value: BigDecimal): java.math.BigDecimal = {
-    value.bigDecimal
+    value.bigDecimal.stripTrailingZeros()
   }
 }

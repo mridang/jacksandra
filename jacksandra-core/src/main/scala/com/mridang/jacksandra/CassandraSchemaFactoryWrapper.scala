@@ -1,6 +1,5 @@
 package com.mridang.jacksandra
 
-import com.datastax.oss.driver.api.core.`type`.DataType
 import com.datastax.oss.driver.api.mapper.annotations.CqlName
 import com.fasterxml.jackson.databind.`type`.{CollectionLikeType, MapLikeType}
 import com.fasterxml.jackson.databind.jsonFormatVisitors._
@@ -16,7 +15,7 @@ class CassandraSchemaFactoryWrapper
 (
   _provider: SerializerProvider,
   _wrapperFactory: WrapperFactory,
-  dataFn: JavaType => DataType
+  codecProvider: CodecProvider
 ) extends SchemaFactoryWrapper(_provider, _wrapperFactory) {
 
   def cassandraVisitorContext: VisitorContext = {
@@ -28,14 +27,14 @@ class CassandraSchemaFactoryWrapper
     val jsonFormatVisitor: JsonMapFormatVisitor = super.expectMapFormat(convertedType)
     this.schema = new CassandraEntrySchema(
       convertedType,
-      dataFn(convertedType.asInstanceOf[MapLikeType].getKeyType),
-      dataFn(convertedType.asInstanceOf[MapLikeType].getContentType))
+      codecProvider.getDT(convertedType.asInstanceOf[MapLikeType].getKeyType),
+      codecProvider.getDT(convertedType.asInstanceOf[MapLikeType].getContentType))
     jsonFormatVisitor
   }
 
   override def expectAnyFormat(convertedType: JavaType):
   JsonAnyFormatVisitor = {
-    val anySchema = new CassandraAnySchema(convertedType, dataFn(convertedType))
+    val anySchema = new CassandraAnySchema(convertedType, codecProvider.getDT(convertedType))
     this.schema = anySchema
     visitorFactory.anyFormatVisitor(anySchema)
   }
@@ -57,7 +56,7 @@ class CassandraSchemaFactoryWrapper
     val jsonFormatVisitor: JsonArrayFormatVisitor = super.expectArrayFormat(convertedType)
     this.schema = new CassandraArraySchema(
       convertedType,
-      dataFn(convertedType.asInstanceOf[CollectionLikeType].getContentType))
+      codecProvider.getDT(convertedType.asInstanceOf[CollectionLikeType].getContentType))
     jsonFormatVisitor
   }
 
@@ -74,7 +73,7 @@ class CassandraSchemaFactoryWrapper
    */
   override def expectBooleanFormat(convertedType: JavaType):
   JsonBooleanFormatVisitor = {
-    val booleanSchema = new CassandraBooleanSchema(convertedType, dataFn(convertedType))
+    val booleanSchema = new CassandraBooleanSchema(convertedType, codecProvider.getDT(convertedType))
     this.schema = booleanSchema
     visitorFactory.booleanFormatVisitor(booleanSchema)
   }
@@ -99,7 +98,7 @@ class CassandraSchemaFactoryWrapper
    */
   override def expectIntegerFormat(convertedType: JavaType):
   JsonIntegerFormatVisitor = {
-    val integerSchema = new CassandraIntegerSchema(convertedType, dataFn(convertedType))
+    val integerSchema = new CassandraIntegerSchema(convertedType, codecProvider.getDT(convertedType))
     this.schema = integerSchema
     visitorFactory.integerFormatVisitor(integerSchema)
   }
@@ -124,7 +123,7 @@ class CassandraSchemaFactoryWrapper
    */
   override def expectNumberFormat(convertedType: JavaType):
   JsonNumberFormatVisitor = {
-    val numberSchema = new CassandraNumberSchema(convertedType, dataFn(convertedType))
+    val numberSchema = new CassandraNumberSchema(convertedType, codecProvider.getDT(convertedType))
     schema = numberSchema
     visitorFactory.numberFormatVisitor(numberSchema)
   }
@@ -144,7 +143,7 @@ class CassandraSchemaFactoryWrapper
    */
   override def expectStringFormat(convertedType: JavaType):
   JsonStringFormatVisitor = {
-    val stringSchema = new CassandraStringSchema(convertedType, dataFn(convertedType))
+    val stringSchema = new CassandraStringSchema(convertedType, codecProvider.getDT(convertedType))
     schema = stringSchema
     visitorFactory.stringFormatVisitor(stringSchema)
   }

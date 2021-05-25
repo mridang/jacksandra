@@ -23,7 +23,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
   import com.datastax.spark.connector.plus.{toRDDFunctions, toSparkContextFunctions}
 
   final val defaultKeyspace: String = "jacksandra"
-  final val randomItemsCount: Int = 50
+  final val randomItemsCount: Int = 1
   override val conf: SparkConf = {
     super.conf.set("spark.cassandra.output.batch.grouping.key", "none")
   }
@@ -42,7 +42,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
         .withSimpleStrategy(1)
         .asCql())
 
-      val createSchema: List[String] = mapper.generateMappingProperties
+      val createSchema: List[String] = mapper.toSchema
       createSchema.foreach(statement => {
         session.execute(statement)
       })

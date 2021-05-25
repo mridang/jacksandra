@@ -1,8 +1,5 @@
 package com.datastax.oss.driver.internal.core.type.codec.extras;
 
-import java.util.function.Function;
-
-import com.datastax.oss.driver.api.core.type.DataType;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.CqlDurationCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.DurationTypeCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.LegacyDateCodec;
@@ -14,9 +11,8 @@ import com.datastax.oss.driver.internal.core.type.codec.extras.time.YearMonthCod
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.ZoneIdCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.ZoneOffsetCodec;
 import com.datastax.oss.driver.internal.core.type.codec.registry.DefaultCodecRegistry;
-import com.fasterxml.jackson.databind.JavaType;
 
-public class CassandraCodecRegistry extends DefaultCodecRegistry implements Function<JavaType, DataType> {
+public class CassandraCodecRegistry extends DefaultCodecRegistry {
 
     public CassandraCodecRegistry() {
         super("Jacksandra");
@@ -33,10 +29,5 @@ public class CassandraCodecRegistry extends DefaultCodecRegistry implements Func
         register(new CqlAsciiCodec());
         register(new CqlTimeUUIDCodec());
         register(new CqlDurationCodec());
-    }
-
-    @Override
-    public DataType apply(JavaType javaType) {
-        return null;
     }
 }
