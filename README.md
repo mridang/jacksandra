@@ -107,8 +107,7 @@ EXISTS brandsimilarities
 
 ### Types
 
-The follow exhaustive list outlines all the CQL types along with the 
-JVM counterparts.
+The follow exhaustive list outlines all the CQL types along with the JVM counterparts.
 
 | CQL         |           Java                             |          Scala         |
 |-------------|--------------------------------------------|-----------------------:|
@@ -138,43 +137,35 @@ JVM counterparts.
 
 ### Collections
 
-Jacksandra supports all collection types including the "frozen" variants. 
-Any property that derives from `java.util.Collection` will be mapped 
-as a `LIST` data type. If you require a "frozen" representation, use any 
-collection type simply implement the `Frozen` interface.
+Jacksandra supports all collection types including the "frozen" variants. Any property that derives from `java.util.Collection` will be mapped as a `LIST` data
+type. If you require a "frozen" representation, use any collection type simply implement the `Frozen` interface.
 
 #### Lists
 
-When using Java: any property that derives from `java.util.List` will be mapped 
-as a `LIST` data type. If you require a "frozen" representation, 
+When using Java: any property that derives from `java.util.List` will be mapped as a `LIST` data type. If you require a "frozen" representation,
 use `FrozenList` when possible.
 
-When using Scala: any property that derives from `scala.collection.mutable.List` 
-will bbe mapped as `LIST` data type. If you require a "frozen" representation,
-use `scala.collection.immutable.List` when possible.
+When using Scala: any property that derives from `scala.collection.mutable.List`
+will bbe mapped as `LIST` data type. If you require a "frozen" representation, use `scala.collection.immutable.List` when possible.
 
 #### Sets
 
-When using Java: any property that derives from `java.util.Set` will be mapped 
-as a `SET` data type. If you require a "frozen" representation, use `FrozenSet` 
+When using Java: any property that derives from `java.util.Set` will be mapped as a `SET` data type. If you require a "frozen" representation, use `FrozenSet`
 when possible.
 
 When using Scala: any property that derives from `scala.collection.mutable.Set`
-will bbe mapped as `LIST` data type. If you require a "frozen" representation,
-use `scala.collection.immutable.Set` when possible.
+will bbe mapped as `LIST` data type. If you require a "frozen" representation, use `scala.collection.immutable.Set` when possible.
 
 ### Maps
 
-AnWhen using Java: any property that derives from `java.util.Map` will be mapped 
-as a `MAP` data type.
+AnWhen using Java: any property that derives from `java.util.Map` will be mapped as a `MAP` data type.
 
 When using Scala: any property that derives from `scala.collection.mutable.Map`
 will bbe mapped as `MAP` data type.
 
 ### Tuples
 
-At the time of writing, there is no support for tuples. 
-See https://github.com/mridang/jacksandra/issues/4
+At the time of writing, there is no support for tuples. See https://github.com/mridang/jacksandra/issues/4
 
 ### Partition Keys
 
@@ -212,11 +203,9 @@ class MyBean(@PartitionKey val ssn: Int, val firstName: String, val lastName: St
 
 ### Writing
 
-In order to persist an RDD into a Cassandra table, you can use the following. The
-connector must be provided as an implicit variable.
+In order to persist an RDD into a Cassandra table, you can use the following. The connector must be provided as an implicit variable.
 
-This method does not create the keyspace, the table or any types. The name of the
-table is read from the `CqlName` annotation on the entity.
+This method does not create the keyspace, the table or any types. The name of the table is read from the `CqlName` annotation on the entity.
 
 ```scala
 import com.datastax.spark.connector.plus.toRDDFunctions
@@ -230,11 +219,9 @@ inputRDD.saveToCassandra("mykeyspace")
 
 ### Reading
 
-In order to read a Cassandra table into an RDD, you can use the following. The
-connector must be provided as an implicit variable.
+In order to read a Cassandra table into an RDD, you can use the following. The connector must be provided as an implicit variable.
 
-This method does not create the keyspace, the table or any types. The name of the
-table is read from the `CqlName` annotation on the entity.
+This method does not create the keyspace, the table or any types. The name of the table is read from the `CqlName` annotation on the entity.
 
 ```scala
 import com.datastax.spark.connector.plus.toSparkContextFunctions

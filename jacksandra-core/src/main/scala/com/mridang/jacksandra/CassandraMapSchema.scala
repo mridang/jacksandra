@@ -9,11 +9,11 @@ import com.mridang.jacksandra.annotations.{OrderedClusteringColumn, StaticColumn
 import scala.annotation.meta.field
 
 class CassandraMapSchema(
-                             @(JsonIgnore@field) override val name: CqlName,
-                             @(JsonIgnore@field) override val backing: ObjectSchema,
-                             override val isPartitionKey: Option[PartitionKey],
-                             override val clusteringColumn: Option[OrderedClusteringColumn],
-                             override val staticColumn: Option[StaticColumn])
+                          @(JsonIgnore@field) override val name: CqlName,
+                          @(JsonIgnore@field) override val backing: ObjectSchema,
+                          override val isPartitionKey: Option[PartitionKey],
+                          override val clusteringColumn: Option[OrderedClusteringColumn],
+                          override val staticColumn: Option[StaticColumn])
   extends CassandraJsonSchemaBase(
     name,
     isPartitionKey,

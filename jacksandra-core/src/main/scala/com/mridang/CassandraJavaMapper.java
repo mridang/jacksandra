@@ -24,7 +24,8 @@ import scala.runtime.AbstractFunction2;
 public class CassandraJavaMapper<T> {
 
     private final WrapperFactory wrapperFactory;
-    private final ObjectMapper schemaMapper = new CassandraObjectMapper();;
+    private final ObjectMapper schemaMapper = new CassandraObjectMapper();
+    ;
     private final Class<?> mappedKlass;
     private final String defaultKeyspace;
 

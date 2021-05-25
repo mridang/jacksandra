@@ -24,7 +24,7 @@ class CassandraEntrySchema(val javaType: JavaType, val keyDataType: DataType, va
   val isFrozen: Boolean = classOf[Frozen].isAssignableFrom(javaType.getRawClass)
 
   override def getDataType: DataType = {
-   DataTypes.mapOf(keyDataType, valueDataType)
+    DataTypes.mapOf(keyDataType, valueDataType)
   }
 
   override def getJavaType: JavaType = javaType

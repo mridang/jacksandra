@@ -8,8 +8,7 @@ import org.apache.commons.lang3.builder.{EqualsBuilder, HashCodeBuilder, ToStrin
 
 import java.io.Serializable
 import javax.annotation.Nullable
-import scala.collection.mutable
-import scala.collection.immutable
+import scala.collection.{immutable, mutable}
 
 @SuppressWarnings(Array("unused"))
 @CqlName("myjavabeanwithmaps")

@@ -145,9 +145,9 @@ class CassandraTableWriter[T] private(connector: CassandraConnector,
   /**
    * Cql DELETE statement
    *
-   * @param columns columns to delete, the row will be deleted completely if the list is empty
+   * @param columns     columns to delete, the row will be deleted completely if the list is empty
    * @param taskContext the current task context
-   * @param data    primary key values to select delete rows
+   * @param data        primary key values to select delete rows
    */
   def delete(columns: ColumnSelector)(taskContext: TaskContext,
                                       data: Iterator[T]): Unit =

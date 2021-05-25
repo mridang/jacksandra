@@ -32,6 +32,8 @@ object CassandraMapper {
  */
 class CassandraMapper[T](keyspace: String, codecProvider: CodecProvider)(implicit classTag: ClassTag[T]) {
 
+  private val schemaMapper = new CassandraObjectMapper()
+
   def this(keyspace: String, codecRegistry: CodecRegistry)(implicit classTag: ClassTag[T]) {
     this(keyspace, new RegistryBasedCodecProvider(codecRegistry))(classTag)
   }
@@ -39,8 +41,6 @@ class CassandraMapper[T](keyspace: String, codecProvider: CodecProvider)(implici
   def this(keyspace: String)(implicit classTag: ClassTag[T]) {
     this(keyspace, CassandraMapper.codecRegistry)(classTag)
   }
-
-  private val schemaMapper = new CassandraObjectMapper()
 
   def toSchema: List[String] = {
     val schemaFactoryWrapper: SchemaFactoryWrapper = {
