@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraArraySchema.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraArraySchema.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
