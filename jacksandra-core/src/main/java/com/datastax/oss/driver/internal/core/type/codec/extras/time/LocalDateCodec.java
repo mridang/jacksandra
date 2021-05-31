@@ -15,8 +15,8 @@
  */
 package com.datastax.oss.driver.internal.core.type.codec.extras.time;
 
-import java.time.Instant;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import com.datastax.oss.driver.api.core.type.codec.MappingCodec;
 import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
@@ -24,21 +24,21 @@ import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 
 import edu.umd.cs.findbugs.annotations.Nullable;
 
-public class LegacyDateCodec extends MappingCodec<Instant, Date> {
+public class LocalDateCodec extends MappingCodec<LocalDate, Date> {
 
-    public LegacyDateCodec() {
-        super(TypeCodecs.TIMESTAMP, GenericType.of(Date.class));
+    public LocalDateCodec() {
+        super(TypeCodecs.DATE, GenericType.of(Date.class));
     }
 
     @Nullable
     @Override
-    protected Date innerToOuter(@Nullable Instant value) {
-        return value == null ? null : Date.from(value);
+    protected Date innerToOuter(@Nullable LocalDate value) {
+        return value == null ? null : Date.valueOf(value);
     }
 
     @Nullable
     @Override
-    protected Instant outerToInner(@Nullable Date value) {
-        return value == null ? null : value.toInstant();
+    protected LocalDate outerToInner(@Nullable Date value) {
+        return value == null ? null : value.toLocalDate();
     }
 }

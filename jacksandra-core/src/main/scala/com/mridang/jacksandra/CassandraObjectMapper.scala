@@ -1,16 +1,14 @@
 package com.mridang.jacksandra
 
 import com.fasterxml.jackson.annotation.JsonFormat.{Shape, Value}
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.fasterxml.jackson.datatype.cql.CassandraModule
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
-import java.sql.Timestamp
 import java.time._
-import java.util.Date
 
 class CassandraObjectMapper extends ObjectMapper with Serializable {
 
@@ -20,13 +18,6 @@ class CassandraObjectMapper extends ObjectMapper with Serializable {
   super.registerModule(new SimpleModule())
   super.registerModule(new CassandraModule)
 
-  enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-  disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS)
-
-
-  configOverride(classOf[Date]).setFormat(Value.forShape(Shape.STRING))
-  configOverride(classOf[Timestamp]).setFormat(Value.forShape(Shape.STRING))
-  configOverride(classOf[Instant]).setFormat(Value.forShape(Shape.STRING))
   configOverride(classOf[OffsetDateTime]).setFormat(Value.forShape(Shape.STRING))
   configOverride(classOf[ZonedDateTime]).setFormat(Value.forShape(Shape.STRING))
   configOverride(classOf[Duration]).setFormat(Value.forShape(Shape.STRING)) // Use CqlDuration instead

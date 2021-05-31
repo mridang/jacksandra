@@ -20,6 +20,8 @@ import com.fasterxml.jackson.datatype.cql.ser.CqlAsciiSerializer;
 import com.fasterxml.jackson.datatype.cql.ser.CqlBlobSerializer;
 import com.fasterxml.jackson.datatype.cql.ser.CqlDurationSerializer;
 import com.fasterxml.jackson.datatype.cql.ser.CqlTimeUUIDSerializer;
+import com.fasterxml.jackson.datatype.cql.ser.DateAsMillisSerializer;
+import com.fasterxml.jackson.datatype.cql.ser.InstantAsMillisSerializer;
 import com.fasterxml.jackson.datatype.cql.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jdk8.PackageVersion;
 import com.mridang.jacksandra.types.CqlAscii;
@@ -45,6 +47,8 @@ public class CassandraModule extends SimpleModule {
         addDeserializer(CqlAscii.class, new CqlAsciiDeserializer());
         addSerializer(CqlTimeUUID.class, new CqlTimeUUIDSerializer());
         addDeserializer(CqlTimeUUID.class, new CqlTimeUUIDDeserializer());
+        addSerializer(Instant.class, new InstantAsMillisSerializer());
+        addSerializer(Date.class, new DateAsMillisSerializer());
     }
 
     @Override

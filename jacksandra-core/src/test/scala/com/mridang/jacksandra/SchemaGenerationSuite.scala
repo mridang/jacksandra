@@ -87,7 +87,7 @@ class SchemaGenerationSuite extends AnyFunSuite {
         |     , tooffsettimestring       TEXT
         |     , toinstanttimestamp       TIMESTAMP
         |     , tomonthdaystring         TEXT
-        |     , todatetimestamp          TEXT
+        |     , todatetimestamp          TIMESTAMP
         |     , tojavadurationduration   DURATION
         |     , totimestamptimestamp     TIMESTAMP
         |     , tooffsetdatetimestring   TEXT

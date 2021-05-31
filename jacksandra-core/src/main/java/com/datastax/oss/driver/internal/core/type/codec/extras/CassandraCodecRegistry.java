@@ -3,6 +3,7 @@ package com.datastax.oss.driver.internal.core.type.codec.extras;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.CqlDurationCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.DurationTypeCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.LegacyDateCodec;
+import com.datastax.oss.driver.internal.core.type.codec.extras.time.LocalDateCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.LegacyTimestampCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.LocalDateTimeCodec;
 import com.datastax.oss.driver.internal.core.type.codec.extras.time.MonthDayCodec;
@@ -21,7 +22,7 @@ public class CassandraCodecRegistry extends DefaultCodecRegistry {
         register(new YearCodec());
         register(new ZoneIdCodec());
         register(new ZoneOffsetCodec());
-        register(new LegacyDateCodec());
+        register(new LocalDateCodec());
         register(new LegacyTimestampCodec());
         register(new LocalDateTimeCodec());
         register(new DurationTypeCodec());
@@ -29,5 +30,6 @@ public class CassandraCodecRegistry extends DefaultCodecRegistry {
         register(new CqlAsciiCodec());
         register(new CqlTimeUUIDCodec());
         register(new CqlDurationCodec());
+        register(new LegacyDateCodec());
     }
 }
