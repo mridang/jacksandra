@@ -56,7 +56,7 @@ dependencies {
             force = true
         }
     }
-    implementation(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-guava') {
+    testImplementation(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-guava') {
         version {
             strictly '2.10.5'
         }

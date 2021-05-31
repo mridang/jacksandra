@@ -2,9 +2,12 @@ package com.datastax.spark.connector
 
 import com.datastax.oss.driver.api.querybuilder.SchemaBuilder
 import com.datastax.oss.driver.internal.core.`type`.codec.extras.scala.ScalaCodecRegistry
+import com.datastax.spark.connector.SparkIntegrationSuite.objectMapper
 import com.datastax.spark.connector.cql.{CassandraConnector, ContactInfo}
 import com.datastax.spark.connector.writer.{CassandraJsonRowWriterFactory, RowWriterFactory}
 import com.dimafeng.testcontainers.{CassandraContainer, ForAllTestContainer}
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra._
 import org.apache.spark.SparkConf
@@ -16,9 +19,15 @@ import org.testcontainers.utility.DockerImageName
 
 import scala.reflect.ClassTag
 
-class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
+object SparkIntegrationSuite {
 
-  //noinspection ScalaStyle
+  val objectMapper: ObjectMapper = {
+    new CassandraObjectMapper().registerModule(new GuavaModule)
+  }
+
+}
+
+class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
 
   import com.datastax.spark.connector.plus.{toRDDFunctions, toSparkContextFunctions}
 
@@ -27,7 +36,6 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
   override val conf: SparkConf = {
     super.conf.set("spark.cassandra.output.batch.grouping.key", "none")
   }
-
   override val container: CassandraContainer = CassandraContainer(DockerImageName.parse("cassandra:3.11.6"))
 
   def createTable[T]()(implicit ctag: ClassTag[T]): Unit = {
@@ -49,7 +57,7 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     })
   }
 
-  ignore("that saving and querying entities works as expected") {
+  test("that saving and querying entities works as expected") {
     createTable[MyBean]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -60,13 +68,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[MyBean] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[MyBean](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[MyBean](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying entities with collections works as expected") {
+  test("that saving and querying entities with collections works as expected") {
     createTable[JavaBeanWithCollections]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -77,13 +85,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithCollections] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithCollections](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithCollections](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying entities with numbers works as expected") {
+  test("that saving and querying entities with numbers works as expected") {
     createTable[JavaBeanWithNumbers]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -94,13 +102,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithNumbers] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithNumbers](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithNumbers](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying entities with temporals works as expected") {
+  test("that saving and querying entities with temporals works as expected") {
     createTable[JavaBeanWithTemporal]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -111,13 +119,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithTemporal] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithTemporal](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithTemporal](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying entities with udts works as expected") {
+  test("that saving and querying entities with udts works as expected") {
     createTable[JavaBeanWithUDT]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -128,13 +136,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithUDT] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithUDT](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithUDT](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying entities with exotics works as expected") {
+  test("that saving and querying entities with exotics works as expected") {
     createTable[JavaBeanWithExotics]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -145,8 +153,8 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithExotics] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithExotics](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithExotics](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
@@ -162,13 +170,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[JavaBeanWithMaps] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[JavaBeanWithMaps](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[JavaBeanWithMaps](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with collections works as expected") {
+  test("that saving and querying scala classes with collections works as expected") {
     createTable[ClassWithCollections]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -179,13 +187,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithCollections] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithCollections](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithCollections](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with numbers works as expected") {
+  test("that saving and querying scala classes with numbers works as expected") {
     createTable[ClassWithNumbers]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -196,13 +204,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithNumbers] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithNumbers](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithNumbers](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with temporals works as expected") {
+  test("that saving and querying scala classes with temporals works as expected") {
     createTable[ClassWithTemporal]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -213,13 +221,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithTemporal] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithTemporal](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithTemporal](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with udts works as expected") {
+  test("that saving and querying scala classes with udts works as expected") {
     createTable[ClassWithUDT]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -230,13 +238,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithUDT] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithUDT](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithUDT](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with exotics works as expected") {
+  test("that saving and querying scala classes with exotics works as expected") {
     createTable[ClassWithExotics]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -247,13 +255,13 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithExotics] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithExotics](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithExotics](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }
 
-  ignore("that saving and querying scala classes with maps works as expected") {
+  test("that saving and querying scala classes with maps works as expected") {
     createTable[ClassWithMaps]()
 
     val contactInfo: ContactInfo = new ContainerContactInfo(container.container)
@@ -264,8 +272,8 @@ class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with Sh
     val inputItems: Set[ClassWithMaps] = inputRDD.collect()
       .toSet
 
-    inputRDD.saveToCassandra(defaultKeyspace)
-    sc.cassandraTable[ClassWithMaps](defaultKeyspace)
+    inputRDD.saveToCassandra(defaultKeyspace, objectMapper = () => objectMapper)
+    sc.cassandraTable[ClassWithMaps](defaultKeyspace, objectMapper = () => objectMapper)
       .collect()
       .toSet should contain theSameElementsAs inputItems
   }

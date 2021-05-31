@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jacksandra-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraObjectMapper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/scala/com/mridang/jacksandra/CassandraObjectMapper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithMaps.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/JavaBeanWithMaps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/CassandraRDDFunctions.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JacksandraSparkContextFunctions.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/JsonRowSupport.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/CassandraJsonRowReader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/rdd/reader/CassandraJsonRowReader.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraJsonRowWriter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/main/scala/com/datastax/spark/connector/writer/CassandraJsonRowWriter.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +145,7 @@
       <recent name="com.mridang.jacksandra.types" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SchemaGenerationSuite">
+  <component name="RunManager" selected="Gradle.SparkIntegrationSuite">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -346,15 +343,6 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <option name="AUTO_RESTART" value="false" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="jacksandra.main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -365,6 +353,14 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="aws.lambda" factoryName="Remote">
+      <option name="credentialProviderId" />
+      <option name="regionId" />
+      <option name="functionName" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -411,8 +407,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SchemaGenerationSuite" />
         <item itemvalue="Gradle.SparkIntegrationSuite" />
+        <item itemvalue="Gradle.SchemaGenerationSuite" />
         <item itemvalue="Gradle.MainSuite" />
         <item itemvalue="Gradle.MainSuite" />
         <item itemvalue="Gradle.MainSuite" />

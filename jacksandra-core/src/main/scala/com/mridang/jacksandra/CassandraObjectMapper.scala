@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat.{Shape, Value}
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.fasterxml.jackson.datatype.cql.CassandraModule
-import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
@@ -19,7 +18,6 @@ class CassandraObjectMapper extends ObjectMapper with Serializable {
   super.registerModule(new Jdk8Module)
   super.registerModule(new JavaTimeModule)
   super.registerModule(new SimpleModule())
-  super.registerModule(new GuavaModule())
   super.registerModule(new CassandraModule)
 
   enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)

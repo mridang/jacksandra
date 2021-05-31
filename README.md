@@ -233,7 +233,7 @@ val inputRDD: RDD[MyBean] = sc.cassandraTable[MyBean]("mykeyspace")
 
 ## License
 
-Apache 2.0 License
+Apache-2.0 License
 
 Copyright (c) 2021 Mridang Agarwalla
 
