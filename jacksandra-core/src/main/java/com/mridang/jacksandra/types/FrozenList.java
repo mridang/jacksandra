@@ -1,6 +1,7 @@
 package com.mridang.jacksandra.types;
 
 import java.io.Serializable;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -118,6 +119,11 @@ public class FrozenList<E> implements List<E>, Frozen, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
+        if (o instanceof AbstractList) {
+            return o.equals(this);
+        }
+
         if (!(o instanceof FrozenList)) return false;
 
         FrozenList<?> that = (FrozenList<?>) o;

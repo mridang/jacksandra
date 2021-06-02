@@ -12,9 +12,11 @@ import com.holdenkarau.spark.testing.SharedSparkContext
 import com.mridang.jacksandra._
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
+import org.junit.runner.RunWith
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.must.Matchers.contain
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
+import org.scalatestplus.junit.JUnitRunner
 import org.testcontainers.utility.DockerImageName
 
 import scala.reflect.ClassTag
@@ -27,6 +29,7 @@ object SparkIntegrationSuite {
 
 }
 
+@RunWith(classOf[JUnitRunner])
 class SparkIntegrationSuite extends AnyFunSuite with ForAllTestContainer with SharedSparkContext {
 
   import com.datastax.spark.connector.plus.{toRDDFunctions, toSparkContextFunctions}

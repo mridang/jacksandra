@@ -65,7 +65,7 @@ To generate the schema for the bean described above, you would run:
 
 ```scala
     val mapper = new CassandraJavaBeanMapper[BrandSimilarities]()
-    val createSchema: String = mapper.generateMappingProperties
+val createSchema: String = mapper.generateMappingProperties
 ```
 
 to yield the DDL:
@@ -197,7 +197,7 @@ You can easily add support for custom types.
 
 ```scala
 @CqlName("mytable")
-class MyBean(@PartitionKey val ssn: Int, val firstName: String, val lastName: String) 
+class MyBean(@PartitionKey val ssn: Int, val firstName: String, val lastName: String)
   extends Serializable
 ```
 

@@ -1,8 +1,11 @@
 package com.mridang.jacksandra
 
+import org.junit.runner.RunWith
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
+import org.scalatestplus.junit.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class SchemaGenerationSuite extends AnyFunSuite {
 
   final val defaultKeyspace: String = "jacksandra"

@@ -1,6 +1,7 @@
 package com.mridang.jacksandra.types;
 
 import java.io.Serializable;
+import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -100,6 +101,11 @@ public class FrozenSet<E> implements Set<E>, Frozen, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
+        if (o instanceof AbstractSet) {
+            return o.equals(this);
+        }
+
         if (!(o instanceof FrozenSet)) return false;
 
         FrozenSet<?> frozenSet = (FrozenSet<?>) o;
