@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef1827bf-749c-4b7b-b8a2-1e1c405340f9" name="Default Changelist" comment=".">
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/types/FrozenListTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra/types/FrozenSetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/MainSuite.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/main/java/com/mridang/jacksandra/types/FrozenList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/jacksandra-core/src/test/scala/com/mridang/jacksandra/SchemaGenerationSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/spark-jacksandra-helper/src/test/scala/com/datastax/spark/connector/SparkIntegrationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +83,11 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="NamedScopeManager">
+    <order>
+      <scope name="Inspection" />
+    </order>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="3" />
   </component>
@@ -113,6 +112,8 @@
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.6 (annoy)" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/jacksandra-core/src/test/java/com/mridang/jacksandra" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -179,6 +180,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="aws.lambda" factoryName="Remote">
+      <option name="credentialProviderId" />
+      <option name="regionId" />
+      <option name="functionName" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -219,6 +228,7 @@
             <option value=":jacksandra-core:test" />
           </list>
         </option>
+        <option name="tasksAndArguments" value=":jacksandra-core:test --tests &quot;com.mridang.jacksandra.types.FrozenListTest&quot;" />
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
@@ -240,6 +250,7 @@
             <option value=":spark-jacksandra-helper:test" />
           </list>
         </option>
+        <option name="tasksAndArguments" value=":spark-jacksandra-helper:test --tests &quot;com.datastax.spark.connector.MainSuite&quot;" />
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
@@ -261,6 +272,7 @@
             <option value=":jacksandra-core:test" />
           </list>
         </option>
+        <option name="tasksAndArguments" value=":jacksandra-core:test --tests &quot;com.mridang.jacksandra.SchemaGenerationSuite&quot;" />
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
@@ -282,6 +294,7 @@
             <option value=":spark-jacksandra-helper:test" />
           </list>
         </option>
+        <option name="tasksAndArguments" value=":spark-jacksandra-helper:test --tests &quot;com.datastax.spark.connector.SparkIntegrationSuite&quot;" />
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
@@ -341,14 +354,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="aws.lambda" factoryName="Remote">
-      <option name="credentialProviderId" />
-      <option name="regionId" />
-      <option name="functionName" />
-      <option name="input" />
-      <option name="inputIsFile" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">

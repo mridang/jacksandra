@@ -1,6 +1,6 @@
+//file:noinspection GrUnresolvedAccess
+//file:noinspection GroovyAssignabilityCheck
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-
-//noinspection GroovyAssignabilityCheck
 
 buildscript {
     repositories {
