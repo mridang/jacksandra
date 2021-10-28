@@ -24,6 +24,7 @@ class CassandraEntrySchema(val javaType: JavaType, var keyDataType: DataType, va
 
   val isFrozen: Boolean = classOf[Frozen].isAssignableFrom(javaType.getRawClass)
 
+  //noinspection DuplicatedCode
   override def getDataType: DataType = {
     // if the inner item is a UDT, it must be frozen or it will lead to this error
     // "Non-frozen UDTs are not allowed inside collections"

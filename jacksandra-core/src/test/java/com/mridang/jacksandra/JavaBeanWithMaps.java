@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.google.common.collect.ImmutableMap;
 import com.mridang.jacksandra.JavaBeanWithUDT.SomeUDT;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "CommentedOutCode"})
 @CqlName("myjavabeanwithmaps")
 @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
 public class JavaBeanWithMaps implements Serializable {

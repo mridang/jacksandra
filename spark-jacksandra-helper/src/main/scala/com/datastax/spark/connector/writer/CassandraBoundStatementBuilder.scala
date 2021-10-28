@@ -15,6 +15,7 @@ class CassandraBoundStatementBuilder[T](
     new RowWriter[T] {
       override def columnNames: Seq[String] = Seq("jsondata")
 
+      //noinspection NotImplementedCode
       override def readColumnValues(data: T, buffer: Array[Any]): Unit = ???
     },
     preparedStmt,

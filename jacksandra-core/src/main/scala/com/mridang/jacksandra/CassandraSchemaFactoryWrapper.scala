@@ -151,7 +151,8 @@ class CassandraSchemaFactoryWrapper
   /**
    * Customised [[ObjectSchema]] visits:
    * - Disable reference schemas as there is no support for such things in Cassandra (so don't call visitorContext.addSeenSchemaUri)
-   * - Put [[CassandraJsonSchemaBase]] based objects to schema instead of standard [[JsonSchema]] ones.
+   * - Put [[CassandraJsonSchemaBase]] based objects to schema instead of standard 
+   *   [[com.fasterxml.jackson.module.jsonSchema.JsonSchema]] ones.
    */
   override def expectObjectFormat(convertedType: JavaType):
   JsonObjectFormatVisitor = {

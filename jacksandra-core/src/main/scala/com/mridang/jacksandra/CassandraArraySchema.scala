@@ -24,7 +24,7 @@ class CassandraArraySchema(val javaType: JavaType, var dataType: DataType)
 
   val isFrozen: Boolean = classOf[Frozen].isAssignableFrom(javaType.getRawClass)
 
-  //noinspection SimplifyBooleanMatch
+  //noinspection SimplifyBooleanMatch,DuplicatedCode
   override def getDataType: DataType = {
     // if the inner item is a UDT, it must be frozen or it will lead to this error
     // "Non-frozen UDTs are not allowed inside collections"
