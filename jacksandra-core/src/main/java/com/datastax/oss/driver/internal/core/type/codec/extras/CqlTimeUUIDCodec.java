@@ -7,8 +7,6 @@ import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 import com.mridang.jacksandra.types.CqlTimeUUID;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 public class CqlTimeUUIDCodec extends MappingCodec<UUID, CqlTimeUUID> {
 
     public CqlTimeUUIDCodec() {

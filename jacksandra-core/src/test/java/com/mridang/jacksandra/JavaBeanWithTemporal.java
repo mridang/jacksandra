@@ -169,7 +169,6 @@ public class JavaBeanWithTemporal implements Serializable {
 
     /**
      * No shaping.
-     * {@link com.fasterxml.jackson.datatype.jsr310.ser.ZoneIdSerializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
     @Nullable

@@ -1,3 +1,5 @@
+//file:noinspection GrUnresolvedAccess
+
 dependencies {
     implementation group: 'com.datastax.oss', name: 'java-driver-query-builder', version: '4.6.1'
     implementation group: 'com.datastax.oss', name: 'java-driver-mapper-runtime', version: '4.6.1'

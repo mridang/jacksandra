@@ -8,9 +8,11 @@ import com.fasterxml.jackson.module.jsonSchema.factories.{ObjectVisitor, SchemaF
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema
 
 /**
- * A customized visitor that intercepts generated [[JsonSchema]] instances
+ * A customized visitor that intercepts generated 
+ * [[com.fasterxml.jackson.databind.jsonschema.JsonSchema]] instances
  * and uses [[CassandraJsonSchemaBase]] based objects instead.
  */
+//noinspection ScalaDeprecation
 class CassandraSchemaFactoryWrapper
 (
   _provider: SerializerProvider,

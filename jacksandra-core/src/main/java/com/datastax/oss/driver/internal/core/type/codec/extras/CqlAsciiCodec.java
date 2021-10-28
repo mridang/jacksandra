@@ -5,8 +5,6 @@ import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 import com.mridang.jacksandra.types.CqlAscii;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 public class CqlAsciiCodec extends MappingCodec<String, CqlAscii> {
 
     public CqlAsciiCodec() {

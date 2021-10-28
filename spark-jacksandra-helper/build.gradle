@@ -1,3 +1,5 @@
+//file:noinspection GrUnresolvedAccess
+
 dependencies {
     implementation project(':jacksandra-core')
     testImplementation project(':jacksandra-core').sourceSets.test.output

@@ -7,8 +7,6 @@ import com.datastax.oss.driver.api.core.type.codec.MappingCodec;
 import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 public class DurationTypeCodec extends MappingCodec<CqlDuration, Duration> {
 
     public DurationTypeCodec() {

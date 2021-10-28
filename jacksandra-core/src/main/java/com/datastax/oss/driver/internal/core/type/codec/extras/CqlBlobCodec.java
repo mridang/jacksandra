@@ -7,8 +7,6 @@ import com.datastax.oss.driver.api.core.type.codec.TypeCodecs;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
 import com.mridang.jacksandra.types.CqlBlob;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 @SuppressWarnings("ByteBufferBackingArray")
 public class CqlBlobCodec extends MappingCodec<ByteBuffer, CqlBlob> {
 
