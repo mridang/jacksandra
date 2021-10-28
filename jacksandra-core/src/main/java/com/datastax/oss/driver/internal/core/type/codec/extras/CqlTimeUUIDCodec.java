@@ -15,15 +15,13 @@ public class CqlTimeUUIDCodec extends MappingCodec<UUID, CqlTimeUUID> {
         super(TypeCodecs.TIMEUUID, GenericType.of(CqlTimeUUID.class));
     }
 
-    @Nullable
     @Override
-    protected CqlTimeUUID innerToOuter(@Nullable UUID value) {
+    protected CqlTimeUUID innerToOuter(UUID value) {
         return value == null ? null : new CqlTimeUUID(value);
     }
 
-    @Nullable
     @Override
-    protected UUID outerToInner(@Nullable CqlTimeUUID value) {
+    protected UUID outerToInner(CqlTimeUUID value) {
         return value == null ? null : value.getUUID();
     }
 }

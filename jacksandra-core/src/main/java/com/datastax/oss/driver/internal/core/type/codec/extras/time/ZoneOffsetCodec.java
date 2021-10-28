@@ -14,15 +14,13 @@ public class ZoneOffsetCodec extends MappingCodec<String, ZoneOffset> {
         super(TypeCodecs.TEXT, GenericType.of(ZoneOffset.class));
     }
 
-    @Nullable
     @Override
-    protected ZoneOffset innerToOuter(@Nullable String value) {
+    protected ZoneOffset innerToOuter(String value) {
         return value == null ? null : ZoneOffset.of(value);
     }
 
-    @Nullable
     @Override
-    protected String outerToInner(@Nullable ZoneOffset value) {
+    protected String outerToInner(ZoneOffset value) {
         return value == null ? null : value.toString();
     }
 }

@@ -14,15 +14,13 @@ public class YearMonthCodec extends MappingCodec<String, YearMonth> {
         super(TypeCodecs.TEXT, GenericType.of(YearMonth.class));
     }
 
-    @Nullable
     @Override
-    protected YearMonth innerToOuter(@Nullable String value) {
+    protected YearMonth innerToOuter(String value) {
         return value == null ? null : YearMonth.parse(value);
     }
 
-    @Nullable
     @Override
-    protected String outerToInner(@Nullable YearMonth value) {
+    protected String outerToInner(YearMonth value) {
         return value == null ? null : value.toString();
     }
 }

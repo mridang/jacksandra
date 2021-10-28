@@ -30,15 +30,13 @@ public class LegacyDateCodec extends MappingCodec<Instant, Date> {
         super(TypeCodecs.TIMESTAMP, GenericType.of(Date.class));
     }
 
-    @Nullable
     @Override
-    protected Date innerToOuter(@Nullable Instant value) {
+    protected Date innerToOuter(Instant value) {
         return value == null ? null : Date.from(value);
     }
 
-    @Nullable
     @Override
-    protected Instant outerToInner(@Nullable Date value) {
+    protected Instant outerToInner(Date value) {
         return value == null ? null : value.toInstant();
     }
 }

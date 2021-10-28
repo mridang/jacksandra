@@ -31,15 +31,13 @@ public class LocalDateTimeCodec extends MappingCodec<Instant, LocalDateTime> {
         super(TypeCodecs.TIMESTAMP, GenericType.of(LocalDateTime.class));
     }
 
-    @Nullable
     @Override
-    protected LocalDateTime innerToOuter(@Nullable Instant value) {
+    protected LocalDateTime innerToOuter(Instant value) {
         return value == null ? null : LocalDateTime.ofInstant(value, ZoneOffset.UTC);
     }
 
-    @Nullable
     @Override
-    protected Instant outerToInner(@Nullable LocalDateTime value) {
+    protected Instant outerToInner(LocalDateTime value) {
         return value == null ? null : value.toInstant(ZoneOffset.UTC);
     }
 }

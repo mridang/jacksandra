@@ -30,15 +30,13 @@ public class LocalDateCodec extends MappingCodec<LocalDate, Date> {
         super(TypeCodecs.DATE, GenericType.of(Date.class));
     }
 
-    @Nullable
     @Override
-    protected Date innerToOuter(@Nullable LocalDate value) {
+    protected Date innerToOuter(LocalDate value) {
         return value == null ? null : Date.valueOf(value);
     }
 
-    @Nullable
     @Override
-    protected LocalDate outerToInner(@Nullable Date value) {
+    protected LocalDate outerToInner(Date value) {
         return value == null ? null : value.toLocalDate();
     }
 }

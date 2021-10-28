@@ -15,15 +15,13 @@ public class DurationTypeCodec extends MappingCodec<CqlDuration, Duration> {
         super(TypeCodecs.DURATION, GenericType.of(Duration.class));
     }
 
-    @Nullable
     @Override
-    protected Duration innerToOuter(@Nullable CqlDuration value) {
+    protected Duration innerToOuter(CqlDuration value) {
         return value == null ? null : Duration.parse(value.toString());
     }
 
-    @Nullable
     @Override
-    protected CqlDuration outerToInner(@Nullable Duration value) {
+    protected CqlDuration outerToInner(Duration value) {
         return value == null ? null : CqlDuration.from(value.toString());
     }
 }

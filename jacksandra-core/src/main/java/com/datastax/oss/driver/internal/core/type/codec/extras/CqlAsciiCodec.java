@@ -13,15 +13,13 @@ public class CqlAsciiCodec extends MappingCodec<String, CqlAscii> {
         super(TypeCodecs.ASCII, GenericType.of(CqlAscii.class));
     }
 
-    @Nullable
     @Override
-    protected CqlAscii innerToOuter(@Nullable String value) {
+    protected CqlAscii innerToOuter(String value) {
         return value == null ? null : new CqlAscii(value);
     }
 
-    @Nullable
     @Override
-    protected String outerToInner(@Nullable CqlAscii value) {
+    protected String outerToInner(CqlAscii value) {
         return value == null ? null : value.getString();
     }
 }

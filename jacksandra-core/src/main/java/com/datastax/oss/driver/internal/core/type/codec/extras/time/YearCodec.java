@@ -14,15 +14,13 @@ public class YearCodec extends MappingCodec<Integer, Year> {
         super(TypeCodecs.INT, GenericType.of(Year.class));
     }
 
-    @Nullable
     @Override
-    protected Year innerToOuter(@Nullable Integer value) {
+    protected Year innerToOuter(Integer value) {
         return value == null ? null : Year.parse(value.toString());
     }
 
-    @Nullable
     @Override
-    protected Integer outerToInner(@Nullable Year value) {
+    protected Integer outerToInner(Year value) {
         return value == null ? null : Integer.valueOf(value.toString());
     }
 }

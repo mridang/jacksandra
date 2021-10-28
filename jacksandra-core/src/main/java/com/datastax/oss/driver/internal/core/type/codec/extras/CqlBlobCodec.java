@@ -16,15 +16,13 @@ public class CqlBlobCodec extends MappingCodec<ByteBuffer, CqlBlob> {
         super(TypeCodecs.BLOB, GenericType.of(CqlBlob.class));
     }
 
-    @Nullable
     @Override
-    protected CqlBlob innerToOuter(@Nullable ByteBuffer value) {
+    protected CqlBlob innerToOuter(ByteBuffer value) {
         return value == null ? null : new CqlBlob(value.array());
     }
 
-    @Nullable
     @Override
-    protected ByteBuffer outerToInner(@Nullable CqlBlob value) {
+    protected ByteBuffer outerToInner(CqlBlob value) {
         return value == null ? null : ByteBuffer.wrap(value.getBytes());
     }
 }
