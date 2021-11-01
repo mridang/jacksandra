@@ -36,6 +36,7 @@ public class CassandraJavaMapper<T> {
         this(defaultKeyspace, mappedKlass, new RegistryBasedCodecProvider(codecRegistry));
     }
 
+    @SuppressWarnings("unchecked")
     public CassandraJavaMapper(String defaultKeyspace, Class<T> mappedKlass, CodecProvider codecProvider) {
         this.defaultKeyspace = defaultKeyspace;
         this.mappedKlass = mappedKlass;

@@ -8,6 +8,6 @@
  */
 
 rootProject.name = 'jacksandra'
-include 'spark-jacksandra-helper'
 include 'jacksandra-core'
+include 'spark-jacksandra-helper'
 
