@@ -20,4 +20,5 @@ dependencies {
     testImplementation group: 'com.dimafeng', name: 'testcontainers-scala-cassandra_2.12', version: '0.39.3'
     testImplementation group: 'com.holdenkarau', name: 'spark-testing-base_2.12', version: '3.0.1_1.0.0'
     testImplementation group: 'org.jeasy', name: 'easy-random-core', version: '5.0.0'
+    testImplementation group: 'org.scalatest', name: 'scalatest_2.12', version: '3.2.8'
 }

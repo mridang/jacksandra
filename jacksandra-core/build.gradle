@@ -65,4 +65,5 @@ dependencies {
     }
     testImplementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
     testImplementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    testImplementation group: 'org.scalatest', name: 'scalatest_2.12', version: '3.2.8'
 }
