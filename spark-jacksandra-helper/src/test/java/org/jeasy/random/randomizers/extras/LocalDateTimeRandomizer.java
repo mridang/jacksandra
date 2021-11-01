@@ -7,6 +7,7 @@ import org.jeasy.random.randomizers.time.LocalTimeRandomizer;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+@SuppressWarnings("unused")
 @SuppressFBWarnings("NM_SAME_SIMPLE_NAME_AS_SUPERCLASS")
 public class LocalDateTimeRandomizer extends org.jeasy.random.randomizers.time.LocalDateTimeRandomizer {
 

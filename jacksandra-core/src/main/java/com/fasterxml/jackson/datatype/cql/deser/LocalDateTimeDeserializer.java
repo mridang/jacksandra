@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 
+@SuppressWarnings("unused")
 public class LocalDateTimeDeserializer extends StdScalarDeserializer<LocalDateTime> {
 
     public static final TimestampCodec TIMESTAMP_CODEC = new TimestampCodec();

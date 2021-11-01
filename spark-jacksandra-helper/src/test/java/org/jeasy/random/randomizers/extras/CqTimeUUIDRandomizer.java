@@ -5,6 +5,7 @@ import org.jeasy.random.api.Randomizer;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.mridang.jacksandra.types.CqlTimeUUID;
 
+@SuppressWarnings("unused")
 public class CqTimeUUIDRandomizer implements Randomizer<CqlTimeUUID> {
 
     private final InstantRandomizer instantRandomizer;

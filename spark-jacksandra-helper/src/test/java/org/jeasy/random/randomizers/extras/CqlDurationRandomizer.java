@@ -5,6 +5,7 @@ import org.jeasy.random.randomizers.time.DurationRandomizer;
 
 import com.mridang.jacksandra.types.CqlDuration;
 
+@SuppressWarnings("unused")
 public class CqlDurationRandomizer implements Randomizer<CqlDuration> {
 
     private final DurationRandomizer durationRandomizer;

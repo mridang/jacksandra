@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 public class DurationDeserializer extends StdDeserializer<Duration> {
 
+    @SuppressWarnings("unused")
     public DurationDeserializer() {
         super(Duration.class);
     }

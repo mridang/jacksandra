@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+@SuppressWarnings("unused")
 @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
 @CqlName("mybean")
 public class MyBean implements Serializable {

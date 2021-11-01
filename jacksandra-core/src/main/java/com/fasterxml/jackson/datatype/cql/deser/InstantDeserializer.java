@@ -13,6 +13,7 @@ public class InstantDeserializer extends StdScalarDeserializer<Instant> {
 
     public static final TimestampCodec TIMESTAMP_CODEC = new TimestampCodec();
 
+    @SuppressWarnings("unused")
     public InstantDeserializer() {
         super(Instant.class);
     }

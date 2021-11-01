@@ -45,6 +45,7 @@ import net.jcip.annotations.Immutable;
  * type differs from {@link Duration} (which only represents an amount between two points
  * in time, regardless of the calendar).
  */
+@SuppressWarnings("unused")
 @Immutable
 @SuppressFBWarnings("REDOS")
 public class CqlDuration implements TemporalAmount, Serializable {

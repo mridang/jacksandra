@@ -15,6 +15,7 @@ public class DateDeserializer extends StdScalarDeserializer<Date> {
 
     public static final TimestampCodec TIMESTAMP_CODEC = new TimestampCodec();
 
+    @SuppressWarnings("unused")
     public DateDeserializer() {
         super(Instant.class);
     }

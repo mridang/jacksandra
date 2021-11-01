@@ -5,6 +5,7 @@ import org.jeasy.random.randomizers.text.StringRandomizer;
 
 import com.mridang.jacksandra.types.CqlAscii;
 
+@SuppressWarnings("unused")
 public class CqlAsciiRandomizer implements Randomizer<CqlAscii> {
 
     private final StringRandomizer stringRandomizer;

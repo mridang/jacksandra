@@ -7,6 +7,7 @@ import org.jeasy.random.api.Randomizer;
 import org.jeasy.random.randomizers.number.ByteRandomizer;
 import org.jeasy.random.randomizers.number.ShortRandomizer;
 
+@SuppressWarnings("unused")
 public class ByteBufferRandomizer implements Randomizer<ByteBuffer> {
 
     private final ByteRandomizer delegate;
