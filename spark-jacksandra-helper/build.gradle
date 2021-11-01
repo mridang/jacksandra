@@ -2,6 +2,7 @@
 
 dependencies {
     implementation project(':jacksandra-core')
+    //noinspection GrUnresolvedAccess
     testImplementation project(':jacksandra-core').sourceSets.test.output
     implementation group: 'org.apache.spark', name: 'spark-core_2.12', version: '3.0.0'
     implementation group: 'org.apache.spark', name: 'spark-sql_2.12', version: '3.0.0'

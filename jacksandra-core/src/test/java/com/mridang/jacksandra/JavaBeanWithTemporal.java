@@ -70,13 +70,7 @@ public class JavaBeanWithTemporal implements Serializable {
     @CqlName("tooffsetdatetimestring")
     public OffsetDateTime toOffsetDateTimeString;
 
-    /**
-     * Force shaping
-     * {@link com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer}
-     * {@link com.datastax.oss.driver.internal.core.type.codec.extras.time.ZonedTimestampCodec}
-     * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
-     */
-//    @Nullable
+    //    @Nullable
 //    @CqlName("tozoneddatetimestring")
 //    public ZonedDateTime toZonedDateTimeString;
 

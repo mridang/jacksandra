@@ -36,11 +36,11 @@ public class CassandraJavaMapper<T> {
         this(defaultKeyspace, mappedKlass, new RegistryBasedCodecProvider(codecRegistry));
     }
 
-    @SuppressWarnings("unchecked")
     public CassandraJavaMapper(String defaultKeyspace, Class<T> mappedKlass, CodecProvider codecProvider) {
         this.defaultKeyspace = defaultKeyspace;
         this.mappedKlass = mappedKlass;
-        this.wrapperFactory = new CassandraSchemaFactoryWrapperFactory(new AbstractFunction2<>() {
+        //noinspection Convert2Diamond
+        this.wrapperFactory = new CassandraSchemaFactoryWrapperFactory(new AbstractFunction2<SerializerProvider, WrapperFactory, SchemaFactoryWrapper>() {
             @Override
             public SchemaFactoryWrapper apply(SerializerProvider serializerProvider, WrapperFactory wrapperFactory) {
                 return new CassandraSchemaFactoryWrapper(serializerProvider, wrapperFactory, codecProvider);
