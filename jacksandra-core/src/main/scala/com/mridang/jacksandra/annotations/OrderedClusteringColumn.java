@@ -39,6 +39,7 @@ import com.datastax.oss.driver.api.mapper.annotations.Select;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OrderedClusteringColumn {
 
+    @SuppressWarnings("unused")
     boolean isAscending();
 
     /**
@@ -48,5 +49,6 @@ public @interface OrderedClusteringColumn {
      * required to be consecutive or start at a given index, but for clarity it is recommended to use
      * consecutive integers.
      */
+    @SuppressWarnings("unused")
     int value() default 0;
 }

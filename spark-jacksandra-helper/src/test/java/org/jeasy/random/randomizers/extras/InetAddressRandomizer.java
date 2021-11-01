@@ -10,6 +10,11 @@ import com.google.common.net.InetAddresses;
 @SuppressWarnings("UnstableApiUsage")
 public class InetAddressRandomizer extends AbstractRandomizer<InetAddress> {
 
+    @SuppressWarnings("unused")
+    public InetAddressRandomizer() {
+        //
+    }
+
     @Override
     public Inet4Address getRandomValue() {
         return InetAddresses.fromInteger(random.nextInt());

@@ -50,5 +50,6 @@ import com.datastax.oss.driver.api.mapper.annotations.Select;
  */
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+@SuppressWarnings("unused")
 public @interface StaticColumn {
 }

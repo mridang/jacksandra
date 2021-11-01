@@ -15,6 +15,11 @@ public abstract class CollectionTypeRandomizer<T> implements ContextAwareRandomi
 
     private RandomizerContext context;
 
+    @SuppressWarnings("unused")
+    public CollectionTypeRandomizer() {
+        //
+    }
+
     @Override
     public void setRandomizerContext(RandomizerContext context) {
         this.context = context;
