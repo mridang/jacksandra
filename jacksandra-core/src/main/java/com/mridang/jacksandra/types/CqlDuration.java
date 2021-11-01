@@ -34,6 +34,7 @@ import com.datastax.oss.driver.shaded.guava.common.base.Preconditions;
 import com.datastax.oss.driver.shaded.guava.common.collect.ImmutableList;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import net.jcip.annotations.Immutable;
 
 /**
@@ -45,6 +46,7 @@ import net.jcip.annotations.Immutable;
  * in time, regardless of the calendar).
  */
 @Immutable
+@SuppressFBWarnings("REDOS")
 public class CqlDuration implements TemporalAmount, Serializable {
 
     @VisibleForTesting

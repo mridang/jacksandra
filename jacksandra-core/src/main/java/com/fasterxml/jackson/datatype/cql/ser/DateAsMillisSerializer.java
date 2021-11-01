@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
 
+@SuppressWarnings("JavaUtilDate")
 public class DateAsMillisSerializer extends JsonSerializer<Date> {
 
     @Override

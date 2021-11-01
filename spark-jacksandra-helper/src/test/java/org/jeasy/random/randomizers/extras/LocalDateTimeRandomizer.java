@@ -5,6 +5,9 @@ import java.time.temporal.ChronoUnit;
 
 import org.jeasy.random.randomizers.time.LocalTimeRandomizer;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+@SuppressFBWarnings("NM_SAME_SIMPLE_NAME_AS_SUPERCLASS")
 public class LocalDateTimeRandomizer extends org.jeasy.random.randomizers.time.LocalDateTimeRandomizer {
 
     public LocalDateTimeRandomizer() {
