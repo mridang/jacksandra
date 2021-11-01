@@ -142,6 +142,7 @@ allprojects { project ->
         //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
         effort = 'max'
         // Exclude all *.scala files as Spotbugs doesn't work too well with Scala.
+        //noinspection GroovyAccessibility,GrFinalVariableAccess,GroovyAssignabilityCheck
         excludeFilter = file("$rootDir/gradle/config/spotbugs/exclude.xml")
     }
 
