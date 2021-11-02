@@ -34,7 +34,7 @@ allprojects { project ->
     apply plugin: "jacoco"
 
     group 'com.mridang'
-    version '3.0.7'
+    version '3.0.8'
 
     repositories {
         mavenCentral()
@@ -124,9 +124,9 @@ allprojects { project ->
         from scaladoc.destinationDir
     }
 
-    artifacts {
-        archives sourcesJar
-        archives scaladocJar
+    java {
+        withSourcesJar()
+        withJavadocJar()
     }
 
     // Configuration for the Spotbugs plugin. It seems that it isn't possible to define
@@ -203,11 +203,6 @@ allprojects { project ->
             maven(MavenPublication) {
                 //noinspection GroovyAssignabilityCheck
                 from components.java
-
-                //noinspection GroovyAssignabilityCheck
-                artifact sourcesJar
-                //noinspection GroovyAssignabilityCheck
-                artifact scaladocJar
 
                 pom {
                     //noinspection GroovyAssignabilityCheck
