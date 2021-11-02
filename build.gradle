@@ -34,7 +34,7 @@ allprojects { project ->
     apply plugin: "jacoco"
 
     group 'com.mridang'
-    version '3.0.6'
+    version '3.0.7'
 
     repositories {
         mavenCentral()
