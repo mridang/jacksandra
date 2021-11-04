@@ -118,6 +118,7 @@ public class CqlDuration implements TemporalAmount, Serializable {
      * @param months      the number of months
      * @param days        the number of days
      * @param nanoseconds the number of nanoseconds
+     * @return an instance of the duration object
      * @throws IllegalArgumentException if the values are not all negative or all positive
      */
     public static CqlDuration newInstance(int months, int days, long nanoseconds) {
@@ -148,6 +149,7 @@ public class CqlDuration implements TemporalAmount, Serializable {
      * </ul>
      *
      * @param input the <code>String</code> to convert
+     * @return an instance of the duration object
      */
     public static CqlDuration from(@NonNull String input) {
         boolean isNegative = input.startsWith("-");

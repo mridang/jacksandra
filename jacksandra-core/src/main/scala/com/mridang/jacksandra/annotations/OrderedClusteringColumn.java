@@ -48,6 +48,8 @@ public @interface OrderedClusteringColumn {
      * <p>This is only required if there are multiple clustering columns. Positions are not strictly
      * required to be consecutive or start at a given index, but for clarity it is recommended to use
      * consecutive integers.
+     * 
+     * @return the int denoting the column ordering
      */
     @SuppressWarnings("unused")
     int value() default 0;
