@@ -45,7 +45,7 @@ public class JavaBeanWithExotics implements Serializable {
     public InetAddress toIP;
 
     /**
-     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer
+     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#UUID}
      */
     @Nullable
@@ -53,7 +53,7 @@ public class JavaBeanWithExotics implements Serializable {
     public UUID toUUID;
 
     /**
-     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer
+     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#UUID}
      */
     @Nullable
@@ -61,7 +61,7 @@ public class JavaBeanWithExotics implements Serializable {
     public CqlTimeUUID toTimeUUID;
 
     /**
-     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer
+     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#UUID}
      */
     @Nullable
@@ -69,7 +69,7 @@ public class JavaBeanWithExotics implements Serializable {
     public CqlBlob toBlob;
 
     /**
-     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer
+     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#DURATION}
      */
     @Nullable

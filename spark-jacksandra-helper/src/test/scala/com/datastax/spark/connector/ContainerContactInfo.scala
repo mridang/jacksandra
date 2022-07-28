@@ -7,7 +7,7 @@ import java.net.InetSocketAddress
 
 class ContainerContactInfo(container: containers.CassandraContainer[_])
   extends IpBasedContactInfo(hosts = {
-    val host: String = container.getContainerIpAddress
+    val host: String = container.getHost
     val port: Integer = container.getFirstMappedPort
     Set(new InetSocketAddress(host, port))
   })

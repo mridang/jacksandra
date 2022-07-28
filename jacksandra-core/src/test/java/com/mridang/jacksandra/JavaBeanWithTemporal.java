@@ -47,7 +47,7 @@ public class JavaBeanWithTemporal implements Serializable {
     public Date toDateTimestamp;
 
     /**
-     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer
+     * {@link com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TIMESTAMP}
      */
     @Nullable
@@ -127,8 +127,8 @@ public class JavaBeanWithTemporal implements Serializable {
 
     /**
      * Force shaping
-     * {@link com.fasterxml.jackson.datatype.jsr310.ser.OffsetTimeSerializer
-     * and {@link com.fasterxml.jackson.datatype.jsr310.deser.OffsetTimeDeserializer
+     * {@link com.fasterxml.jackson.datatype.jsr310.ser.OffsetTimeSerializer}
+     * and {@link com.fasterxml.jackson.datatype.jsr310.deser.OffsetTimeDeserializer}
      */
     @Nullable
     @CqlName("tooffsettimestring")
@@ -153,7 +153,7 @@ public class JavaBeanWithTemporal implements Serializable {
 
     /**
      * Force shaping
-     * {@link com.fasterxml.jackson.datatype.jsr310.deser.YearMonthDeserializer
+     * {@link com.fasterxml.jackson.datatype.jsr310.deser.YearMonthDeserializer}
      * and {@link com.fasterxml.jackson.datatype.jsr310.ser.YearMonthSerializer}
      * {@link com.datastax.oss.driver.api.core.type.DataTypes#TEXT}
      */
